@@ -1,0 +1,70 @@
+<script lang="ts" setup>
+
+const props = defineProps({
+    title: {
+        type: String
+    },
+    url: {
+        type: String,
+        default: null
+    }
+})
+    
+</script>
+
+<template>
+<div class="container">
+        <div class="heading">
+            <h1 class="heading__title" >{{ title }}</h1>
+            <div>
+                <NuxtLink :to="url" class="heading__explore">Explore More 
+                <icon name="material-symbols:arrow-forward-rounded"
+                class="heading__icon">
+                </icon>
+                </NuxtLink>
+            </div>
+        </div>
+        <hr/>
+    </div>
+</template>
+
+
+
+<style lang="scss" scoped>
+.heading{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+
+    &__title{
+        font-family: 'Playfair Display';
+        font-weight: 600;
+        size: 44px;
+        line-height: 58px;
+        color: #222222;
+        text-shadow: 0px 4px 4px #00000040;
+    }
+
+    &__explore {
+        font-family: 'DM Sans';
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 32px;
+        color: #4B4B4B;
+        text-decoration: none;
+        padding-bottom: 15px;
+        transition: 0.5s all;
+
+        &:hover {
+            border-bottom: 1px solid #466543;
+            color: #466543;
+        }
+    }
+
+    &__icon {
+        transform: translateY(12%);
+    }
+}
+
+</style>
