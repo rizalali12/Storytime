@@ -3,9 +3,9 @@ const props = defineProps({
     title: {
         type: String,
     },
-    url:{
+    url: {
         type: String,
-        default: null
+        default: null,
     },
     story: {
         type: Object,
@@ -13,44 +13,41 @@ const props = defineProps({
     },
     variant: {
         type: String as PropType<"primary" | "outlined">,
-        default: "primary"
-    }
-})
-
+        default: "primary",
+    },
+});
 </script>
 
 <template>
     <NuxtLink :to="url">
-    <button :class="variant" >{{ title }}</button>
+        <button :class="variant">{{ title }}</button>
     </NuxtLink>
 </template>
 
 <style lang="scss" scoped>
-
 .primary {
     border-radius: 8px;
     padding: 14px 30px;
     background-color: #466543;
     font-size: 24px;
     line-height: 32px;
-    font-family: 'DM Sans';
+    font-family: "DM Sans";
     transition: 0.5s;
-    color: #FFFFFF;
+    color: #ffffff;
     border: 0px;
 
-    &:hover{
+    &:hover {
         background-color: #385236;
     }
 }
 
 .outlined {
-
     height: 60px;
     width: 151px;
     border-radius: 8px;
     border: 2px solid #466543;
     background: none;
-    font-family: 'DM Sans';
+    font-family: "DM Sans";
     font-weight: 500;
     font-size: 24px;
     line-height: 32px;
@@ -62,5 +59,4 @@ const props = defineProps({
         color: black;
     }
 }
-
 </style>

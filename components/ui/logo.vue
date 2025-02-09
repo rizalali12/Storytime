@@ -1,11 +1,11 @@
 <template>
-        <div class="navbar__logo">
-            <img src="@/assets/icons/image 12.png" alt="logo">
-        </div>
+    <div class="navbar__logo">
+        <NuxtLink to="/">
+            <img src="@/assets/icons/image 12.png" alt="logo" />
+        </NuxtLink>
+    </div>
 </template>
 
-<script>
-</script>
+<script></script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

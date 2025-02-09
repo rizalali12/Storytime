@@ -30,7 +30,6 @@ const fetchData = () => {
             author: "Khrisvana (updated) 1",
             date: "12 March 2024",
             genre: "Comedy",
-            title: "Gemma",
         },
     ];
 };
@@ -66,29 +65,12 @@ fetchData();
                 </div>
             </div>
         </div>
-        <div class="story" v-if="variant === 'image_large'">
-            <div class="row">
-                <div class="col-8">
-                    <div class="story__highlight">
-                        <UiCardStory :story="stories[0]" />
-                    </div>
-                </div>
-                <!-- <div class="story__wrapper-small"> -->
-                <div class="col-4">
-                    <div class="story__small">
-                        <UiCardStory :story="stories[0]" />
-                        <UiCardStory :story="stories[0]" />
-                    </div>
-                </div>
-                <!-- </div> -->
-            </div>
-        </div>
     </div>
 </template>
 
 <style lang="scss" scoped>
 .container {
-    margin-top: 120px;
+    margin-top: 70px;
 }
 
 .story {
@@ -97,26 +79,11 @@ fetchData();
     padding-top: 40px;
 
     &__normal {
-        // width: 33%;
+        // width: 547px;
     }
 
     &__highlight {
         width: 100%;
-    }
-
-    &__wrapper-small {
-        display: flex;
-        flex-direction: column;
-        gap: 46px;
-        margin: 0;
-    }
-
-    &__small {
-        margin-top: 0;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: 40px;
     }
 }
 </style>
