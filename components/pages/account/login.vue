@@ -1,12 +1,5 @@
 <script lang="ts" setup>
 import { Icon, Title, UiButton, UiLogo } from "#components";
-
-const showPassword = ref(false);
-const stories = ref<any>([]);
-
-const togglePassword = () => {
-    showPassword.value = !showPassword.value;
-};
 </script>
 
 <template>
@@ -33,23 +26,10 @@ const togglePassword = () => {
                 </div>
                 <div class="form">
                     <label for="" class="form__title">Password</label>
-                    <div class="form__container-password">
-                        <input
-                            type="text"
-                            id=""
-                            class="form__input-password"
-                            placeholder="Enter your username or email"
-                        />
-                        <Icon
-                            :name="
-                                showPassword
-                                    ? 'material-symbols:visibility-off-outline'
-                                    : 'material-symbols:visibility-outline-rounded'
-                            "
-                            @click="togglePassword"
-                            class="password"
-                        ></Icon>
-                    </div>
+                    <UiFormInput
+                        variannt="password"
+                        placeholder="Enter your chosen password"
+                    />
                 </div>
                 <div class="button__login">
                     <UiButton title="Login" url="/" />
@@ -128,28 +108,6 @@ const togglePassword = () => {
         margin-top: 20px;
         margin-bottom: 24px;
     }
-
-    &__input-password {
-        padding: 24px 30px;
-        width: 577px;
-        height: 71px;
-        border-radius: 8px;
-        margin-top: 20px;
-        border: 2px solid #cccccc;
-    }
-
-    &__container-password {
-        position: relative;
-    }
-}
-
-.password {
-    position: absolute;
-    top: 50%;
-    right: 30px;
-    transform: translateY(-20%);
-    cursor: pointer;
-    font-size: 30px;
 }
 
 .button__login {

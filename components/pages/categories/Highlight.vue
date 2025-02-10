@@ -96,13 +96,13 @@ fetchData();
 <template>
     <div class="container">
         <div class="wrapper">
-            <UiStoryGenreHeader title="All Story" />
+            <UiStoryGenreHeader title="Comedy" />
         </div>
     </div>
-    <UiStoryHeader variant="no-category" title="All Story" />
+    <UiStoryHeader variant="category" title="Comedy" />
     <div class="container container-content">
         <div class="heading">
-            <UiDropdownMenu />
+            <UiDropdownMenu title="Comedy" />
             <UiSearchBar variant="searchbar-mini" />
         </div>
         <div class="story" v-if="variant === 'image'">

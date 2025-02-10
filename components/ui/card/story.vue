@@ -26,9 +26,10 @@ const props = defineProps({
 <template>
     <div class="wrapper">
         <div class="kotak">
-            <div
+            <button
                 :class="saveBookmark ? 'kotak__icon-black' : 'kotak__icon'"
                 @click="toggleBookmark"
+                class="bookmark"
             >
                 <!-- //ganti jadi button -->
                 <icon
@@ -39,10 +40,10 @@ const props = defineProps({
                     "
                     class="kotak__icon-logo"
                 ></icon>
-            </div>
-            <NuxtLink :to="story.url" class="kotak">
-                <img src="@/assets/icons/Group.png" class="gambar" alt="" />
-            </NuxtLink>
+            </button>
+            <!-- <NuxtLink :to="story.url" class="kotak"> -->
+            <img src="@/assets/icons/Group.png" class="gambar" alt="" />
+            <!-- </NuxtLink> -->
         </div>
         <NuxtLink :to="url">
             <div class="kotak__info">
@@ -159,15 +160,12 @@ const props = defineProps({
     }
 }
 
-// .link .kotak__title:hover {
-//     color: #466543;
-// }
-
 .gambar {
-    // border: 1px solid black;
-    // width: 547px;
-    // height: 500px;
     border-radius: 8px;
+}
+
+.bookmark {
+    border: none;
 }
 
 .author {

@@ -10,19 +10,19 @@
                 <UiCardCategories title="Adventure" />
             </div>
             <div class="col-2">
-                <UiCardCategories title="Comedy" />
-            </div>
-            <div class="col-2">
-                <UiCardCategories title="Drama" />
+                <UiCardCategories title="Fiction" />
             </div>
             <div class="col-2">
                 <UiCardCategories title="Fantasy" />
             </div>
             <div class="col-2">
-                <UiCardCategories title="Horror" />
+                <UiCardCategories title="Drama" />
             </div>
             <div class="col-2">
-                <UiCardCategories title="Romance" />
+                <UiCardCategories title="Heartfelt" />
+            </div>
+            <div class="col-2">
+                <UiCardCategories title="Mystery" />
             </div>
         </div>
     </div>

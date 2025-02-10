@@ -3,7 +3,7 @@
     <div>
         <Appheader />
 
-        <PagesAllstoryHighlight title="All Story" />
+        <PagesAllstoryHighlight />
 
         <AppFooter />
     </div>
