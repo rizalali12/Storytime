@@ -5,7 +5,15 @@ const props = defineProps({
     title: {
         type: String,
     },
+    variant: {
+        type: String as PropType<"active" | "no-active">,
+        default: "no-active",
+    },
 });
+
+const route = useRoute();
+
+console.log(route);
 </script>
 
 <template>
@@ -61,34 +69,111 @@ const props = defineProps({
                         <ul class="dropdown-menu dropdown-menu-white">
                             <li>
                                 <a
-                                    class="dropdown-item`"
-                                    href="/categories/comedy"
+                                    class="dropdown-item"
+                                    :class="
+                                        route.query.category === 'comedy'
+                                            ? 'active'
+                                            : ''
+                                    "
+                                    href="/story?category=comedy"
                                     >Comedy</a
                                 >
                             </li>
                             <li>
-                                <a class="dropdown-item" href="#">Romance</a>
+                                <a
+                                    class="dropdown-item"
+                                    :class="
+                                        route.query.category === 'romance'
+                                            ? 'active'
+                                            : ''
+                                    "
+                                    href="/story?category=romance"
+                                    >Romance</a
+                                >
                             </li>
                             <li>
-                                <a class="dropdown-item" href="#">Horror</a>
+                                <a
+                                    class="dropdown-item"
+                                    :class="
+                                        route.query.category === 'horror'
+                                            ? 'active'
+                                            : ''
+                                    "
+                                    href="/story?category=horror"
+                                    >Horror</a
+                                >
                             </li>
                             <li>
-                                <a class="dropdown-item" href="#">Adventure</a>
+                                <a
+                                    class="dropdown-item"
+                                    :class="
+                                        route.query.category === 'adventure'
+                                            ? 'active'
+                                            : ''
+                                    "
+                                    href="/story?category=adventure"
+                                    >Adventure</a
+                                >
                             </li>
                             <li>
-                                <a class="dropdown-item" href="#">Fiction</a>
+                                <a
+                                    class="dropdown-item"
+                                    :class="
+                                        route.query.category === 'fiction'
+                                            ? 'active'
+                                            : ''
+                                    "
+                                    href="/story?category=fiction"
+                                    >Fiction</a
+                                >
                             </li>
                             <li>
-                                <a class="dropdown-item" href="#">Fantasy</a>
+                                <a
+                                    class="dropdown-item"
+                                    :class="
+                                        route.query.category === 'fantasy'
+                                            ? 'active'
+                                            : ''
+                                    "
+                                    href="/story?category=fantasy"
+                                    >Fantasy</a
+                                >
                             </li>
                             <li>
-                                <a class="dropdown-item" href="#">Drama</a>
+                                <a
+                                    class="dropdown-item"
+                                    :class="
+                                        route.query.category === 'drama'
+                                            ? 'active'
+                                            : ''
+                                    "
+                                    href="/story?category=drama"
+                                    >Drama</a
+                                >
                             </li>
                             <li>
-                                <a class="dropdown-item" href="#">Heartfelt</a>
+                                <a
+                                    class="dropdown-item"
+                                    :class="
+                                        route.query.category === 'heartfelt'
+                                            ? 'active'
+                                            : ''
+                                    "
+                                    href="/story?category=heartfelt"
+                                    >Heartfelt</a
+                                >
                             </li>
                             <li>
-                                <a class="dropdown-item" href="#">Mystery</a>
+                                <a
+                                    class="dropdown-item"
+                                    :class="
+                                        route.query.category === 'mystery'
+                                            ? 'active'
+                                            : ''
+                                    "
+                                    href="/story?category=mystery"
+                                    >Mystery</a
+                                >
                             </li>
                         </ul>
                     </li>
@@ -99,6 +184,9 @@ const props = defineProps({
 </template>
 
 <style lang="scss" scoped>
+p {
+    margin-bottom: 0;
+}
 .text {
     display: flex;
     align-items: center;
@@ -111,7 +199,6 @@ const props = defineProps({
 }
 
 .btn {
-    transform: translateY(-18%);
     border: none;
     color: #222222;
     font-family: "DM Sans";
@@ -133,6 +220,7 @@ const props = defineProps({
     padding: 15px;
     padding-right: 70px;
     background-color: white;
+    transition: 0.3s;
 
     &:hover {
         border-left: 3px solid #466543;

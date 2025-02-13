@@ -11,10 +11,6 @@ const props = defineProps({
         type: String as PropType<"image" | "image_large">,
         default: "image",
     },
-    url: {
-        type: String,
-        default: null,
-    },
     variantExplore: {
         type: String as PropType<"explore" | "no_explore">,
         default: "no_explore",
@@ -96,7 +92,7 @@ fetchData();
 <template>
     <div class="container">
         <div class="wrapper">
-            <UiStoryGenreHeader title="All Story" />
+            <UiStoryGenreHeader title="All Story" url="/story" />
         </div>
     </div>
     <UiStoryHeader variant="no-category" title="All Story" />
@@ -118,12 +114,13 @@ fetchData();
                 </div>
             </div>
         </div>
+        <UiNumberPage />
     </div>
 </template>
 
 <style lang="scss" scoped>
 .container {
-    margin-top: 70px;
+    margin-top: 50px;
 }
 
 .wrapper {

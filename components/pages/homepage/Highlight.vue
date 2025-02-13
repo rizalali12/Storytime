@@ -8,7 +8,7 @@ const props = defineProps({
         type: String,
     },
     variant: {
-        type: String as PropType<"image" | "image_large">,
+        type: String as PropType<"image" | "image_large" | "image-myStory">,
         default: "image",
     },
     url: {
@@ -18,6 +18,26 @@ const props = defineProps({
     variantExplore: {
         type: String as PropType<"explore" | "no_explore">,
         default: "no_explore",
+    },
+    variant_title: {
+        type: String,
+        default: null,
+    },
+    genre: {
+        type: String,
+        default: null,
+    },
+    header_title: {
+        type: String,
+        default: null,
+    },
+    variantAuthor: {
+        type: String as PropType<"author" | "no-author">,
+        default: "author",
+    },
+    variantIcon: {
+        type: String as PropType<"primary" | "secondary" | "my-story">,
+        default: "primary",
     },
 });
 
@@ -40,44 +60,120 @@ fetchData();
 
 <template>
     <div class="container">
-        <div class="wrapper">
+        <div class="wrapper" v-if="header_title === 'true'">
             <UiSectionHeader
                 :title="title"
                 :url="url"
                 :variant="variantExplore"
+                :variant_title="variant_title"
             />
         </div>
         <div class="story" v-if="variant === 'image'">
             <div class="row">
                 <div class="col-12 col-md-6 col-xl-4">
                     <div class="story__normal">
-                        <UiCardStory :story="stories[0]" />
+                        <UiCardStory
+                            :story="stories[0]"
+                            :genre="genre"
+                            :hasAuthor="variantAuthor"
+                            :variantIcon="variantIcon"
+                        />
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-xl-4">
                     <div class="story__normal">
-                        <UiCardStory :story="stories[0]" />
+                        <UiCardStory
+                            :story="stories[0]"
+                            :genre="genre"
+                            :hasAuthor="variantAuthor"
+                            :variantIcon="variantIcon"
+                        />
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-xl-4">
                     <div class="story__normal">
-                        <UiCardStory :story="stories[0]" />
+                        <UiCardStory
+                            :story="stories[0]"
+                            :genre="genre"
+                            :hasAuthor="variantAuthor"
+                            :variantIcon="variantIcon"
+                        />
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="story-profile" v-if="variant === 'image-myStory'">
+            <div class="row">
+                <div class="col-12 col-md-6 col-xl-6 pb-4">
+                    <div class="story__normal">
+                        <UiCardStory
+                            :story="stories[0]"
+                            :genre="genre"
+                            :hasAuthor="variantAuthor"
+                            :variantIcon="variantIcon"
+                        />
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-xl-6">
+                    <div class="story__normal">
+                        <UiCardStory
+                            :story="stories[0]"
+                            :genre="genre"
+                            :hasAuthor="variantAuthor"
+                            :variantIcon="variantIcon"
+                        />
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-xl-6">
+                    <div class="story__normal">
+                        <UiCardStory
+                            :story="stories[0]"
+                            :genre="genre"
+                            :hasAuthor="variantAuthor"
+                            :variantIcon="variantIcon"
+                        />
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-xl-6">
+                    <div class="story__normal">
+                        <UiCardStory
+                            :story="stories[0]"
+                            :genre="genre"
+                            :hasAuthor="variantAuthor"
+                            :variantIcon="variantIcon"
+                        />
+                    </div>
+                </div>
+                <UiNumberPage />
             </div>
         </div>
         <div class="story" v-if="variant === 'image_large'">
             <div class="row">
                 <div class="col-8">
                     <div class="story__highlight">
-                        <UiCardStory :story="stories[0]" />
+                        <UiCardStory
+                            :story="stories[0]"
+                            :genre="genre"
+                            :hasAuthor="variantAuthor"
+                            :variantIcon="variantIcon"
+                        />
                     </div>
                 </div>
                 <!-- <div class="story__wrapper-small"> -->
                 <div class="col-4">
                     <div class="story__small">
-                        <UiCardStory :story="stories[0]" />
-                        <UiCardStory :story="stories[0]" />
+                        <UiCardStory
+                            :story="stories[0]"
+                            :genre="genre"
+                            :hasAuthor="variantAuthor"
+                            :variantIcon="variantIcon"
+                        />
+                        <UiCardStory
+                            :story="stories[0]"
+                            :genre="genre"
+                            :hasAuthor="variantAuthor"
+                            :variantIcon="variantIcon"
+                        />
                     </div>
                 </div>
                 <!-- </div> -->
@@ -89,6 +185,7 @@ fetchData();
 <style lang="scss" scoped>
 .container {
     margin-top: 120px;
+    max-width: 1700px;
 }
 
 .story {
@@ -98,6 +195,7 @@ fetchData();
 
     &__normal {
         // width: 33%;
+        padding-top: 20px;
     }
 
     &__highlight {
@@ -118,5 +216,10 @@ fetchData();
         flex-direction: column;
         gap: 40px;
     }
+}
+
+.story-profile {
+    display: flex;
+    gap: 24px;
 }
 </style>

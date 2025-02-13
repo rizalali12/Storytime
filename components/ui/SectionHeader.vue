@@ -13,13 +13,17 @@ const props = defineProps({
         type: String as PropType<"explore" | "no_explore">,
         default: "no_explore",
     },
+    variant_title: {
+        type: String as PropType<"primary" | "title">,
+        default: "title",
+    },
 });
 </script>
 
 <template>
     <div class="container">
         <div class="heading">
-            <h1 class="heading__title">{{ title }}</h1>
+            <h1 :class="variant_title">{{ title }}</h1>
             <div v-if="variant === 'explore'">
                 <NuxtLink :to="url" class="heading__explore"
                     >Explore More
@@ -42,15 +46,6 @@ const props = defineProps({
     align-items: center;
     margin-bottom: 40px;
 
-    &__title {
-        font-family: "Playfair Display";
-        font-weight: 600;
-        size: 44px;
-        line-height: 58px;
-        color: #222222;
-        text-shadow: 0px 4px 4px #00000040;
-    }
-
     &__explore {
         font-family: "DM Sans";
         font-weight: 400;
@@ -60,6 +55,7 @@ const props = defineProps({
         text-decoration: none;
         padding-bottom: 15px;
         transition: 0.5s all;
+        border-bottom: 1px solid white;
 
         &:hover {
             border-bottom: 1px solid #466543;
@@ -70,5 +66,22 @@ const props = defineProps({
     &__icon {
         transform: translateY(12%);
     }
+}
+
+.primary {
+    font-family: "Playfair Display";
+    font-weight: 600;
+    size: 44px;
+    line-height: 58px;
+    color: #222222;
+}
+
+.title {
+    font-family: "Playfair Display";
+    font-weight: 600;
+    size: 44px;
+    line-height: 58px;
+    color: #222222;
+    text-shadow: 0px 4px 4px #00000040;
 }
 </style>

@@ -1,12 +1,28 @@
 <script lang="ts" setup>
+import type { PropType } from "vue";
+
 const showPassword = ref(false);
 const props = defineProps({
     placeholder: {
         type: String,
     },
     variant: {
-        type: String as PropType<"form" | "password">,
+        type: String as PropType<
+            "form" | "password" | "text-area" | "form-black"
+        >,
         default: "password",
+    },
+    label: {
+        type: String,
+        default: null,
+    },
+    disabled: {
+        type: String,
+        default: null,
+    },
+    variantIcon: {
+        type: String as PropType<"true" | "false">,
+        default: "false",
     },
 });
 
@@ -18,12 +34,14 @@ const togglePassword = () => {
 <template>
     <div>
         <div :class="variant" v-if="variant === 'password'">
+            <label for="" class="form__title">{{ label }}</label>
             <input
                 :type="showPassword ? 'text' : 'password'"
                 class="password__input"
                 :placeholder="placeholder"
             />
             <Icon
+                v-if="variantIcon === 'true'"
                 :name="
                     showPassword
                         ? 'material-symbols:visibility-off-outline'
@@ -34,6 +52,42 @@ const togglePassword = () => {
             ></Icon>
         </div>
     </div>
+    <div>
+        <div v-if="variant === 'form'">
+            <label for="" class="form__title">{{ label }}</label>
+            <div>
+                <input
+                    type="text"
+                    name="username"
+                    id="username"
+                    :placeholder="placeholder"
+                    class="form__input"
+                    :class="disabled"
+                />
+            </div>
+        </div>
+        <div v-if="variant === 'form-black'">
+            <label for="" class="form__title">{{ label }}</label>
+            <div>
+                <input
+                    type="text"
+                    name="username"
+                    id="username"
+                    :placeholder="placeholder"
+                    class="form__input black"
+                    :class="disabled"
+                />
+            </div>
+        </div>
+        <div v-if="variant === 'text-area'">
+            <label for="" class="form__title">{{ label }}</label>
+            <div>
+                <textarea name="" id="" class="text-area">{{
+                    placeholder
+                }}</textarea>
+            </div>
+        </div>
+    </div>
 </template>
 
 <style lang="scss" scoped>
@@ -41,21 +95,86 @@ const togglePassword = () => {
     position: relative;
     &__input {
         padding: 24px 30px;
-        max-width: 577px;
-        width: 100%;
+        // max-width: 577px;
+        width: 577px;
         height: 71px;
         border-radius: 8px;
         margin-top: 20px;
         border: 2px solid #cccccc;
+        margin-bottom: 30px;
     }
 
     &__icon {
         position: absolute;
         top: 50%;
         right: 30px;
-        transform: translateY(-20%);
+        transform: translateY(-30%);
         cursor: pointer;
         font-size: 30px;
     }
+}
+
+.disabled {
+    pointer-events: none;
+    background-color: #f9fbf8;
+}
+
+.form {
+    margin: 0px;
+
+    &__title {
+        font-family: "DM Sans";
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 23px;
+        color: #4b4b4b;
+    }
+
+    &__input {
+        padding: 24px 30px;
+        border: 2px solid #cccccc;
+        width: 577px;
+        min-height: 71px;
+        border-radius: 8px;
+        margin-top: 20px;
+        height: 100%;
+        margin-bottom: 30px;
+    }
+
+    &::placeholder {
+        color: #4b4b4b;
+        font-family: "DM Sans";
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 23px;
+    }
+}
+
+.black {
+    &::placeholder {
+        color: #222222;
+        font-family: "DM Sans";
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 23px;
+    }
+}
+
+.text-area {
+    margin-top: 20px;
+    border: 2px solid #cccccc;
+    max-width: 700px;
+    width: 100%;
+    // max-height: 400px;
+    overflow: hidden;
+    height: 117px;
+    border-radius: 8px;
+    padding: 24px 30px;
+    resize: none;
+    font-family: "DM Sans";
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 23px;
+    color: #222222;
 }
 </style>

@@ -1,4 +1,7 @@
 <script lang="ts" setup>
+const route = useRoute();
+console.log(route);
+
 const props = defineProps({
     title: {
         type: String,
@@ -7,20 +10,22 @@ const props = defineProps({
         type: String,
         default: null,
     },
-    story: {
-        type: Object,
-        required: true,
-    },
     variant: {
-        type: String as PropType<"primary" | "outlined">,
+        type: String as PropType<"primary" | "outlined" | "no-border">,
         default: "primary",
+    },
+    active: {
+        type: Boolean,
+        default: false,
     },
 });
 </script>
 
 <template>
     <NuxtLink :to="url">
-        <button :class="variant">{{ title }}</button>
+        <button :class="variant + ' ' + (active ? 'active' : '')">
+            {{ title }}
+        </button>
     </NuxtLink>
 </template>
 
@@ -43,7 +48,8 @@ const props = defineProps({
 
 .outlined {
     height: 60px;
-    width: 151px;
+    // width: 151px;
+    padding: 14px 30px;
     border-radius: 8px;
     border: 2px solid #466543;
     background: none;
@@ -58,5 +64,26 @@ const props = defineProps({
         border: 2px solid black;
         color: black;
     }
+}
+
+.no-border {
+    border: none;
+    border-radius: 8px;
+    padding: 30px;
+    font-family: "DM Sans";
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 32px;
+    color: #222222;
+    background-color: white;
+    transition: 0.5s;
+
+    &:hover {
+        background-color: #f0f5ed;
+    }
+}
+
+.active {
+    background-color: #f0f5ed;
 }
 </style>

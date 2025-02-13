@@ -8,20 +8,23 @@
     <PagesHomepageHighlight
         title="Comedy"
         variant="image_large"
-        url="/comedy"
+        url="/category/comedy"
         variantExplore="explore"
+        header_title="true"
     />
     <PagesHomepageHighlight
         title="Romance"
         variant="image"
-        url="/romance"
+        url="/category/romance"
         variantExplore="explore"
+        header_title="true"
     />
     <PagesHomepageHighlight
         title="Horror"
         variant="image_large"
-        url="/horror"
+        url="/category/horror"
         variantExplore="explore"
+        header_title="true"
     />
     <PagesHomepageMoreCategories />
 

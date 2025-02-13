@@ -59,6 +59,8 @@
         text-align: center;
         font-weight: 400;
         line-height: 32px;
+        max-width: 80%;
+        margin: auto;
     }
 
     &__gambar {

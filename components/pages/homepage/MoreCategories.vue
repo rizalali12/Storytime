@@ -31,6 +31,7 @@
 <style lang="scss" scoped>
 .container {
     margin-top: 120px;
+    max-width: 1700px;
 }
 
 // .categories {

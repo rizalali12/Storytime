@@ -43,58 +43,41 @@ const togglePasswordConfirm = () => {
 
             <div class="container__kanan">
                 <div class="form">
-                    <label for="" class="form__title">Name</label>
-                    <div>
-                        <input
-                            type="text"
-                            name="name"
-                            id="name"
-                            placeholder="Enter your name"
-                            class="form__input"
-                        />
-                    </div>
+                    <UiFormInput
+                        variant="form"
+                        placeholder="Enter your name"
+                        label="Name"
+                    />
                 </div>
                 <div class="form">
-                    <label for="" class="form__title">Username</label>
-                    <div>
-                        <input
-                            type="text"
-                            name="username"
-                            id="username"
-                            placeholder="Enter your username"
-                            class="form__input"
-                        />
-                    </div>
+                    <UiFormInput
+                        variant="form"
+                        placeholder="Enter your username"
+                        label="Username"
+                    />
                 </div>
                 <div class="form">
-                    <label for="" class="form__title">Email</label>
-                    <div>
-                        <input
-                            type="email"
-                            name="email"
-                            id="email"
-                            placeholder="Enter your name"
-                            class="form__input"
-                        />
-                    </div>
+                    <UiFormInput
+                        variant="form"
+                        placeholder="Enter your email"
+                        label="Email"
+                    />
                 </div>
                 <div class="form">
-                    <label for="" class="form__title">Password</label>
-                    <div class="form__input-container">
-                        <UiFormInput
-                            placeholder="Enter your chosen password"
-                            variant="password"
-                        />
-                    </div>
+                    <UiFormInput
+                        variant="password"
+                        placeholder="Enter your chosen password"
+                        label="Password"
+                        variantIcon="true"
+                    />
                 </div>
                 <div class="form">
-                    <label for="" class="form__title">Confirm Password</label>
-                    <div class="form__input-container">
-                        <UiFormInput
-                            placeholder="Re-enter your chosen password"
-                            variant="password"
-                        />
-                    </div>
+                    <UiFormInput
+                        variant="password"
+                        placeholder="Re-enter your chosen password"
+                        label="Confirm Password"
+                        variantIcon="true"
+                    />
                 </div>
             </div>
 
@@ -180,35 +163,6 @@ const togglePasswordConfirm = () => {
     display: flex;
     flex-direction: column;
     gap: 24px;
-}
-
-.form {
-    margin: 0px;
-
-    &__title {
-        font-family: "DM Sans";
-        font-weight: 400;
-        font-size: 18px;
-        line-height: 32px;
-        color: #4b4b4b;
-    }
-
-    &__input {
-        padding: 24px 30px;
-        border: 2px solid #cccccc;
-        width: 577px;
-        height: 71px;
-        border-radius: 8px;
-        // margin-top: 20px;
-    }
-
-    &::placeholder {
-        color: #4b4b4b;
-        font-family: "DM Sans";
-        font-weight: 400;
-        font-size: 18px;
-        line-height: 23px;
-    }
 }
 
 .form__input-container {

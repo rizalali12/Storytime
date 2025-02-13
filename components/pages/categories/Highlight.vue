@@ -15,10 +15,6 @@ const props = defineProps({
         type: String,
         default: null,
     },
-    variantExplore: {
-        type: String as PropType<"explore" | "no_explore">,
-        default: "no_explore",
-    },
 });
 
 const fetchData = () => {
@@ -96,13 +92,13 @@ fetchData();
 <template>
     <div class="container">
         <div class="wrapper">
-            <UiStoryGenreHeader title="Comedy" />
+            <UiStoryGenreHeader :title="title" />
         </div>
     </div>
-    <UiStoryHeader variant="category" title="Comedy" />
+    <UiStoryHeader variant="category" :title="title" />
     <div class="container container-content">
         <div class="heading">
-            <UiDropdownMenu title="Comedy" />
+            <UiDropdownMenu :title="title" />
             <UiSearchBar variant="searchbar-mini" />
         </div>
         <div class="story" v-if="variant === 'image'">
@@ -118,12 +114,13 @@ fetchData();
                 </div>
             </div>
         </div>
+        <UiNumberPage />
     </div>
 </template>
 
 <style lang="scss" scoped>
 .container {
-    margin-top: 70px;
+    margin-top: 50px;
 }
 
 .wrapper {

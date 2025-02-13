@@ -51,7 +51,7 @@ const stories = ref([
         <div class="latestStory">
             <UiSectionHeader
                 title="Latest Story"
-                url="/allstory"
+                url="/story"
                 variant="explore"
             />
         </div>
@@ -71,7 +71,7 @@ const stories = ref([
         >
             <swiper-slide v-for="(story, i) in stories" :key="i">
                 <div class="story__items">
-                    <UiCardStory :story="story" />
+                    <UiCardStory :story="story" genre="story.genre" />
                 </div>
             </swiper-slide>
         </swiper>
@@ -79,6 +79,10 @@ const stories = ref([
 </template>
 
 <style lang="scss" scoped>
+.container {
+    max-width: 1700px;
+}
+
 .latestStory {
     margin-top: 160px;
 }

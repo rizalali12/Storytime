@@ -14,21 +14,19 @@ import { Icon, Title, UiButton, UiLogo } from "#components";
             </div>
             <div class="form">
                 <div class="form__container">
-                    <label for="" class="form__title">Username/Email</label>
-                    <div>
-                        <input
-                            type="text"
-                            id=""
-                            class="form__input"
-                            placeholder="Enter your username or email"
-                        />
-                    </div>
+                    <UiFormInput
+                        variant="form"
+                        placeholder="Enter your username or email"
+                        label="Username/Email"
+                    />
                 </div>
+                <br />
                 <div class="form">
-                    <label for="" class="form__title">Password</label>
                     <UiFormInput
                         variannt="password"
                         placeholder="Enter your chosen password"
+                        label="Password"
+                        variantIcon="true"
                     />
                 </div>
                 <div class="button__login">
@@ -95,18 +93,6 @@ import { Icon, Title, UiButton, UiLogo } from "#components";
 
     &__title {
         margin-bottom: 50px;
-    }
-}
-
-.form {
-    &__input {
-        padding: 24px 30px;
-        width: 577px;
-        height: 71px;
-        border-radius: 8px;
-        border: 2px solid #cccccc;
-        margin-top: 20px;
-        margin-bottom: 24px;
     }
 }
 

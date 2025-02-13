@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-import Highlight from "~/components/pages/allstory/highlight.vue";
+import AppFooter from "~/components/AppFooter.vue";
 </script>
 
 <template>
     <Appheader />
 
-    <PagesCategoriesHighlight />
+    <PagesDetailStory />
 
     <AppFooter />
 </template>

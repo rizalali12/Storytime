@@ -4,7 +4,7 @@ const props = defineProps({
         type: String,
     },
     variant: {
-        type: String as PropType<"category" | "no-category">,
+        type: String as PropType<"category" | "no-category" | "detail-story">,
         default: "category",
     },
     url: {
@@ -15,23 +15,25 @@ const props = defineProps({
 </script>
 
 <template>
-    <!-- <div class="wrapper">
-        <div class="container">
-            <p class="section" href="/login">Home</p>
-            <template v-if="variant === 'category'">
-                <p class="section-slash">/</p>
-                <p class="section">Categories</p>
-            </template>
-            <p class="section-slash">/</p>
-            <p class="section">{{ title }}</p>
-        </div>
-    </div> -->
     <div class="wrapper">
         <div class="container">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item active" aria-current="page">
-                        Home
+                        <NuxtLink to="/" class="link">Home</NuxtLink>
+                    </li>
+                    <template v-if="variant === 'detail-story'">
+                        <li class="breadcrumb-item active" aria-current="page">
+                            <NuxtLink to="" class="link">nama story</NuxtLink>
+                        </li>
+                    </template>
+                    <template v-if="variant === 'category'">
+                        <li class="breadcrumb-item active" aria-current="page">
+                            <NuxtLink to="" class="link">Category</NuxtLink>
+                        </li>
+                    </template>
+                    <li class="breadcrumb-item active" aria-current="page">
+                        <NuxtLink to="" class="link">{{ title }}</NuxtLink>
                     </li>
                 </ol>
             </nav>
@@ -51,35 +53,42 @@ const props = defineProps({
 }
 
 .container {
-    display: flex;
-    gap: 18px;
-    align-items: center;
+    // display: flex;
+    // gap: 18px;
+    // align-items: center;
 }
 
 .link {
     text-decoration: none;
     color: #466543;
+    transition: 0.1s;
+    padding-bottom: 5px;
+    text-transform: capitalize;
+
+    &:hover {
+        border-bottom: 2px solid #466543;
+        cursor: pointer;
+    }
 }
 
-.breadcrump {
+.breadcrumb {
+    margin-bottom: 0;
     font-family: "DM Sans";
     font-weight: 500;
     font-size: 20px;
     line-height: 26px;
     color: #466543;
-    transition: 0.2s;
+    display: flex;
+    gap: 18px;
 
     &-item {
+        display: flex;
+        gap: 18px;
         font-family: "DM Sans";
         font-weight: 500;
         font-size: 20px;
         line-height: 26px;
         color: #466543;
-    }
-
-    &:hover {
-        border-bottom: 2px solid #466543;
-        cursor: pointer;
     }
 }
 </style>
