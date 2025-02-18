@@ -1,13 +1,50 @@
 <script lang="ts" setup>
-import { Thumbs } from "swiper/modules";
+import { ref } from "vue";
+import { useRoute } from "vue-router";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/navigation";
+import "swiper/css/thumbs";
+
+// Import required modules
 import { Swiper, SwiperSlide } from "swiper/vue";
+import { FreeMode, Navigation, Thumbs } from "swiper/modules";
+
 const stories = ref<any>([]);
 const saveBookmark = ref(false);
 const route = useRoute();
-console.log(route);
+
+// State untuk Swiper Thumbs
+const thumbsSwiper = ref<any>(null);
+
+// Fungsi untuk mengatur thumbs swiper
+const setThumbsSwiper = (swiperInstance: any) => {
+    thumbsSwiper.value = swiperInstance;
+    console.log(thumbsSwiper.value);
+};
+
+// Modules yang digunakan oleh Swiper
+const modules = [FreeMode, Navigation, Thumbs];
+console.log(Navigation);
 
 const toggleBookmark = () => {
     saveBookmark.value = !saveBookmark.value;
+};
+
+onMounted(() => {
+    // thumbsSwiper.value.activeIndex = 1;
+    setActiveIndex(1);
+});
+
+const swiperRef = ref<any>(null);
+
+const setActiveIndex = (index: number) => {
+    if (swiperRef.value) {
+        // swiperRef.value.swiper.slideTo(index); // Set the active index to the desired slide
+        console.log("swiperRef", swiperRef.value);
+    }
 };
 </script>
 
@@ -41,25 +78,104 @@ const toggleBookmark = () => {
                 </div>
             </div>
         </div>
+
         <div class="wrapper">
             <div class="story">
-                <div class="story__image">
-                    <img
-                        src="@/assets/icons/poster.png"
-                        alt=""
-                        class="story__image-highlight"
-                    />
-                    <img
-                        src="@/assets/icons/poster.png"
-                        alt=""
-                        class="story__image-secondHighlight"
-                    />
-                    <img
-                        src="@/assets/icons/poster.png"
-                        alt=""
-                        class="story__image-secondHighlight"
-                    />
-                </div>
+                <UiImageHighlight />
+                <UiModal width="1100" title="detailStory">
+                    <div class="wrapper-close">
+                        <button
+                            type="button"
+                            class="close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                        >
+                            <icon
+                                name="ri:close-large-fill"
+                                class="close__icon"
+                            ></icon>
+                        </button>
+                    </div>
+                    <!-- <pre>{{ thumbsSwiper }}</pre> -->
+                    <swiper
+                        ref="swiperRef"
+                        :navigation="true"
+                        :thumbs="{ swiper: thumbsSwiper }"
+                        :modules="[FreeMode, Navigation, Thumbs]"
+                        class="mySwiper2"
+                    >
+                        <swiper-slide>
+                            <img
+                                src="@/assets/icons/poster.png"
+                                alt="Gambar 1"
+                                class="modal-image__highlight"
+                            />
+                        </swiper-slide>
+                        <swiper-slide>
+                            <img
+                                src="@/assets/icons/profile_picture.png"
+                                alt="Thumbnail 2"
+                                class="modal-image__highlight"
+                            />
+                        </swiper-slide>
+                        <swiper-slide>
+                            <img
+                                src="@/assets/icons/profile_picture.png"
+                                alt="Gambar 2"
+                                class="modal-image__highlight"
+                            />
+                        </swiper-slide>
+                        <swiper-slide>
+                            <img
+                                src="@/assets/icons/poster.png"
+                                alt="Gambar 3"
+                                class="modal-image__highlight"
+                            />
+                        </swiper-slide>
+                    </swiper>
+
+                    <!-- Swiper Thumbnail -->
+                    <swiper
+                        @swiper="setThumbsSwiper"
+                        :spaceBetween="30"
+                        :slidesPerView="5"
+                        :freeMode="true"
+                        :centerInsufficientSlides="true"
+                        :watchSlidesProgress="true"
+                        :modules="[FreeMode, Navigation, Thumbs]"
+                        class="mySwiper"
+                    >
+                        <swiper-slide>
+                            <img
+                                src="@/assets/icons/poster.png"
+                                alt="Thumbnail 1"
+                                class="modal-image"
+                            />
+                        </swiper-slide>
+                        <swiper-slide>
+                            <img
+                                src="@/assets/icons/profile_picture.png"
+                                alt="Thumbnail 2"
+                                class="modal-image"
+                            />
+                        </swiper-slide>
+                        <swiper-slide>
+                            <img
+                                src="@/assets/icons/profile_picture.png"
+                                alt="Thumbnail 2"
+                                class="modal-image"
+                            />
+                        </swiper-slide>
+                        <swiper-slide>
+                            <img
+                                src="@/assets/icons/poster.png"
+                                alt="Thumbnail 3"
+                                class="modal-image"
+                            />
+                        </swiper-slide>
+                    </swiper>
+                </UiModal>
+
                 <div class="story__text">
                     <p>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -82,7 +198,87 @@ const toggleBookmark = () => {
 <style lang="scss" scoped>
 .container {
     padding-top: 60px;
-    position: relative;
+}
+
+.mySwiper2 {
+    width: 100%;
+    max-width: 900px;
+    height: 100%;
+}
+
+.mySwiper {
+    margin-top: 30px;
+    width: 100%;
+    padding-bottom: 60px;
+
+    .swiper-slide {
+        opacity: 0.5;
+        cursor: pointer;
+    }
+    .swiper-slide-thumb-active {
+        opacity: 1;
+    }
+}
+
+.mySwiper :deep(.swiper-button-next),
+:deep(.swiper-button-prev) {
+    color: white !important;
+}
+
+:deep(.swiper-button-next::after) {
+    padding-right: 48px;
+}
+
+:deep(.swiper-button-prev::after) {
+    padding-left: 48px;
+}
+
+:deep(.swiper-button-next::after),
+:deep(.swiper-button-prev::after) {
+    font-size: 40px;
+    font-weight: 1000;
+    color: white !important;
+}
+
+.modal-image {
+    // max-width: 202px;
+    // max-height: 200px;
+    width: 202px;
+    height: 200px;
+    border-radius: 8px;
+
+    &__highlight {
+        width: 100%;
+        height: 100%;
+        max-height: 500px;
+        max-width: 900px;
+        border-radius: 8px;
+        object-fit: cover;
+    }
+}
+
+.wrapper-close {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 15px;
+    padding-top: 15px;
+}
+
+.close {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: #466543;
+    opacity: 1;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &__icon {
+        color: white;
+        font-size: 18px;
+    }
 }
 
 .heading {
@@ -98,7 +294,7 @@ const toggleBookmark = () => {
     &__date {
         font-family: "DM Sans";
         font-weight: 400;
-        font-family: 24px;
+        font-size: 24px;
         line-height: 32px;
         color: #4b4b4b;
     }
@@ -143,23 +339,10 @@ const toggleBookmark = () => {
     display: flex;
     gap: 60px;
 
-    &__image-highlight {
-        min-width: 547px;
-        min-height: 600px;
-        max-width: 600px;
-        max-height: 620px;
-        border-radius: 8px;
-    }
-
-    &__image-secondHighlight {
-        max-width: 202px;
-        max-height: 200px;
+    &__image {
         width: 100%;
-        height: 100%;
-        margin-top: 30px;
-        margin-right: 30px;
-        border-radius: 8px;
-        filter: opacity(50%);
+        max-width: 550px;
+        margin: 0 auto;
     }
 
     &__text {
@@ -207,5 +390,11 @@ const toggleBookmark = () => {
 
 .bookmark {
     border: none;
+    margin-right: 80px;
+}
+
+.button-image {
+    border: none;
+    background-color: white;
 }
 </style>

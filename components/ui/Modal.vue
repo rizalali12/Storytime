@@ -3,6 +3,9 @@ const props = defineProps({
     width: {
         type: String,
     },
+    title: {
+        type: String,
+    },
 });
 </script>
 
@@ -12,7 +15,7 @@ const props = defineProps({
     <!-- Modal -->
     <div
         class="modal fade"
-        id="exampleModal"
+        :id="title"
         tabindex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"

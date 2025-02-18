@@ -3,12 +3,18 @@ const props = defineProps({
     title: {
         type: String,
     },
+    url: {
+        type: String,
+        default: null,
+    },
 });
 </script>
 
 <template>
     <div>
-        <button class="button">{{ title }}</button>
+        <NuxtLink :to="url">
+            <button class="button">{{ title }}</button>
+        </NuxtLink>
     </div>
 </template>
 

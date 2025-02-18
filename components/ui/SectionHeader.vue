@@ -13,7 +13,7 @@ const props = defineProps({
         type: String as PropType<"explore" | "no_explore">,
         default: "no_explore",
     },
-    variant_title: {
+    variantTitle: {
         type: String as PropType<"primary" | "title">,
         default: "title",
     },
@@ -23,7 +23,7 @@ const props = defineProps({
 <template>
     <div class="container">
         <div class="heading">
-            <h1 :class="variant_title">{{ title }}</h1>
+            <h1 :class="variantTitle">{{ title }}</h1>
             <div v-if="variant === 'explore'">
                 <NuxtLink :to="url" class="heading__explore"
                     >Explore More

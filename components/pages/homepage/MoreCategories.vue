@@ -7,22 +7,37 @@
         </div>
         <div class="row">
             <div class="col-2">
-                <UiCardCategories title="Adventure" />
+                <UiCardCategories
+                    title="Adventure"
+                    url="/story?category=adventure"
+                />
             </div>
             <div class="col-2">
-                <UiCardCategories title="Fiction" />
+                <UiCardCategories
+                    title="Fiction"
+                    url="/story?category=fiction"
+                />
             </div>
             <div class="col-2">
-                <UiCardCategories title="Fantasy" />
+                <UiCardCategories
+                    title="Fantasy"
+                    url="/story?category=fantasy"
+                />
             </div>
             <div class="col-2">
-                <UiCardCategories title="Drama" />
+                <UiCardCategories title="Drama" url="/story?category=drama" />
             </div>
             <div class="col-2">
-                <UiCardCategories title="Heartfelt" />
+                <UiCardCategories
+                    title="Heartfelt"
+                    url="/story?category=heartfelt"
+                />
             </div>
             <div class="col-2">
-                <UiCardCategories title="Mystery" />
+                <UiCardCategories
+                    title="Mystery"
+                    url="/story?category=mystery"
+                />
             </div>
         </div>
     </div>

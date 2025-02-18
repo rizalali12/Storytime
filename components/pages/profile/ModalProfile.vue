@@ -1,6 +1,4 @@
-<script setup lang="ts">
-const isOpen = ref(false);
-</script>
+<script setup lang="ts"></script>
 
 <template>
     <div class="wrapperr">
@@ -10,7 +8,7 @@ const isOpen = ref(false);
             data-bs-toggle="modal"
             data-bs-target="#exampleModal"
         />
-        <UiModal width="1400">
+        <UiModal width="1400" title="exampleModal">
             <button
                 type="button"
                 class="btn-close"

@@ -65,7 +65,7 @@ fetchData();
                 :title="title"
                 :url="url"
                 :variant="variantExplore"
-                :variant_title="variant_title"
+                :variantTitle="variant_title"
             />
         </div>
         <div class="story" v-if="variant === 'image'">
