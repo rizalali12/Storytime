@@ -87,7 +87,7 @@ const togglePassword = () => {
                     name=""
                     id=""
                     :placeholder="placeholder"
-                    class="form__input black"
+                    class="form__inputt black"
                     :class="disabled"
                 />
             </div>
@@ -147,6 +147,17 @@ const togglePassword = () => {
         padding: 24px 30px;
         border: 2px solid #cccccc;
         width: 577px;
+        min-height: 71px;
+        border-radius: 8px;
+        margin-top: 20px;
+        height: 100%;
+        margin-bottom: 30px;
+    }
+
+    &__inputt {
+        padding: 24px 30px;
+        border: 2px solid #cccccc;
+        width: 100%;
         min-height: 71px;
         border-radius: 8px;
         margin-top: 20px;
