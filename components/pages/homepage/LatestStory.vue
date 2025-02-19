@@ -79,10 +79,6 @@ const stories = ref([
 </template>
 
 <style lang="scss" scoped>
-.container {
-    max-width: 1700px;
-}
-
 .latestStory {
     margin-top: 160px;
 }

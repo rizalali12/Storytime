@@ -363,6 +363,7 @@ const props = defineProps({
 .gambar {
     border-radius: 8px;
     transition: 0.5s;
+    width: 100%;
 }
 
 .bookmark {

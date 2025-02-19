@@ -149,7 +149,7 @@ fetchData();
         </div>
         <div class="story" v-if="variant === 'image_large'">
             <div class="row">
-                <div class="col-8">
+                <div class="col-12 col-sm-12 col-lg-6 col-xl-8">
                     <div class="story__highlight">
                         <UiCardStory
                             :story="stories[0]"
@@ -160,7 +160,7 @@ fetchData();
                     </div>
                 </div>
                 <!-- <div class="story__wrapper-small"> -->
-                <div class="col-4">
+                <div class="col-12 col-sm-12 col-lg-6 col-xl-4">
                     <div class="story__small">
                         <UiCardStory
                             :story="stories[0]"
@@ -185,7 +185,6 @@ fetchData();
 <style lang="scss" scoped>
 .container {
     margin-top: 120px;
-    max-width: 1700px;
 }
 
 .story {
@@ -200,6 +199,7 @@ fetchData();
 
     &__highlight {
         width: 100%;
+        padding-bottom: 20px;
     }
 
     &__wrapper-small {

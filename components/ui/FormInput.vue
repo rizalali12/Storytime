@@ -8,7 +8,7 @@ const props = defineProps({
     },
     variant: {
         type: String as PropType<
-            "form" | "password" | "text-area" | "form-black"
+            "form" | "password" | "text-area" | "form-black" | "form-story"
         >,
         default: "password",
     },
@@ -58,10 +58,23 @@ const togglePassword = () => {
             <div>
                 <input
                     type="text"
-                    name="username"
-                    id="username"
+                    name=""
+                    id=""
                     :placeholder="placeholder"
                     class="form__input"
+                    :class="disabled"
+                />
+            </div>
+        </div>
+        <div v-if="variant === 'form-story'">
+            <label for="" class="form__title">{{ label }}</label>
+            <div>
+                <input
+                    type="text"
+                    name=""
+                    id=""
+                    :placeholder="placeholder"
+                    class="form__input-story"
                     :class="disabled"
                 />
             </div>
@@ -71,8 +84,8 @@ const togglePassword = () => {
             <div>
                 <input
                     type="text"
-                    name="username"
-                    id="username"
+                    name=""
+                    id=""
                     :placeholder="placeholder"
                     class="form__input black"
                     :class="disabled"
@@ -134,6 +147,17 @@ const togglePassword = () => {
         padding: 24px 30px;
         border: 2px solid #cccccc;
         width: 577px;
+        min-height: 71px;
+        border-radius: 8px;
+        margin-top: 20px;
+        height: 100%;
+        margin-bottom: 30px;
+    }
+
+    &__input-story {
+        padding: 24px 30px;
+        border: 2px solid #cccccc;
+        width: 100%;
         min-height: 71px;
         border-radius: 8px;
         margin-top: 20px;

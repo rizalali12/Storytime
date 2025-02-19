@@ -8,7 +8,7 @@
                 Share your unique voice with the world – start writing your
                 story today!
             </p>
-            <UiButton title="Write Story" />
+            <UiButton title="Write Story" url="/mystory/create" />
         </div>
     </div>
 </template>
