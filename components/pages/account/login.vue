@@ -65,8 +65,8 @@ import { Icon, Title, UiButton, UiLogo } from "#components";
     margin: 0;
     margin-top: 20px;
     margin-right: 20px;
-    display: flex;
     min-height: 100vh;
+    display: flex;
 
     &__logo {
         position: absolute;
@@ -75,6 +75,12 @@ import { Icon, Title, UiButton, UiLogo } from "#components";
     }
 }
 
+.form {
+    &__container {
+        max-width: 577px;
+        width: 100%;
+    }
+}
 .spasi {
     margin-bottom: 100px;
 }

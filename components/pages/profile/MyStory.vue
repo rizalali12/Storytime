@@ -39,5 +39,9 @@ import { UiButton } from "#components";
 }
 .content {
     display: flex;
+
+    @media (max-width: 930px) {
+        flex-direction: column;
+    }
 }
 </style>

@@ -33,7 +33,7 @@ const togglePassword = () => {
 
 <template>
     <div>
-        <div :class="variant" v-if="variant === 'password'">
+        <div class="password" v-if="variant === 'password'">
             <label for="" class="form__title">{{ label }}</label>
             <input
                 :type="showPassword ? 'text' : 'password'"
@@ -106,10 +106,13 @@ const togglePassword = () => {
 <style lang="scss" scoped>
 .password {
     position: relative;
+    display: flex;
+    flex-direction: column;
+
     &__input {
         padding: 24px 30px;
-        // max-width: 577px;
         width: 577px;
+        // width: 100%;
         height: 71px;
         border-radius: 8px;
         margin-top: 20px;
@@ -146,7 +149,8 @@ const togglePassword = () => {
     &__input {
         padding: 24px 30px;
         border: 2px solid #cccccc;
-        width: 577px;
+        // max-width: 577px;
+        width: 100%;
         min-height: 71px;
         border-radius: 8px;
         margin-top: 20px;
@@ -174,6 +178,14 @@ const togglePassword = () => {
         margin-top: 20px;
         height: 100%;
         margin-bottom: 30px;
+
+        &::placeholder {
+            color: #4b4b4b;
+            font-family: "DM Sans";
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 23px;
+        }
     }
 
     &::placeholder {
@@ -193,6 +205,10 @@ const togglePassword = () => {
         font-size: 18px;
         line-height: 23px;
     }
+}
+
+.story {
+    color: #4b4b4b;
 }
 
 .text-area {

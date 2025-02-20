@@ -98,7 +98,7 @@
 }
 
 .container {
-    width: 100vh;
+    width: 100%;
 }
 
 .title {
@@ -142,6 +142,11 @@
 
     &__form {
         margin-top: 30px;
+    }
+
+    &__password {
+        max-width: 577px;
+        width: 100%;
     }
 }
 </style>

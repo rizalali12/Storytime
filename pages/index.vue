@@ -11,6 +11,7 @@
         url="/story?category=comedy"
         variantExplore="explore"
         header_title="true"
+        variant_title="primary"
     />
     <PagesHomepageHighlight
         title="Romance"
@@ -18,6 +19,7 @@
         url="/story?category=romance"
         variantExplore="explore"
         header_title="true"
+        variant_title="primary"
     />
     <PagesHomepageHighlight
         title="Horror"
@@ -25,6 +27,7 @@
         url="story?category=horror"
         variantExplore="explore"
         header_title="true"
+        variant_title="primary"
     />
     <PagesHomepageMoreCategories />
 

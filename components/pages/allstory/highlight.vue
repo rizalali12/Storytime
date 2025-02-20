@@ -20,68 +20,84 @@ const props = defineProps({
 const fetchData = () => {
     stories.value = [
         {
+            title: "Gemma",
             image: "@/assets/icons/undraw_on_the_office_re_cxds 1.png",
             preview:
                 "1. GOLDEN Gemma was only five minutes away from her parents’ hut, but the jungle had already taken on a different personality. It was thicker. The trees had grown taller. The ti plants shaded the green forest a sinister red. There was no doubt about it- the jungle",
             author: "Khrisvana (updated) 1",
             date: "12 March 2024",
             genre: "Comedy",
+            url: "/story/testing",
         },
         {
+            title: "Gemma",
             image: "@/assets/icons/undraw_on_the_office_re_cxds 1.png",
             preview:
                 "1. GOLDEN Gemma was only five minutes away from her parents’ hut, but the jungle had already taken on a different personality. It was thicker. The trees had grown taller. The ti plants shaded the green forest a sinister red. There was no doubt about it- the jungle",
             author: "Khrisvana (updated) 1",
             date: "12 March 2024",
             genre: "Comedy",
+            url: "/story/testing",
         },
         {
+            title: "Gemma",
             image: "@/assets/icons/undraw_on_the_office_re_cxds 1.png",
             preview:
                 "1. GOLDEN Gemma was only five minutes away from her parents’ hut, but the jungle had already taken on a different personality. It was thicker. The trees had grown taller. The ti plants shaded the green forest a sinister red. There was no doubt about it- the jungle",
             author: "Khrisvana (updated) 1",
             date: "12 March 2024",
             genre: "Comedy",
+            url: "/story/testing",
         },
         {
+            title: "Gemma",
             image: "@/assets/icons/undraw_on_the_office_re_cxds 1.png",
             preview:
                 "1. GOLDEN Gemma was only five minutes away from her parents’ hut, but the jungle had already taken on a different personality. It was thicker. The trees had grown taller. The ti plants shaded the green forest a sinister red. There was no doubt about it- the jungle",
             author: "Khrisvana (updated) 1",
             date: "12 March 2024",
             genre: "Comedy",
+            url: "/story/testing",
         },
         {
+            title: "Gemma",
             image: "@/assets/icons/undraw_on_the_office_re_cxds 1.png",
             preview:
                 "1. GOLDEN Gemma was only five minutes away from her parents’ hut, but the jungle had already taken on a different personality. It was thicker. The trees had grown taller. The ti plants shaded the green forest a sinister red. There was no doubt about it- the jungle",
             author: "Khrisvana (updated) 1",
             date: "12 March 2024",
             genre: "Comedy",
+            url: "/story/testing",
         },
         {
+            title: "Gemma",
             image: "@/assets/icons/undraw_on_the_office_re_cxds 1.png",
             preview:
                 "1. GOLDEN Gemma was only five minutes away from her parents’ hut, but the jungle had already taken on a different personality. It was thicker. The trees had grown taller. The ti plants shaded the green forest a sinister red. There was no doubt about it- the jungle",
             author: "Khrisvana (updated) 1",
             date: "12 March 2024",
             genre: "Comedy",
+            url: "/story/testing",
         },
         {
+            title: "Gemma",
             image: "@/assets/icons/undraw_on_the_office_re_cxds 1.png",
             preview:
                 "1. GOLDEN Gemma was only five minutes away from her parents’ hut, but the jungle had already taken on a different personality. It was thicker. The trees had grown taller. The ti plants shaded the green forest a sinister red. There was no doubt about it- the jungle",
             author: "Khrisvana (updated) 1",
             date: "12 March 2024",
             genre: "Comedy",
+            url: "/story/testing",
         },
         {
+            title: "Gemma",
             image: "@/assets/icons/undraw_on_the_office_re_cxds 1.png",
             preview:
                 "1. GOLDEN Gemma was only five minutes away from her parents’ hut, but the jungle had already taken on a different personality. It was thicker. The trees had grown taller. The ti plants shaded the green forest a sinister red. There was no doubt about it- the jungle",
             author: "Khrisvana (updated) 1",
             date: "12 March 2024",
             genre: "Comedy",
+            url: "/story/testing",
         },
     ];
 };
@@ -144,6 +160,12 @@ fetchData();
 
     &__highlight {
         width: 100%;
+    }
+}
+
+@media (max-width: 991px) {
+    .heading {
+        flex-direction: column-reverse;
     }
 }
 </style>

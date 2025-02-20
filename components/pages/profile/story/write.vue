@@ -13,12 +13,15 @@
             variant="form-story"
             placeholder="Enter a story title"
             label="Title"
+            disabled="story"
         />
-        <UiFormInput
+        <!-- <UiFormInput
             variant="form-story"
             placeholder="Select a category"
             label="Category"
-        />
+        /> -->
+        <UiSelectCategory />
+
         <div class="d-flex flex-column">
             <label class="label">Content</label>
             <textarea name="" id=""></textarea>

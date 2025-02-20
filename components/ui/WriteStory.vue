@@ -27,7 +27,6 @@
     text-align: center;
     gap: 20px;
     width: 546px;
-    height: 400px;
     max-height: 2000px;
     border: 1px solid #cccccc;
     padding: 80px 78px;
@@ -48,6 +47,12 @@
         font-size: 18px;
         line-height: 27px;
         color: #222222;
+    }
+}
+
+@media (max-width: 1548px) {
+    .content {
+        width: 100%;
     }
 }
 </style>

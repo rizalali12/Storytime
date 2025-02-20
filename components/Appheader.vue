@@ -1,41 +1,78 @@
-<script>
+<script lang="ts" setup>
 import { UiButton } from "#components";
 </script>
 
 <template>
     <div class="wrapper">
-        <div class="container">
+        <div class="container navbar-expand-lg">
             <div class="navbar">
                 <UiLogo />
                 <div class="navbar__login">
-                    <!-- <UiButton title="Register" variant="outlined" url="/signup" />
-                  <UiButton title="Login" url="/login" /> -->
+                    <button
+                        class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasNavbar"
+                        aria-controls="offcanvasNavbar"
+                    >
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
 
-                    <img
-                        src="@/assets/icons/profile_picture.png"
-                        alt=""
-                        srcset=""
-                        class="navbar__login-picture"
-                    />
-                    <div class="dropdown">
-                        <h1 class="navbar__login-name">Iswara</h1>
-                        <button
-                            class="dropdown__button"
-                            data-bs-toggle="dropdown"
-                            aria-expanded="false"
+                    <div
+                        class="sidebar offcanvas offcanvas-end"
+                        tabindex="-1"
+                        id="offcanvasNavbar"
+                        aria-labelledby="offcanvasNavbarLabel"
+                    >
+                        <div class="offcanvas-header border-bottom">
+                            <button
+                                type="button"
+                                class="btn-close btn-close-black text-reset"
+                                data-bs-dismiss="offcanvas"
+                                aria-label="Close"
+                            ></button>
+                        </div>
+                        <div
+                            class="d-flex align-items-center justify-content-center gap-4"
                         >
-                            <icon name="ri:arrow-down-s-line" class="icon" />
-                        </button>
-                        <ul class="dropdown-menu translate-middle-x">
-                            <li>
-                                <a class="dropdown-item" href="/mystory"
-                                    >My Profile</a
+                            <!-- <UiButton
+                                title="Register"
+                                variant="outlined"
+                                url="/signup"
+                            />
+                            <UiButton title="Login" url="/login" /> -->
+                            <img
+                                src="@/assets/icons/profile_picture.png"
+                                alt=""
+                                srcset=""
+                                class="navbar__login-picture"
+                            />
+                            <div class="dropdown">
+                                <h1 class="navbar__login-name">Iswara</h1>
+                                <button
+                                    class="dropdown__button"
+                                    data-bs-toggle="dropdown"
+                                    aria-expanded="false"
                                 >
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#">Logout</a>
-                            </li>
-                        </ul>
+                                    <icon
+                                        name="ri:arrow-down-s-line"
+                                        class="icon"
+                                    />
+                                </button>
+                                <ul class="dropdown-menu translate-middle-x">
+                                    <li>
+                                        <a class="dropdown-item" href="/mystory"
+                                            >My Profile</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#"
+                                            >Logout</a
+                                        >
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -55,6 +92,7 @@ import { UiButton } from "#components";
 
 .navbar {
     padding: 20px 0px;
+
     &__login {
         display: flex;
         align-items: center;
@@ -108,5 +146,14 @@ import { UiButton } from "#components";
 
 hr {
     margin: 0;
+}
+
+@media (max-width: 991px) {
+    .sidebar {
+        backdrop-filter: blur(10px);
+    }
+    .gap-4 {
+        padding-top: 20px;
+    }
 }
 </style>

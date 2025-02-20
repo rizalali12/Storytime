@@ -8,17 +8,13 @@ const props = defineProps({
 </script>
 
 <template>
-    <div>
-        <div>
-            <input
-                type="text"
-                name="search-bar"
-                id=""
-                placeholder="Search story"
-                :class="variant"
-            />
-        </div>
-    </div>
+    <input
+        type="text"
+        name="search-bar"
+        id=""
+        placeholder="Search story"
+        :class="variant"
+    />
 </template>
 
 <style lang="scss" scoped>
@@ -48,10 +44,9 @@ const props = defineProps({
 }
 
 .searchbar-mini {
-    min-width: 547px;
+    max-width: 547px;
     width: 100%;
     height: 80px;
-    margin: 0px;
     border-radius: 8px;
     border: 2px solid #cccccc;
     font-family: "DM Sans";

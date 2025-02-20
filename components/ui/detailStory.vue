@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
 
 // Import Swiper styles
@@ -22,29 +22,39 @@ const thumbsSwiper = ref<any>(null);
 // Fungsi untuk mengatur thumbs swiper
 const setThumbsSwiper = (swiperInstance: any) => {
     thumbsSwiper.value = swiperInstance;
-    console.log(thumbsSwiper.value);
+};
+
+// State untuk Swiper Thumbs Modal
+const thumbsSwiperModal = ref<any>(null);
+
+// Fungsi untuk mengatur thumbs swiper modal
+const setThumbsSwiperModal = (swiperInstance: any) => {
+    thumbsSwiperModal.value = swiperInstance;
 };
 
 // Modules yang digunakan oleh Swiper
 const modules = [FreeMode, Navigation, Thumbs];
-console.log(Navigation);
 
 const toggleBookmark = () => {
     saveBookmark.value = !saveBookmark.value;
 };
 
-onMounted(() => {
-    // thumbsSwiper.value.activeIndex = 1;
-    setActiveIndex(1);
-});
+// onMounted(() => {
+//     setActiveIndex(1);
+// });
 
 const swiperRef = ref<any>(null);
 
 const setActiveIndex = (index: number) => {
-    if (swiperRef.value) {
-        // swiperRef.value.swiper.slideTo(index); // Set the active index to the desired slide
-        console.log("swiperRef", swiperRef.value);
+    if (swiperRef.value?.swiper) {
+        swiperRef.value.swiper.slideTo(index);
     }
+};
+
+const initialSlide = ref(-1);
+
+const setinitialSlide = (index: number) => {
+    initialSlide.value = index;
 };
 </script>
 
@@ -81,7 +91,60 @@ const setActiveIndex = (index: number) => {
 
         <div class="wrapper">
             <div class="story">
-                <UiImageHighlight />
+                <!-- <UiImageHighlight /> -->
+                <div class="story__image">
+                    <swiper
+                        :navigation="true"
+                        :thumbs="{ swiper: thumbsSwiper }"
+                        :modules="[FreeMode, Navigation, Thumbs]"
+                        class="main-swiper"
+                    >
+                        <swiper-slide @click="setinitialSlide(0)">
+                            <img
+                                src="@/assets/icons/poster.png"
+                                alt="Gambar 1"
+                                class="main-image"
+                                data-bs-toggle="modal"
+                                data-bs-target="#detailStory"
+                            />
+                        </swiper-slide>
+                        <swiper-slide @click="setinitialSlide(1)">
+                            <img
+                                src="@/assets/icons/profile_picture.png"
+                                alt="Thumbnail 2"
+                                class="main-image"
+                                data-bs-toggle="modal"
+                                data-bs-target="#detailStory"
+                            />
+                        </swiper-slide>
+                    </swiper>
+
+                    <swiper
+                        @swiper="setThumbsSwiper"
+                        :spaceBetween="30"
+                        :slidesPerView="3"
+                        :freeMode="true"
+                        :centerInsufficientSlides="false"
+                        :watchSlidesProgress="true"
+                        :modules="[FreeMode, Navigation, Thumbs]"
+                        class="thumb-swiper"
+                    >
+                        <swiper-slide>
+                            <img
+                                src="@/assets/icons/poster.png"
+                                alt="Thumbnail 1"
+                                class="thumb-image"
+                            />
+                        </swiper-slide>
+                        <swiper-slide>
+                            <img
+                                src="@/assets/icons/profile_picture.png"
+                                alt="Thumbnail 2"
+                                class="thumb-image"
+                            />
+                        </swiper-slide>
+                    </swiper>
+                </div>
                 <UiModal width="1100" title="detailStory">
                     <div class="wrapper-close">
                         <button
@@ -96,12 +159,13 @@ const setActiveIndex = (index: number) => {
                             ></icon>
                         </button>
                     </div>
-                    <!-- <pre>{{ thumbsSwiper }}</pre> -->
+                    <pre>{{ initialSlide }}</pre>
                     <swiper
-                        ref="swiperRef"
+                        v-if="initialSlide > -1"
                         :navigation="true"
-                        :thumbs="{ swiper: thumbsSwiper }"
+                        :thumbs="{ swiper: thumbsSwiperModal }"
                         :modules="[FreeMode, Navigation, Thumbs]"
+                        :initialSlide="initialSlide"
                         class="mySwiper2"
                     >
                         <swiper-slide>
@@ -136,7 +200,7 @@ const setActiveIndex = (index: number) => {
 
                     <!-- Swiper Thumbnail -->
                     <swiper
-                        @swiper="setThumbsSwiper"
+                        @swiper="setThumbsSwiperModal"
                         :spaceBetween="30"
                         :slidesPerView="5"
                         :freeMode="true"
@@ -240,6 +304,59 @@ const setActiveIndex = (index: number) => {
     color: white !important;
 }
 
+.main-swiper {
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.story__image {
+    width: 100%;
+    max-width: 550px;
+    margin: 0 auto;
+}
+
+.main-image {
+    // width: 100%;
+    width: 547px;
+    height: 600px;
+    // max-height: 400px;
+    object-fit: cover;
+    border-radius: 8px;
+    background-color: red;
+}
+
+.thumb-swiper {
+    width: 100%;
+
+    .swiper-slide {
+        opacity: 0.5;
+        cursor: pointer;
+    }
+    .swiper-slide-thumb-active {
+        opacity: 1;
+    }
+}
+
+.thumb-image {
+    width: 100%;
+    height: 140px;
+    // object-fit: cover;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.mySwiper :deep(.swiper-button-next),
+:deep(.swiper-button-prev) {
+    color: white !important;
+}
+
+:deep(.swiper-button-next::after),
+:deep(.swiper-button-prev::after) {
+    font-size: 50px;
+    font-weight: 800;
+    color: white !important;
+}
 .modal-image {
     // max-width: 202px;
     // max-height: 200px;

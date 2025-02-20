@@ -3,7 +3,8 @@ import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { Navigation, Pagination } from "swiper/modules";
+import "swiper/css/free-mode";
+import { FreeMode } from "swiper/modules";
 
 const stories = ref([
     {
@@ -14,7 +15,7 @@ const stories = ref([
         author: "Khrisvana (updated) 1",
         date: "12 March 2024",
         genre: "Comedy",
-        url: "/login",
+        url: "/story/testing",
     },
     {
         image: "@/assets/icons/undraw_work_from_anywhere_re_s2i6 1.png",
@@ -24,6 +25,7 @@ const stories = ref([
         author: "Khrisvana (updated) 1",
         date: "12 March 2024",
         genre: "Romance",
+        url: "/story/testing",
     },
     {
         image: "@/assets/icons/undraw_on_the_office_re_cxds 1.png",
@@ -33,6 +35,7 @@ const stories = ref([
         author: "Khrisvana (updated) 1",
         date: "12 March 2024",
         genre: "Action",
+        url: "/story/testing",
     },
     {
         image: "@/assets/icons/undraw_on_the_office_re_cxds 1.png",
@@ -42,6 +45,7 @@ const stories = ref([
         author: "Khrisvana (updated) 1",
         date: "12 March 2024",
         genre: "Action",
+        url: "/story/testing",
     },
 ]);
 </script>
@@ -58,10 +62,11 @@ const stories = ref([
     </div>
     <div class="container">
         <swiper
-            :modules="[Navigation, Pagination]"
+            :modules="[FreeMode]"
             :space-between="20"
             :slides-per-view="1"
             :grabCursor="true"
+            :freeMode="true"
             :breakpoints="{
                 640: { slidesPerView: 1 },
                 768: { slidesPerView: 2 },

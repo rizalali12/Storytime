@@ -29,11 +29,16 @@
 <style lang="scss" scoped>
 .wrapper {
     height: 400px;
+    // height: 100%;
     width: 100%;
     background-color: #f0f5ed;
     display: flex;
     justify-content: center;
     align-items: center;
+
+    @media (max-width: 800px) {
+        height: 100%;
+    }
 }
 
 .profile-picture {
@@ -82,5 +87,11 @@
     gap: 40px;
     align-items: center;
     justify-content: center;
+
+    @media (max-width: 800px) {
+        flex-direction: column;
+        padding-bottom: 40px;
+        padding-top: 30px;
+    }
 }
 </style>

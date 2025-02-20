@@ -11,7 +11,7 @@ const props = defineProps({
 </script>
 
 <template>
-    <div>
+    <div class="wrapper">
         <NuxtLink :to="url">
             <button class="button">{{ title }}</button>
         </NuxtLink>

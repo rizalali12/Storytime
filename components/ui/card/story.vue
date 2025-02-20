@@ -116,7 +116,9 @@ const props = defineProps({
                         <h2 class="author__profile">{{ story.author }}</h2>
                     </div>
                     <div class="author__info">
-                        <label class="author__date">{{ story.date }}</label>
+                        <div>
+                            <label class="author__date">{{ story.date }}</label>
+                        </div>
                         <div v-elseif="genre" class="author__genre">
                             {{ story.genre }}
                         </div>
@@ -263,7 +265,7 @@ const props = defineProps({
         right: 42%;
         top: 42%;
         color: white;
-        transition: 0.5s all;
+        transition: 0.5s;
     }
 
     &__icon-black {
@@ -279,7 +281,7 @@ const props = defineProps({
         position: absolute;
         right: 42%;
         top: 42%;
-        transition: 0.5s all;
+        transition: 0.5s;
     }
 }
 
@@ -289,8 +291,10 @@ const props = defineProps({
 
     &__icon {
         opacity: 100%;
-        width: 65px;
-        height: 65px;
+        max-width: 65px;
+        width: 100%;
+        height: 100%;
+        max-height: 65px;
         border-radius: 50%;
         background-color: #466543;
         display: flex;
@@ -300,7 +304,7 @@ const props = defineProps({
         right: 22%;
         top: 75%;
         color: white;
-        transition: 0.5s all;
+        transition: 0.5s;
     }
 
     &__icon-black {
@@ -316,7 +320,7 @@ const props = defineProps({
         position: absolute;
         right: 22%;
         top: 75%;
-        transition: 0.5s all;
+        transition: 0.5s;
     }
 
     &__icon-delete {
@@ -434,6 +438,27 @@ const props = defineProps({
         border: none;
         padding: 8px 12px;
         border-radius: 8px;
+    }
+}
+
+@media (max-width: 1448px) {
+    .story {
+        &__icon {
+            width: 50px;
+            height: 50px;
+        }
+    }
+}
+
+@media (max-width: 1000px) {
+    .kotak__profile {
+        flex-direction: column;
+        align-items: self-start;
+    }
+
+    .author__info {
+        justify-content: space-between;
+        width: 100%;
     }
 }
 </style>

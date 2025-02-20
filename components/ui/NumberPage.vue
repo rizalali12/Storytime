@@ -8,6 +8,7 @@
             <button class="button">3</button>
             <button class="button">...</button>
             <button class="button">10</button>
+            <button class="button">Next</button>
         </div>
     </div>
 </template>
@@ -22,6 +23,12 @@
 .wrapper {
     display: flex;
     gap: 20px;
+
+    @media (max-width: 600px) {
+        // Jika layar kecil, jadi 1 kolom ke bawah
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
 
 .button {

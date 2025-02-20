@@ -51,6 +51,7 @@ const fetchData = () => {
             date: "12 March 2024",
             genre: "Comedy",
             title: "Gemma",
+            url: "/story/testing",
         },
     ];
 };
@@ -149,7 +150,7 @@ fetchData();
         </div>
         <div class="story" v-if="variant === 'image_large'">
             <div class="row">
-                <div class="col-12 col-sm-12 col-lg-6 col-xl-8">
+                <div class="col-12 col-sm-12 col-lg-12 col-xl-8">
                     <div class="story__highlight">
                         <UiCardStory
                             :story="stories[0]"
@@ -160,7 +161,7 @@ fetchData();
                     </div>
                 </div>
                 <!-- <div class="story__wrapper-small"> -->
-                <div class="col-12 col-sm-12 col-lg-6 col-xl-4">
+                <div class="col-12 col-sm-12 col-lg-12 col-xl-4">
                     <div class="story__small">
                         <UiCardStory
                             :story="stories[0]"
@@ -215,6 +216,13 @@ fetchData();
         display: flex;
         flex-direction: column;
         gap: 40px;
+
+        @media (max-width: 1200px) {
+            flex-direction: row;
+        }
+        @media (max-width: 767px) {
+            flex-direction: column;
+        }
     }
 }
 

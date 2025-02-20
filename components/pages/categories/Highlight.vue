@@ -26,6 +26,8 @@ const fetchData = () => {
             author: "Khrisvana (updated) 1",
             date: "12 March 2024",
             genre: "Comedy",
+            title: "Gemma",
+            url: "/story/testing",
         },
         {
             image: "@/assets/icons/undraw_on_the_office_re_cxds 1.png",
@@ -34,6 +36,8 @@ const fetchData = () => {
             author: "Khrisvana (updated) 1",
             date: "12 March 2024",
             genre: "Comedy",
+            title: "Gemma",
+            url: "/story/testing",
         },
         {
             image: "@/assets/icons/undraw_on_the_office_re_cxds 1.png",
@@ -42,6 +46,8 @@ const fetchData = () => {
             author: "Khrisvana (updated) 1",
             date: "12 March 2024",
             genre: "Comedy",
+            title: "Gemma",
+            url: "/story/testing",
         },
         {
             image: "@/assets/icons/undraw_on_the_office_re_cxds 1.png",
@@ -50,6 +56,8 @@ const fetchData = () => {
             author: "Khrisvana (updated) 1",
             date: "12 March 2024",
             genre: "Comedy",
+            title: "Gemma",
+            url: "/story/testing",
         },
         {
             image: "@/assets/icons/undraw_on_the_office_re_cxds 1.png",
@@ -58,6 +66,8 @@ const fetchData = () => {
             author: "Khrisvana (updated) 1",
             date: "12 March 2024",
             genre: "Comedy",
+            title: "Gemma",
+            url: "/story/testing",
         },
         {
             image: "@/assets/icons/undraw_on_the_office_re_cxds 1.png",
@@ -66,6 +76,8 @@ const fetchData = () => {
             author: "Khrisvana (updated) 1",
             date: "12 March 2024",
             genre: "Comedy",
+            title: "Gemma",
+            url: "/story/testing",
         },
         {
             image: "@/assets/icons/undraw_on_the_office_re_cxds 1.png",
@@ -74,6 +86,8 @@ const fetchData = () => {
             author: "Khrisvana (updated) 1",
             date: "12 March 2024",
             genre: "Comedy",
+            title: "Gemma",
+            url: "/story/testing",
         },
         {
             image: "@/assets/icons/undraw_on_the_office_re_cxds 1.png",
@@ -82,6 +96,8 @@ const fetchData = () => {
             author: "Khrisvana (updated) 1",
             date: "12 March 2024",
             genre: "Comedy",
+            title: "Gemma",
+            url: "/story/testing",
         },
     ];
 };
@@ -144,6 +160,12 @@ fetchData();
 
     &__highlight {
         width: 100%;
+    }
+}
+
+@media (max-width: 991px) {
+    .heading {
+        flex-direction: column-reverse;
     }
 }
 </style>
