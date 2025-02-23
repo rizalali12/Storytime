@@ -3,7 +3,7 @@ import { Icon, Title, UiButton, UiLogo } from "#components";
 </script>
 
 <template>
-    <div class="container">
+    <div class="containerr">
         <div class="heading">
             <div class="container__logo">
                 <UiLogo />
@@ -61,24 +61,45 @@ import { Icon, Title, UiButton, UiLogo } from "#components";
 </template>
 
 <style lang="scss" scoped>
-.container {
+.containerr {
     margin: 0;
-    margin-top: 20px;
-    margin-right: 20px;
+    padding-top: 20px;
+    padding-right: 20px;
+    padding-left: 219px;
     min-height: 100vh;
     display: flex;
+    justify-content: space-between;
+    gap: 200px;
+    width: 100%;
 
+    @media (max-width: 1371px) {
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+    }
+
+    @media (max-width: 1000px) {
+        padding-left: 30px;
+    }
+}
+
+.container {
     &__logo {
         position: absolute;
         left: 78px;
         top: 50px;
+
+        @media (max-width: 647px) {
+            top: 65px;
+            left: 40px;
+        }
     }
 }
 
 .form {
+    max-width: 577px;
     &__container {
         max-width: 577px;
-        width: 100%;
     }
 }
 .spasi {
@@ -87,7 +108,17 @@ import { Icon, Title, UiButton, UiLogo } from "#components";
 
 .heading {
     margin-top: 173px;
-    margin-left: 219px;
+    // padding-left: 219px;
+    // background-color: red;
+    width: 577px;
+
+    @media (max-width: 1371px) {
+        margin-top: 50px;
+    }
+
+    @media (max-width: 647px) {
+        width: 100%;
+    }
 
     &__form {
         font-family: "DM Sans";
@@ -118,10 +149,11 @@ import { Icon, Title, UiButton, UiLogo } from "#components";
 }
 
 .kanan {
-    margin-left: 144px;
-
+    @media (max-width: 1371px) {
+        display: none;
+    }
     &__wrapper {
-        width: 940px;
+        max-width: 940px;
         min-height: 100%;
         background-color: #f0f5ed;
         display: flex;

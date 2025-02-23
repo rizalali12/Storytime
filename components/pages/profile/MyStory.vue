@@ -24,7 +24,6 @@ import { UiButton } from "#components";
                 variantAuthor="no-author"
                 variantIcon="my-story"
             />
-            <div class="content__story"></div>
         </div>
     </div>
 </template>

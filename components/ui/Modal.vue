@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 const props = defineProps({
-    width: {
+    elWidth: {
         type: String,
     },
     title: {
@@ -20,8 +20,8 @@ const props = defineProps({
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
     >
-        <div class="modal-dialog" :style="'max-width:' + width + 'px'">
-            <div class="modal-content" :style="'width:' + width + 'px'">
+        <div class="modal-dialog" :style="'max-width:' + elWidth + 'px'">
+            <div class="modal-content" :style="'max-width:' + elWidth + 'px'">
                 <slot></slot>
             </div>
         </div>

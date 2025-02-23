@@ -24,7 +24,6 @@ import { UiButton } from "#components";
                 variantAuthor="author"
                 variantIcon="secondary"
             />
-            <div class="content__story"></div>
         </div>
     </div>
 </template>
@@ -39,5 +38,9 @@ import { UiButton } from "#components";
 }
 .content {
     display: flex;
+
+    @media (max-width: 930px) {
+        flex-direction: column;
+    }
 }
 </style>

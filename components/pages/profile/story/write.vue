@@ -57,6 +57,10 @@
     padding-bottom: 60px;
     gap: 96px;
 
+    @media (max-width: 900px) {
+        gap: 20px;
+    }
+
     &__icon {
         font-size: 50px;
         color: #222222;

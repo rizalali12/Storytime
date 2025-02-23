@@ -51,35 +51,36 @@ const stories = ref([
 </script>
 
 <template>
-    <div class="container">
-        <div class="latestStory">
-            <UiSectionHeader
-                title="Latest Story"
-                url="/story"
-                variant="explore"
-            />
+    <div class="pembungkus">
+        <div class="container">
+            <div class="latestStory">
+                <UiSectionHeader
+                    title="Latest Story"
+                    url="/story"
+                    variant="explore"
+                />
+            </div>
+            <div class="wrapper__swiper">
+                <swiper
+                    :modules="[FreeMode]"
+                    :space-between="20"
+                    :slides-per-view="1"
+                    :freeMode="true"
+                    :breakpoints="{
+                        640: { slidesPerView: 1 },
+                        768: { slidesPerView: 2 },
+                        1024: { slidesPerView: 3 },
+                    }"
+                    class="swiper-container"
+                >
+                    <swiper-slide v-for="(story, i) in stories" :key="i">
+                        <div class="story__items">
+                            <UiCardStory :story="story" genre="story.genre" />
+                        </div>
+                    </swiper-slide>
+                </swiper>
+            </div>
         </div>
-    </div>
-    <div class="container">
-        <swiper
-            :modules="[FreeMode]"
-            :space-between="20"
-            :slides-per-view="1"
-            :grabCursor="true"
-            :freeMode="true"
-            :breakpoints="{
-                640: { slidesPerView: 1 },
-                768: { slidesPerView: 2 },
-                1024: { slidesPerView: 3 },
-            }"
-            class="swiper-container"
-        >
-            <swiper-slide v-for="(story, i) in stories" :key="i">
-                <div class="story__items">
-                    <UiCardStory :story="story" genre="story.genre" />
-                </div>
-            </swiper-slide>
-        </swiper>
     </div>
 </template>
 
@@ -88,14 +89,13 @@ const stories = ref([
     margin-top: 160px;
 }
 
-.container-latestStory {
-    background-color: red;
-    margin-right: 0px;
-    padding-right: 0px;
+.pembungkus {
+    width: 100%;
+    overflow: hidden;
 }
 
 .swiper-container {
     width: 100%;
-    // overflow: visible;
+    overflow: visible;
 }
 </style>

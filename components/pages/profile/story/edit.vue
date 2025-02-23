@@ -8,17 +8,18 @@
             </NuxtLink>
             <h1 class="header__title">Edit Story</h1>
         </div>
-
-        <UiFormInput
-            variant="form-black"
-            placeholder="Enter a story title"
-            label="Title"
-        />
-        <UiFormInput
-            variant="form-black"
-            placeholder="Select a category"
-            label="Category"
-        />
+        <div class="form">
+            <UiFormInput
+                variant="form-black"
+                placeholder="Enter a story title"
+                label="Title"
+            />
+            <UiFormInput
+                variant="form-black"
+                placeholder="Select a category"
+                label="Category"
+            />
+        </div>
         <div class="d-flex flex-column">
             <label class="label">Content</label>
             <textarea name="" id=""></textarea>
@@ -66,6 +67,9 @@
     padding-top: 115px;
     padding-bottom: 60px;
     gap: 96px;
+    @media (max-width: 900px) {
+        gap: 20px;
+    }
 
     &__icon {
         font-size: 50px;
@@ -78,6 +82,10 @@
         font-size: 44px;
         line-height: 58px;
     }
+}
+
+.form {
+    width: 100%;
 }
 
 .close {

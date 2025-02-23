@@ -3,7 +3,7 @@ import { UiButton } from "#components";
 </script>
 
 <template>
-    <div class="wrapper">
+    <div class="wrapperr">
         <div class="container navbar-expand-lg">
             <div class="navbar">
                 <UiLogo />
@@ -82,12 +82,13 @@ import { UiButton } from "#components";
 </template>
 
 <style lang="scss" scoped>
-.wrapper {
+.wrapperr {
     position: sticky;
     top: 0;
     z-index: 10;
     width: 100%;
     background-color: white;
+    padding: 0px;
 }
 
 .navbar {

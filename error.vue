@@ -34,11 +34,15 @@ const props = defineProps({
 
 <style lang="scss" scoped>
 .container {
-    padding-top: 80px;
+    padding-top: 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 33px;
+
+    @media (max-width: 620px) {
+        flex-direction: column;
+    }
 }
 
 .image {
@@ -54,6 +58,7 @@ const props = defineProps({
     align-items: center;
     justify-content: center;
     text-align: center;
+
     &__title {
         font-family: "Playfair Display";
         font-weight: 700;
@@ -79,10 +84,19 @@ const props = defineProps({
     line-height: 32px;
     color: #4b4b4b;
     padding-bottom: 70px;
+
+    @media (max-width: 620px) {
+        padding-bottom: 40px;
+    }
 }
 
 .wrapper {
     padding-top: 30px;
     padding-bottom: 70px;
+
+    @media (max-width: 620px) {
+        padding-bottom: 20px;
+        padding-top: 20px;
+    }
 }
 </style>

@@ -105,7 +105,7 @@ fetchData();
         </div>
         <div class="story-profile" v-if="variant === 'image-myStory'">
             <div class="row">
-                <div class="col-12 col-md-6 col-xl-6 pb-4">
+                <div class="col-12 col-md-6 col-xl-6 pb-3">
                     <div class="story__normal">
                         <UiCardStory
                             :story="stories[0]"
@@ -115,7 +115,7 @@ fetchData();
                         />
                     </div>
                 </div>
-                <div class="col-12 col-md-6 col-xl-6">
+                <div class="col-12 col-md-6 col-xl-6 pb-3">
                     <div class="story__normal">
                         <UiCardStory
                             :story="stories[0]"
@@ -125,7 +125,7 @@ fetchData();
                         />
                     </div>
                 </div>
-                <div class="col-12 col-md-6 col-xl-6">
+                <div class="col-12 col-md-6 col-xl-6 pb-3">
                     <div class="story__normal">
                         <UiCardStory
                             :story="stories[0]"
@@ -135,7 +135,7 @@ fetchData();
                         />
                     </div>
                 </div>
-                <div class="col-12 col-md-6 col-xl-6">
+                <div class="col-12 col-md-6 col-xl-6 pb-3">
                     <div class="story__normal">
                         <UiCardStory
                             :story="stories[0]"
@@ -186,12 +186,20 @@ fetchData();
 <style lang="scss" scoped>
 .container {
     margin-top: 120px;
+
+    @media (max-width: 767px) {
+        margin-top: 70px;
+    }
+
+    @media (max-width: 567px) {
+        margin-top: 40px;
+    }
 }
 
 .story {
     display: flex;
     gap: 24px;
-    padding-top: 40px;
+    // padding-top: 40px;
 
     &__normal {
         // width: 33%;

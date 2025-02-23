@@ -45,7 +45,6 @@ const props = defineProps({
 .wrapper {
     min-height: 82px;
     height: 100%;
-    max-width: 1920px;
     width: 100%;
     background-color: #f0f5ed;
     display: flex;

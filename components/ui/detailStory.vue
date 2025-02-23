@@ -145,7 +145,7 @@ const setinitialSlide = (index: number) => {
                         </swiper-slide>
                     </swiper>
                 </div>
-                <UiModal width="1100" title="detailStory">
+                <UiModal elWidth="1100" title="detailStory">
                     <div class="wrapper-close">
                         <button
                             type="button"
@@ -159,7 +159,7 @@ const setinitialSlide = (index: number) => {
                             ></icon>
                         </button>
                     </div>
-                    <pre>{{ initialSlide }}</pre>
+                    <!-- <pre>{{ initialSlide }}</pre> -->
                     <swiper
                         v-if="initialSlide > -1"
                         :navigation="true"
@@ -454,6 +454,10 @@ const setinitialSlide = (index: number) => {
 
 .story {
     display: flex;
+
+    @media (max-width: 1004px) {
+        flex-direction: column;
+    }
     gap: 60px;
 
     &__image {

@@ -111,8 +111,8 @@ const togglePassword = () => {
 
     &__input {
         padding: 24px 30px;
-        width: 577px;
-        // width: 100%;
+        max-width: 577px;
+        width: 100%;
         height: 71px;
         border-radius: 8px;
         margin-top: 20px;
@@ -149,7 +149,7 @@ const togglePassword = () => {
     &__input {
         padding: 24px 30px;
         border: 2px solid #cccccc;
-        // max-width: 577px;
+        max-width: 577px;
         width: 100%;
         min-height: 71px;
         border-radius: 8px;
@@ -161,6 +161,7 @@ const togglePassword = () => {
     &__inputt {
         padding: 24px 30px;
         border: 2px solid #cccccc;
+        // max-width: 577px;
         width: 100%;
         min-height: 71px;
         border-radius: 8px;

@@ -17,20 +17,20 @@ const props = defineProps({
     },
 });
 
-const fetchData = () => {
-    stories.value = [
-        {
-            image: "@/assets/icons/undraw_on_the_office_re_cxds 1.png",
-            preview:
-                "1. GOLDEN Gemma was only five minutes away from her parents’ hut, but the jungle had already taken on a different personality. It was thicker. The trees had grown taller. The ti plants shaded the green forest a sinister red. There was no doubt about it- the jungle",
-            author: "Khrisvana (updated) 1",
-            date: "12 March 2024",
-            genre: "Comedy",
-        },
-    ];
-};
+// const fetchData = () => {
+//     stories.value = [
+//         {
+//             image: "@/assets/icons/undraw_on_the_office_re_cxds 1.png",
+//             preview:
+//                 "1. GOLDEN Gemma was only five minutes away from her parents’ hut, but the jungle had already taken on a different personality. It was thicker. The trees had grown taller. The ti plants shaded the green forest a sinister red. There was no doubt about it- the jungle",
+//             author: "Khrisvana (updated) 1",
+//             date: "12 March 2024",
+//             genre: "Comedy",
+//         },
+//     ];
+// };
 
-fetchData();
+// fetchData();
 </script>
 
 <template>
@@ -45,24 +45,10 @@ fetchData();
             <UiDropdownMenu />
             <UiSearchBar variant="searchbar-mini" />
         </div>
-        <div class="story" v-if="variant === 'image'">
-            <div class="row">
-                <div class="col-12" v-for="(story, i) in stories" :key="i">
-                    <!-- <pre>{{ story }}</pre> -->
-                    <div class="">
-                        <PagesHomepageHighlight
-                            :story="story"
-                            variant="image_large"
-                            genre="true"
-                        />
-                        <PagesHomepageHighlight
-                            :story="story"
-                            variant="image"
-                            genre="true"
-                        />
-                    </div>
-                </div>
-            </div>
+        <!-- <pre>{{ story }}</pre> -->
+        <div class="story">
+            <PagesHomepageHighlight variant="image_large" genre="true" />
+            <PagesHomepageHighlight variant="image" genre="true" />
         </div>
         <UiNumberPage />
     </div>
@@ -70,7 +56,7 @@ fetchData();
 
 <style lang="scss" scoped>
 .container {
-    margin-top: 50px;
+    margin-top: 60px;
 }
 
 .wrapper {
@@ -89,12 +75,18 @@ fetchData();
 }
 
 .story {
-    display: flex;
-    gap: 24px;
-    padding-top: 40px;
-
     &__highlight {
         width: 100%;
+    }
+}
+
+@media (max-width: 991px) {
+    .heading {
+        flex-direction: column-reverse;
+    }
+
+    .story {
+        padding-top: 0px;
     }
 }
 </style>

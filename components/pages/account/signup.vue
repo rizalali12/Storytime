@@ -16,6 +16,9 @@ const togglePasswordConfirm = () => {
 
 <template>
     <div class="container">
+        <div class="container__hidden">
+            <UiLogo />
+        </div>
         <div class="container__kiri">
             <div class="container__heading">
                 <div class="container__logo">
@@ -98,8 +101,21 @@ const togglePasswordConfirm = () => {
     display: flex;
     margin: 0px;
 
+    @media (max-width: 1500px) {
+        justify-content: center;
+    }
+
+    &__hidden {
+        display: none;
+        position: absolute;
+        top: 20px;
+        left: 30px;
+
+        @media (max-width: 1500px) {
+            display: block;
+        }
+    }
     &__kiri {
-        width: 960px;
         max-width: 960px;
         min-width: 960px;
         border-radius: 8px;
@@ -110,6 +126,10 @@ const togglePasswordConfirm = () => {
         flex-direction: column;
         align-items: center;
         justify-content: center;
+
+        @media (max-width: 1500px) {
+            display: none;
+        }
     }
 
     &__heading {
@@ -143,10 +163,25 @@ const togglePasswordConfirm = () => {
         margin-left: 22px;
         margin-right: 23px;
     }
+
+    &__kanan {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
 }
 
 .heading {
     margin-left: 144px;
+    // background-color: blue;
+    width: 577px;
+
+    @media (max-width: 1500px) {
+        max-width: 577px;
+        width: 100%;
+        margin-left: 10px;
+        padding-top: 30px;
+    }
 
     &__title {
         margin-bottom: 50px;
@@ -154,15 +189,8 @@ const togglePasswordConfirm = () => {
         font-weight: 700;
         font-size: 44px;
         line-height: 58px;
-        width: 500px;
         margin-top: 77px;
     }
-}
-
-.container__kanan {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
 }
 
 .form__input-container {

@@ -125,13 +125,13 @@ const props = defineProps({
                     </div>
                 </div>
                 <div class="kotak__profile" v-if="hasAuthor === 'no-author'">
-                    <div class="author">
+                    <div class="wrapper-author">
                         <div class="author__genre">
                             {{ story.genre }}
                         </div>
-                    </div>
-                    <div class="author__info">
-                        <label class="author__date">{{ story.date }}</label>
+                        <div class="author__info-no">
+                            <label class="author__date">{{ story.date }}</label>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -165,10 +165,26 @@ const props = defineProps({
 
     &:hover .kotak__icon {
         top: 73%;
+
+        @media (max-width: 1358px) {
+            top: 71%;
+        }
+
+        @media (max-width: 1101px) {
+            top: 69%;
+        }
     }
 
     &:hover .kotak__icon-black {
         top: 73%;
+
+        @media (max-width: 1358px) {
+            top: 71%;
+        }
+
+        @media (max-width: 1101px) {
+            top: 69%;
+        }
     }
 
     &:hover .circle .bookmark-secondary {
@@ -225,6 +241,18 @@ const props = defineProps({
         right: 30px;
         top: 75%;
         transition: 0.5s all;
+
+        @media (max-width: 1358px) {
+            width: 60px;
+            height: 60px;
+            top: 73%;
+        }
+
+        @media (max-width: 1101px) {
+            width: 55px;
+            height: 55px;
+            top: 71%;
+        }
     }
 
     &__icon-black {
@@ -239,6 +267,18 @@ const props = defineProps({
         right: 30px;
         top: 75%;
         transition: 0.5s all;
+
+        @media (max-width: 1358px) {
+            width: 60px;
+            height: 60px;
+            top: 73%;
+        }
+
+        @media (max-width: 1101px) {
+            width: 55px;
+            height: 55px;
+            top: 71%;
+        }
     }
 
     &__icon-logo {
@@ -266,6 +306,33 @@ const props = defineProps({
         top: 42%;
         color: white;
         transition: 0.5s;
+
+        @media (max-width: 1300px) {
+            top: 35%;
+            right: 39%;
+        }
+
+        @media (max-width: 1102px) {
+            width: 50px;
+            height: 50px;
+        }
+
+        @media (max-width: 930px) {
+            top: 42%;
+            right: 42%;
+        }
+
+        @media (max-width: 767px) {
+            width: 65px;
+            height: 65px;
+        }
+
+        @media (max-width: 470px) {
+            width: 50px;
+            height: 50px;
+            top: 40%;
+            right: 41%;
+        }
     }
 
     &__icon-black {
@@ -282,6 +349,33 @@ const props = defineProps({
         right: 42%;
         top: 42%;
         transition: 0.5s;
+
+        @media (max-width: 1300px) {
+            top: 35%;
+            right: 39%;
+        }
+
+        @media (max-width: 1102px) {
+            width: 50px;
+            height: 50px;
+        }
+
+        @media (max-width: 930px) {
+            top: 42%;
+            right: 42%;
+        }
+
+        @media (max-width: 767px) {
+            width: 65px;
+            height: 65px;
+        }
+
+        @media (max-width: 470px) {
+            width: 50px;
+            height: 50px;
+            top: 40%;
+            right: 41%;
+        }
     }
 }
 
@@ -305,12 +399,39 @@ const props = defineProps({
         top: 75%;
         color: white;
         transition: 0.5s;
+
+        @media (max-width: 1448px) {
+            width: 50px;
+            height: 50px;
+        }
+
+        @media (max-width: 1190px) {
+            width: 45px;
+            height: 45px;
+        }
+
+        @media (max-width: 767px) {
+            width: 60px;
+            height: 60px;
+        }
+
+        @media (max-width: 573px) {
+            width: 50px;
+            height: 50px;
+        }
+
+        @media (max-width: 467px) {
+            width: 45px;
+            height: 45px;
+        }
     }
 
     &__icon-black {
         opacity: 100%;
-        width: 65px;
-        height: 65px;
+        max-width: 65px;
+        width: 100%;
+        max-height: 65px;
+        height: 100%;
         color: white;
         border-radius: 50%;
         background-color: #222222;
@@ -321,10 +442,31 @@ const props = defineProps({
         right: 22%;
         top: 75%;
         transition: 0.5s;
+
+        @media (max-width: 1448px) {
+            width: 50px;
+            height: 50px;
+        }
+
+        @media (max-width: 1190px) {
+            width: 45px;
+            height: 45px;
+        }
+        @media (max-width: 767px) {
+            width: 60px;
+            height: 60px;
+        }
+        @media (max-width: 573px) {
+            width: 50px;
+            height: 50px;
+        }
+        @media (max-width: 467px) {
+            width: 45px;
+            height: 45px;
+        }
     }
 
     &__icon-delete {
-        opacity: 100%;
         width: 65px;
         height: 65px;
         border-radius: 50%;
@@ -338,13 +480,36 @@ const props = defineProps({
         color: white;
         transition: 0.3s;
 
+        @media (max-width: 1448px) {
+            width: 50px;
+            height: 50px;
+        }
+
+        @media (max-width: 1190px) {
+            width: 45px;
+            height: 45px;
+        }
+        @media (max-width: 767px) {
+            width: 60px;
+            height: 60px;
+            right: 9%;
+        }
+        @media (max-width: 573px) {
+            width: 50px;
+            height: 50px;
+        }
+
+        @media (max-width: 467px) {
+            width: 45px;
+            height: 45px;
+            right: 7%;
+        }
         &:hover {
             background-color: #334930;
         }
     }
 
     &__icon-edit {
-        opacity: 100%;
         width: 65px;
         height: 65px;
         border-radius: 50%;
@@ -358,6 +523,30 @@ const props = defineProps({
         color: white;
         transition: 0.3s;
 
+        @media (max-width: 1448px) {
+            width: 50px;
+            height: 50px;
+        }
+
+        @media (max-width: 1190px) {
+            width: 45px;
+            height: 45px;
+        }
+
+        @media (max-width: 767px) {
+            width: 60px;
+            height: 60px;
+            right: 35%;
+        }
+        @media (max-width: 573px) {
+            width: 50px;
+            height: 50px;
+        }
+        @media (max-width: 467px) {
+            width: 45px;
+            height: 45px;
+            right: 37%;
+        }
         &:hover {
             background-color: #334930;
         }
@@ -386,6 +575,12 @@ const props = defineProps({
     border: none;
     z-index: 1;
     font-size: 40px;
+}
+
+.wrapper-author {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
 }
 
 .author {
@@ -428,6 +623,12 @@ const props = defineProps({
         align-items: center;
     }
 
+    &__info-no {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+    }
+
     &__genre {
         background-color: #f0f5ed;
         color: #466543;
@@ -441,16 +642,19 @@ const props = defineProps({
     }
 }
 
-@media (max-width: 1448px) {
-    .story {
-        &__icon {
-            width: 50px;
-            height: 50px;
-        }
+@media (max-width: 1000px) {
+    .kotak__profile {
+        flex-direction: column;
+        align-items: self-start;
+    }
+
+    .author__info {
+        justify-content: space-between;
+        width: 100%;
     }
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1585px) {
     .kotak__profile {
         flex-direction: column;
         align-items: self-start;
