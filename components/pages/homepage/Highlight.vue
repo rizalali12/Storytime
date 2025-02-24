@@ -199,7 +199,11 @@ fetchData();
 .story {
     display: flex;
     gap: 24px;
-    // padding-top: 40px;
+    padding-top: 20px;
+
+    @media (max-width: 740px) {
+        padding-top: 0px;
+    }
 
     &__normal {
         // width: 33%;

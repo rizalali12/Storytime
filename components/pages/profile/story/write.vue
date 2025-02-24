@@ -41,7 +41,7 @@
         </div>
 
         <div class="wrapper-button">
-            <UiButton title="Cancel" variant="outlined" />
+            <UiButton title="Cancel" variant="outlined" url="/mystory" />
             <UiButton title="Post Story" variant="primary" />
         </div>
     </div>
@@ -59,6 +59,11 @@
 
     @media (max-width: 900px) {
         gap: 20px;
+    }
+
+    @media (max-width: 500px) {
+        padding-top: 30px;
+        padding-bottom: 40px;
     }
 
     &__icon {

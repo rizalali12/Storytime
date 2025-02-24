@@ -53,7 +53,7 @@
 
         <div class="wrapper-button">
             <UiButton title="Cancel" variant="outlined" />
-            <UiButton title="Post Story" variant="primary" />
+            <UiButton title="Update Story" variant="primary" />
         </div>
     </div>
 </template>
@@ -67,8 +67,14 @@
     padding-top: 115px;
     padding-bottom: 60px;
     gap: 96px;
+
     @media (max-width: 900px) {
         gap: 20px;
+    }
+
+    @media (max-width: 500px) {
+        padding-top: 30px;
+        padding-bottom: 40px;
     }
 
     &__icon {
@@ -156,6 +162,7 @@
 
     &__photo {
         max-width: 500px;
+        width: 100%;
         height: 400px;
         border-radius: 8px;
     }

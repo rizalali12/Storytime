@@ -1,5 +1,7 @@
 <script lang="ts" setup>
 import { UiButton } from "#components";
+
+const login = ref(true);
 </script>
 
 <template>
@@ -33,45 +35,57 @@ import { UiButton } from "#components";
                             ></button>
                         </div>
                         <div
-                            class="d-flex align-items-center justify-content-center gap-4"
+                            class="d-flex align-items-center justify-content-center gap-2"
                         >
-                            <!-- <UiButton
-                                title="Register"
-                                variant="outlined"
-                                url="/signup"
-                            />
-                            <UiButton title="Login" url="/login" /> -->
-                            <img
-                                src="@/assets/icons/profile_picture.png"
-                                alt=""
-                                srcset=""
-                                class="navbar__login-picture"
-                            />
-                            <div class="dropdown">
-                                <h1 class="navbar__login-name">Iswara</h1>
-                                <button
-                                    class="dropdown__button"
-                                    data-bs-toggle="dropdown"
-                                    aria-expanded="false"
-                                >
-                                    <icon
-                                        name="ri:arrow-down-s-line"
-                                        class="icon"
+                            <template v-if="login === false">
+                                <div class="d-flex gap-4">
+                                    <UiButton
+                                        title="Register"
+                                        variant="outlined"
+                                        url="/signup"
                                     />
-                                </button>
-                                <ul class="dropdown-menu translate-middle-x">
-                                    <li>
-                                        <a class="dropdown-item" href="/mystory"
-                                            >My Profile</a
-                                        >
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="#"
-                                            >Logout</a
-                                        >
-                                    </li>
-                                </ul>
-                            </div>
+                                    <UiButton title="Login" url="/login" />
+                                </div>
+                            </template>
+                            <template v-if="login === true">
+                                <img
+                                    src="@/assets/icons/profile_picture.png"
+                                    alt=""
+                                    srcset=""
+                                    class="navbar__login-picture"
+                                />
+                                <div class="dropdown">
+                                    <button
+                                        class="dropdown__button"
+                                        data-bs-toggle="dropdown"
+                                        aria-expanded="false"
+                                    >
+                                        <h1 class="navbar__login-name">
+                                            Iswara
+                                        </h1>
+                                        <icon
+                                            name="ri:arrow-down-s-line"
+                                            class="icon"
+                                        />
+                                    </button>
+                                    <ul
+                                        class="dropdown-menu translate-middle-x"
+                                    >
+                                        <li>
+                                            <a
+                                                class="dropdown-item"
+                                                href="/mystory"
+                                                >My Profile</a
+                                            >
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="#"
+                                                >Logout</a
+                                            >
+                                        </li>
+                                    </ul>
+                                </div>
+                            </template>
                         </div>
                     </div>
                 </div>
@@ -122,7 +136,14 @@ import { UiButton } from "#components";
         border: none;
         background-color: white;
         margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 5px;
     }
+}
+
+.icon {
+    transform: translateY(-20%);
 }
 
 .dropdown-menu {

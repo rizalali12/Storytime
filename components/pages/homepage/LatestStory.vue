@@ -87,6 +87,10 @@ const stories = ref([
 <style lang="scss" scoped>
 .latestStory {
     margin-top: 160px;
+
+    @media (max-width: 567px) {
+        margin-top: 60px;
+    }
 }
 
 .pembungkus {
@@ -97,5 +101,15 @@ const stories = ref([
 .swiper-container {
     width: 100%;
     overflow: visible;
+}
+
+.wrapper {
+    &__swiper {
+        padding-top: 20px;
+
+        @media (max-width: 740px) {
+            padding-top: 0px;
+        }
+    }
 }
 </style>

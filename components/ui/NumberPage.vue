@@ -42,6 +42,10 @@
     line-height: 38px;
     transition: 0.4s;
 
+    @media (max-width: 500px) {
+        padding: 10px 10px;
+    }
+
     &:hover {
         background-color: #466543;
         color: #ffffff;

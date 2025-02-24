@@ -57,6 +57,10 @@ const props = defineProps({
         transition: 0.5s all;
         border-bottom: 1px solid white;
 
+        @media (max-width: 500px) {
+            font-size: 18px;
+        }
+
         &:hover {
             border-bottom: 1px solid #466543;
             color: #466543;

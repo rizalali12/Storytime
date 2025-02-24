@@ -121,8 +121,7 @@ const setinitialSlide = (index: number) => {
 
                     <swiper
                         @swiper="setThumbsSwiper"
-                        :spaceBetween="30"
-                        :slidesPerView="3"
+                        :spaceBetween="100"
                         :freeMode="true"
                         :centerInsufficientSlides="false"
                         :watchSlidesProgress="true"
@@ -133,6 +132,27 @@ const setinitialSlide = (index: number) => {
                             <img
                                 src="@/assets/icons/poster.png"
                                 alt="Thumbnail 1"
+                                class="thumb-image"
+                            />
+                        </swiper-slide>
+                        <swiper-slide>
+                            <img
+                                src="@/assets/icons/profile_picture.png"
+                                alt="Thumbnail 2"
+                                class="thumb-image"
+                            />
+                        </swiper-slide>
+                        <swiper-slide>
+                            <img
+                                src="@/assets/icons/profile_picture.png"
+                                alt="Thumbnail 2"
+                                class="thumb-image"
+                            />
+                        </swiper-slide>
+                        <swiper-slide>
+                            <img
+                                src="@/assets/icons/profile_picture.png"
+                                alt="Thumbnail 2"
                                 class="thumb-image"
                             />
                         </swiper-slide>
@@ -201,8 +221,8 @@ const setinitialSlide = (index: number) => {
                     <!-- Swiper Thumbnail -->
                     <swiper
                         @swiper="setThumbsSwiperModal"
-                        :spaceBetween="30"
-                        :slidesPerView="5"
+                        :spaceBetween="20"
+                        :slidesPerView="4"
                         :freeMode="true"
                         :centerInsufficientSlides="true"
                         :watchSlidesProgress="true"
@@ -268,12 +288,28 @@ const setinitialSlide = (index: number) => {
     width: 100%;
     max-width: 900px;
     height: 100%;
+    padding-top: 10px;
 }
 
 .mySwiper {
-    margin-top: 30px;
     width: 100%;
     padding-bottom: 60px;
+    padding-left: 100px;
+    padding-right: 100px;
+
+    @media (max-width: 900px) {
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+
+    @media (max-width: 658px) {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    @media (max-width: 402px) {
+        padding-bottom: 20px;
+    }
 
     .swiper-slide {
         opacity: 0.5;
@@ -338,12 +374,18 @@ const setinitialSlide = (index: number) => {
 }
 
 .thumb-image {
-    width: 100%;
-    height: 140px;
+    // width: 100%;
+    width: 202px;
+    height: 200px;
     // object-fit: cover;
-    border-radius: 4px;
+    border-radius: 8px;
     cursor: pointer;
     transition: opacity 0.3s ease;
+
+    @media (max-width: 450px) {
+        aspect-ratio: 1 / 1;
+        height: auto;
+    }
 }
 
 .mySwiper :deep(.swiper-button-next),
@@ -358,19 +400,25 @@ const setinitialSlide = (index: number) => {
     color: white !important;
 }
 .modal-image {
-    // max-width: 202px;
+    max-width: 200px;
     // max-height: 200px;
-    width: 202px;
+    width: 100%;
     height: 200px;
     border-radius: 8px;
 
+    @media (max-width: 400px) {
+        // height: 150px;
+        aspect-ratio: 1 / 1;
+        height: auto;
+    }
+
     &__highlight {
         width: 100%;
-        height: 100%;
-        max-height: 500px;
+        height: 500px;
         max-width: 900px;
         border-radius: 8px;
         object-fit: cover;
+        padding-bottom: 30px;
     }
 }
 
@@ -399,6 +447,8 @@ const setinitialSlide = (index: number) => {
 }
 
 .heading {
+    position: relative;
+
     &__content {
         display: flex;
         flex-direction: column;
@@ -406,6 +456,10 @@ const setinitialSlide = (index: number) => {
         justify-content: center;
         text-align: center;
         gap: 50px;
+
+        @media (max-width: 1001px) {
+            gap: 10px;
+        }
     }
 
     &__date {
@@ -414,6 +468,7 @@ const setinitialSlide = (index: number) => {
         font-size: 24px;
         line-height: 32px;
         color: #4b4b4b;
+        margin: 0;
     }
 
     &__title {
@@ -454,11 +509,11 @@ const setinitialSlide = (index: number) => {
 
 .story {
     display: flex;
+    gap: 60px;
 
     @media (max-width: 1004px) {
         flex-direction: column;
     }
-    gap: 60px;
 
     &__image {
         width: 100%;
@@ -487,6 +542,17 @@ const setinitialSlide = (index: number) => {
         position: absolute;
         right: 25px;
         transition: 0.5s all;
+
+        @media (max-width: 707px) {
+            right: 15px;
+        }
+
+        @media (max-width: 400px) {
+            right: 10px;
+            top: 15px;
+            width: 50px;
+            height: 50px;
+        }
     }
 
     &__icon-black {
@@ -500,6 +566,17 @@ const setinitialSlide = (index: number) => {
         position: absolute;
         right: 25px;
         transition: 0.5s all;
+
+        @media (max-width: 707px) {
+            right: 15px;
+        }
+
+        @media (max-width: 400px) {
+            right: 10px;
+            top: 15px;
+            width: 50px;
+            height: 50px;
+        }
     }
 
     &__icon-logo {
@@ -511,7 +588,6 @@ const setinitialSlide = (index: number) => {
 
 .bookmark {
     border: none;
-    margin-right: 80px;
 }
 
 .button-image {

@@ -161,6 +161,7 @@
         flex-direction: column;
         padding-top: 10px;
         gap: 20px;
+        padding-left: 10px;
     }
 }
 

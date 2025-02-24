@@ -74,9 +74,14 @@ const props = defineProps({
             <button class="bookmark-mystory story__icon-delete">
                 <icon name="ri:delete-bin-line" class="story__icon-logo"></icon>
             </button>
-            <button class="bookmark-mystory story__icon-edit">
-                <icon name="ri:edit-box-line" class="story__icon-logo"></icon>
-            </button>
+            <NuxtLink to="/mystory/1/edit">
+                <button class="bookmark-mystory story__icon-edit">
+                    <icon
+                        name="ri:edit-box-line"
+                        class="story__icon-logo"
+                    ></icon>
+                </button>
+            </NuxtLink>
             <NuxtLink :to="story.url" class="kotak">
                 <img src="@/assets/icons/poster.png" class="gambar" alt="" />
             </NuxtLink>

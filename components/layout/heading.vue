@@ -1,16 +1,33 @@
-<script></script>
+<script lang="ts" setup>
+const login = ref(true);
+</script>
 
 <template>
     <div class="container">
         <div class="col-12">
             <div class="heading">
                 <div class="heading__container">
-                    <h1 class="heading__title fw-bold">Welcome to Storytime</h1>
-                    <p class="heading__paragraf">
-                        The world's most-loved social storytelling platform.
-                        Story time connects a global community of 90 million
-                        readers and writers through the power of story
-                    </p>
+                    <template v-if="login === false">
+                        <h1 class="heading__title fw-bold">
+                            Welcome to Storytime
+                        </h1>
+                        <p class="heading__paragraf">
+                            The world's most-loved social storytelling platform.
+                            Story time connects a global community of 90 million
+                            readers and writers through the power of story
+                        </p>
+                    </template>
+                    <template v-if="login === true">
+                        <h1 class="heading__title-login fw-bold">
+                            Hi, Iswara. <br />
+                            Welcome to Storytime
+                        </h1>
+                        <p class="heading__paragraf-login">
+                            The world's most-loved social storytelling platform.
+                            Story time connects a global community of 90 million
+                            readers and writers through the power of story
+                        </p>
+                    </template>
                     <div class="searchBar">
                         <UiSearchBar />
                     </div>
@@ -36,6 +53,10 @@
     align-items: center;
     margin-top: 70px;
 
+    @media (max-width: 500px) {
+        margin-top: 40px;
+    }
+
     &__title {
         margin: 0;
         font-weight: 400;
@@ -43,6 +64,15 @@
         color: #222222;
         font-size: 60px;
         text-shadow: 0px 4px 4px #00000040;
+        line-height: 74px;
+    }
+
+    &__title-login {
+        margin: 0;
+        font-weight: 400;
+        font-family: "Playfair Display";
+        color: #222222;
+        font-size: 60px;
         line-height: 74px;
     }
 
@@ -59,7 +89,17 @@
         text-align: center;
         font-weight: 400;
         line-height: 32px;
-        max-width: 80%;
+        max-width: 84%;
+        margin: auto;
+    }
+
+    &__paragraf-login {
+        font-size: 24px;
+        font-style: "DM Sans";
+        text-align: center;
+        font-weight: 400;
+        line-height: 32px;
+        max-width: 99%;
         margin: auto;
     }
 

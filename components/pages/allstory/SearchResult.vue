@@ -36,7 +36,7 @@ const props = defineProps({
 <template>
     <div class="container">
         <div class="wrapper">
-            <UiStoryGenreHeader title="9 result for 'star'" />
+            <UiStoryGenreHeader title="9 result for ‘star’" />
         </div>
     </div>
     <UiStoryHeader variant="no-category" title="Search Result" />
@@ -56,7 +56,11 @@ const props = defineProps({
 
 <style lang="scss" scoped>
 .container {
-    margin-top: 60px;
+    margin-top: 50px;
+
+    @media (max-width: 500px) {
+        margin-top: 30px;
+    }
 }
 
 .wrapper {
