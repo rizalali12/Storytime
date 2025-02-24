@@ -117,11 +117,20 @@ const setinitialSlide = (index: number) => {
                                 data-bs-target="#detailStory"
                             />
                         </swiper-slide>
+                        <swiper-slide @click="setinitialSlide(2)">
+                            <img
+                                src="@/assets/icons/profile_picture.png"
+                                alt="Thumbnail 2"
+                                class="main-image"
+                                data-bs-toggle="modal"
+                                data-bs-target="#detailStory"
+                            />
+                        </swiper-slide>
                     </swiper>
 
                     <swiper
                         @swiper="setThumbsSwiper"
-                        :spaceBetween="100"
+                        :slidesPerView="3"
                         :freeMode="true"
                         :centerInsufficientSlides="false"
                         :watchSlidesProgress="true"
@@ -132,20 +141,6 @@ const setinitialSlide = (index: number) => {
                             <img
                                 src="@/assets/icons/poster.png"
                                 alt="Thumbnail 1"
-                                class="thumb-image"
-                            />
-                        </swiper-slide>
-                        <swiper-slide>
-                            <img
-                                src="@/assets/icons/profile_picture.png"
-                                alt="Thumbnail 2"
-                                class="thumb-image"
-                            />
-                        </swiper-slide>
-                        <swiper-slide>
-                            <img
-                                src="@/assets/icons/profile_picture.png"
-                                alt="Thumbnail 2"
                                 class="thumb-image"
                             />
                         </swiper-slide>
@@ -367,7 +362,13 @@ const setinitialSlide = (index: number) => {
     .swiper-slide {
         opacity: 0.5;
         cursor: pointer;
+        margin-right: 30px;
+
+        @media (max-width: 600px) {
+            margin-right: 90px;
+        }
     }
+
     .swiper-slide-thumb-active {
         opacity: 1;
     }
