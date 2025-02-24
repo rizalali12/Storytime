@@ -120,7 +120,7 @@ const setinitialSlide = (index: number) => {
                         <swiper-slide @click="setinitialSlide(2)">
                             <img
                                 src="@/assets/icons/profile_picture.png"
-                                alt="Thumbnail 2"
+                                alt="Thumbnail 3"
                                 class="main-image"
                                 data-bs-toggle="modal"
                                 data-bs-target="#detailStory"
@@ -132,7 +132,6 @@ const setinitialSlide = (index: number) => {
                         @swiper="setThumbsSwiper"
                         :slidesPerView="3"
                         :freeMode="true"
-                        :centerInsufficientSlides="false"
                         :watchSlidesProgress="true"
                         :modules="[FreeMode, Navigation, Thumbs]"
                         class="thumb-swiper"
@@ -154,7 +153,7 @@ const setinitialSlide = (index: number) => {
                         <swiper-slide>
                             <img
                                 src="@/assets/icons/profile_picture.png"
-                                alt="Thumbnail 2"
+                                alt="Thumbnail 3"
                                 class="thumb-image"
                             />
                         </swiper-slide>
@@ -362,10 +361,10 @@ const setinitialSlide = (index: number) => {
     .swiper-slide {
         opacity: 0.5;
         cursor: pointer;
-        margin-right: 30px;
+        margin-right: 20px;
 
         @media (max-width: 600px) {
-            margin-right: 90px;
+            margin-right: 10px;
         }
     }
 
@@ -375,8 +374,9 @@ const setinitialSlide = (index: number) => {
 }
 
 .thumb-image {
-    // width: 100%;
-    width: 202px;
+    width: 100%;
+    max-width: 202px;
+    // width: 202px;
     height: 200px;
     // object-fit: cover;
     border-radius: 8px;
