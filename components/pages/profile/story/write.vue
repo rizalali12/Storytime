@@ -1,4 +1,20 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+const inputImage = ref<HTMLInputElement | null>(null);
+const previewImage = ref<any>(null);
+
+const uploadImage = () => {
+    if (inputImage.value) {
+        inputImage.value.click();
+    }
+};
+
+const handleFileChange = () => {
+    const file = (event.target as HTMLInputElement).files?.[0];
+    if (file) {
+        previewImage.value = URL.createObjectURL(file);
+    }
+};
+</script>
 
 <template>
     <div class="container">
@@ -24,20 +40,31 @@
 
         <div class="d-flex flex-column">
             <label class="label">Content</label>
-            <textarea name="" id=""></textarea>
+            <ClientOnly>
+                <CKEditor />
+            </ClientOnly>
         </div>
 
         <label class="label-image">Cover Image</label>
-        <div class="wrapper-image">
+        <div class="wrapper-image" @click="uploadImage">
             <input
                 type="file"
                 class="wrapper-image__input"
                 style="display: none"
-                id="image"
+                ref="inputImage"
                 accept="image/png, image/jpg"
+                @change="handleFileChange"
             />
-            <img src="@/assets/icons/Vector (1).png" alt="" />
-            <p class="wrapper-image__text">Choose Image</p>
+            <img
+                v-if="previewImage"
+                :src="previewImage"
+                alt="Preview Image"
+                class="preview"
+            />
+            <template v-else>
+                <img src="@/assets/icons/Vector (1).png" alt="" />
+                <p class="wrapper-image__text">Choose Image</p>
+            </template>
         </div>
 
         <div class="wrapper-button">
@@ -50,6 +77,12 @@
 <style lang="scss" scoped>
 .link {
     text-decoration: none;
+}
+
+.preview {
+    max-width: 500px;
+    height: 400px;
+    border-radius: 8px;
 }
 
 .header {
@@ -122,6 +155,13 @@
         line-height: 23px;
         color: #4b4b4b;
         margin: 0;
+    }
+
+    &__image-else {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        background-color: red;
     }
 }
 </style>

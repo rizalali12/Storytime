@@ -21,8 +21,9 @@
             />
         </div>
         <div class="d-flex flex-column">
-            <label class="label">Content</label>
-            <textarea name="" id=""></textarea>
+            <ClientOnly>
+                <CKEditor />
+            </ClientOnly>
         </div>
 
         <label class="label-image">Cover Image</label>

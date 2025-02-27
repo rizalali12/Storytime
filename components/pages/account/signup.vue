@@ -1,17 +1,79 @@
 <script lang="ts" setup>
 import { UiLogo } from "#components";
+import { Form } from "vee-validate";
+import * as yup from "yup";
 
-const showPassword = ref(false);
-const showPasswordConfirm = ref(false);
-const password = ref("password");
+const route = useRouter();
+const errorMessage = ref("");
 
-const togglePassword = () => {
-    showPassword.value = !showPassword.value;
+const register = async (values: any, { resetForm }: any) => {
+    try {
+        const response: any = await $fetch(
+            "https://timestory.tmdsite.my.id/api/register",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: {
+                    name: values.name,
+                    username: values.username,
+                    email: values.email,
+                    password: values.password,
+                    password_confirmation: values.password_confirmation,
+                },
+            }
+        );
+        if (response.token) {
+            console.log("register berhasil", response); // Process the response
+            route.push("/");
+        }
+    } catch (error: any) {
+        console.error("fetch error");
+
+        if (error.response) {
+            console.log(error.response);
+            var result = Object.keys(error.response._data.errors).map((key) => [
+                error.response._data.errors[key],
+            ]);
+
+            result.forEach((item) => {
+                console.log("ini item:", item);
+                item.forEach((j) => {
+                    console.log("ini j:", j);
+                    // errorMessage.value = j[0];
+                    errorMessage.value = result
+                        .map((item) => item.map((j) => j[0]).join("<br>"))
+                        .join("<br>");
+                });
+            });
+        }
+    }
+
+    console.log(values);
 };
 
-const togglePasswordConfirm = () => {
-    showPasswordConfirm.value = !showPasswordConfirm.value;
-};
+const schema = yup.object({
+    password: yup
+        .string()
+        .required()
+        .min(8)
+        .matches(
+            /^(?=.*\d)(?=.*[!@#$%^&*])/,
+            "password must include a number and a special character"
+        ),
+    password_confirmation: yup
+        .string()
+        .required("password confirmation is required")
+        .oneOf([yup.ref("password")], "password does not match"),
+    email: yup.string().required().email(),
+    name: yup.string().required(),
+    username: yup.string().required("username is required field"),
+});
+
+const user = ref({
+    name: "",
+});
 </script>
 
 <template>
@@ -44,49 +106,56 @@ const togglePasswordConfirm = () => {
                 <h2 class="heading__title">Create Account</h2>
             </div>
 
-            <div class="container__kanan">
-                <div class="form">
-                    <UiFormInput
-                        variant="form"
-                        placeholder="Enter your name"
-                        label="Name"
-                    />
+            <Form @submit="register" :validationSchema="schema">
+                <div class="container__kanan">
+                    <div class="form">
+                        <UiFormInput
+                            variant="form"
+                            placeholder="Enter your name"
+                            label="Name"
+                            elname="name"
+                        />
+                    </div>
+                    <div class="form">
+                        <UiFormInput
+                            variant="form"
+                            placeholder="Enter your username"
+                            label="Username"
+                            elname="username"
+                        />
+                    </div>
+                    <div class="form">
+                        <UiFormInput
+                            variant="form"
+                            placeholder="Enter your email"
+                            label="Email"
+                            elname="email"
+                        />
+                    </div>
+                    <div class="form">
+                        <UiFormInput
+                            variant="password"
+                            placeholder="Enter your chosen password"
+                            label="Password"
+                            variantIcon="true"
+                            elname="password"
+                        />
+                    </div>
+                    <div class="form">
+                        <UiFormInput
+                            variant="password"
+                            placeholder="Re-enter your chosen password"
+                            label="Confirm Password"
+                            variantIcon="true"
+                            elname="password_confirmation"
+                        />
+                    </div>
                 </div>
-                <div class="form">
-                    <UiFormInput
-                        variant="form"
-                        placeholder="Enter your username"
-                        label="Username"
-                    />
+                <p v-if="errorMessage" v-html="errorMessage"></p>
+                <div class="createaccount">
+                    <UiButton title="Create Account" />
                 </div>
-                <div class="form">
-                    <UiFormInput
-                        variant="form"
-                        placeholder="Enter your email"
-                        label="Email"
-                    />
-                </div>
-                <div class="form">
-                    <UiFormInput
-                        variant="password"
-                        placeholder="Enter your chosen password"
-                        label="Password"
-                        variantIcon="true"
-                    />
-                </div>
-                <div class="form">
-                    <UiFormInput
-                        variant="password"
-                        placeholder="Re-enter your chosen password"
-                        label="Confirm Password"
-                        variantIcon="true"
-                    />
-                </div>
-            </div>
-
-            <div class="createaccount">
-                <UiButton title="Create Account" url="/" />
-            </div>
+            </Form>
 
             <p class="">
                 Already have an account?

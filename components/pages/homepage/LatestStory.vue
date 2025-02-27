@@ -19,7 +19,7 @@ const stories = ref([
     },
     {
         image: "@/assets/icons/undraw_work_from_anywhere_re_s2i6 1.png",
-        title: "Harry Potter and The Goblet of Fire",
+        title: "Harry Potter and The Goblet of Fire Harry Potter and The Goblet of Fire Harry Potter and The Goblet of Fire",
         preview:
             "1. GOLDEN Gemma was only five minutes away from her parents’ hut, but the jungle had already taken on a different personality.",
         author: "Khrisvana (updated) 1",

@@ -18,6 +18,7 @@ const selectedValue = ref("");
                 <option value="Comedy">Comedy</option>
                 <option value="Horror">Horror</option>
                 <option value="Action">Action</option>
+                <option value="Adventure">Adventure</option>
             </select>
         </div>
     </div>

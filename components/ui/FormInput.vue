@@ -1,5 +1,7 @@
 <script lang="ts" setup>
+import { Form, Field, ErrorMessage, useForm } from "vee-validate";
 import type { PropType } from "vue";
+import * as yup from "yup";
 
 const showPassword = ref(false);
 const props = defineProps({
@@ -24,6 +26,10 @@ const props = defineProps({
         type: String as PropType<"true" | "false">,
         default: "false",
     },
+    elname: {
+        type: String,
+        default: "name",
+    },
 });
 
 const togglePassword = () => {
@@ -35,35 +41,39 @@ const togglePassword = () => {
     <div>
         <div class="password" v-if="variant === 'password'">
             <label for="" class="form__title">{{ label }}</label>
-            <input
-                :type="showPassword ? 'text' : 'password'"
-                class="password__input"
-                :placeholder="placeholder"
-            />
-            <Icon
-                v-if="variantIcon === 'true'"
-                :name="
-                    showPassword
-                        ? 'material-symbols:visibility-off-outline'
-                        : 'material-symbols:visibility-outline-rounded'
-                "
-                @click="togglePassword"
-                class="password__icon"
-            ></Icon>
+            <div>
+                <Field
+                    :name="elname"
+                    :type="showPassword ? 'text' : 'password'"
+                    class="password__input"
+                    :placeholder="placeholder"
+                />
+                <Icon
+                    v-if="variantIcon === 'true'"
+                    :name="
+                        showPassword
+                            ? 'material-symbols:visibility-off-outline'
+                            : 'material-symbols:visibility-outline-rounded'
+                    "
+                    @click="togglePassword"
+                    class="password__icon"
+                ></Icon>
+                <ErrorMessage :name="elname" />
+            </div>
         </div>
     </div>
     <div>
         <div v-if="variant === 'form'">
             <label for="" class="form__title">{{ label }}</label>
             <div>
-                <input
-                    type="text"
-                    name=""
-                    id=""
+                <Field
+                    :type="elname"
+                    :name="elname"
                     :placeholder="placeholder"
                     class="form__input"
                     :class="disabled"
                 />
+                <ErrorMessage :name="elname" />
             </div>
         </div>
         <div v-if="variant === 'form-story'">

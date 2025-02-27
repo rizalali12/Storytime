@@ -1,5 +1,44 @@
 <script lang="ts" setup>
 import { Icon, Title, UiButton, UiLogo } from "#components";
+import { Form } from "vee-validate";
+import * as yup from "yup";
+
+const router = useRouter();
+const errorMessage = ref("");
+
+const login = async (values: any, { resetForm }: any) => {
+    try {
+        const response: any = await $fetch(
+            "https://timestory.tmdsite.my.id/api/login",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: {
+                    username_or_email: values.username_or_email,
+                    password: values.password,
+                },
+            }
+        );
+        if (response.token) {
+            console.log("login berhasil", response);
+
+            router.push("/");
+        }
+    } catch (error: any) {
+        console.error("Error during register request:", error);
+        errorMessage.value = "Invalid username or password";
+    }
+    console.log(values);
+};
+
+const schema = yup.object({
+    password: yup.string().required(),
+    username_or_email: yup
+        .string()
+        .required("username or email is a required field"),
+});
 </script>
 
 <template>
@@ -12,32 +51,36 @@ import { Icon, Title, UiButton, UiLogo } from "#components";
             <div class="heading__form">
                 <h1 class="heading__title fw-bold">Login</h1>
             </div>
-            <div class="form">
-                <div class="form__container">
-                    <UiFormInput
-                        variant="form"
-                        placeholder="Enter your username or email"
-                        label="Username/Email"
-                    />
-                </div>
-                <br />
+            <Form @submit="login" :validationSchema="schema">
                 <div class="form">
-                    <UiFormInput
-                        variannt="password"
-                        placeholder="Enter your chosen password"
-                        label="Password"
-                        variantIcon="true"
-                    />
+                    <div class="form__container">
+                        <UiFormInput
+                            variant="form"
+                            placeholder="Enter your username or email"
+                            label="Username/Email"
+                            elname="username_or_email"
+                        />
+                    </div>
+                    <br />
+                    <div class="form">
+                        <UiFormInput
+                            variannt="password"
+                            placeholder="Enter your chosen password"
+                            label="Password"
+                            variantIcon="true"
+                            elname="password"
+                        />
+                    </div>
+                    <p v-if="errorMessage">{{ errorMessage }}</p>
+                    <div class="button__login">
+                        <UiButton title="Login" />
+                    </div>
                 </div>
-                <div class="button__login">
-                    <UiButton title="Login" url="/" />
-                </div>
-                <p>
-                    Don't have an account?
-                    <NuxtLink to="/signup" class="register">Register</NuxtLink>
-                </p>
-            </div>
-            <div></div>
+            </Form>
+            <p>
+                Don't have an account?
+                <NuxtLink to="/signup" class="register">Register</NuxtLink>
+            </p>
         </div>
 
         <div class="kanan">
