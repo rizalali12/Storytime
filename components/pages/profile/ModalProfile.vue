@@ -42,7 +42,7 @@
                                 variant="form"
                                 placeholder="email@gmail.com"
                                 label="Email"
-                                disabled="disabled"
+                                :disabled="true"
                             />
                             <UiFormInput
                                 variant="text-area"

@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { Form, Field, ErrorMessage, useForm } from "vee-validate";
 import type { PropType } from "vue";
+import { errorMessages } from "vue/compiler-sfc";
 import * as yup from "yup";
 
 const showPassword = ref(false);
@@ -19,8 +20,8 @@ const props = defineProps({
         default: null,
     },
     disabled: {
-        type: String,
-        default: null,
+        type: Boolean,
+        default: false,
     },
     variantIcon: {
         type: String as PropType<"true" | "false">,
@@ -39,9 +40,9 @@ const togglePassword = () => {
 
 <template>
     <div>
-        <div class="password" v-if="variant === 'password'">
+        <div v-if="variant === 'password'">
             <label for="" class="form__title">{{ label }}</label>
-            <div>
+            <div class="password">
                 <Field
                     :name="elname"
                     :type="showPassword ? 'text' : 'password'"
@@ -58,8 +59,8 @@ const togglePassword = () => {
                     @click="togglePassword"
                     class="password__icon"
                 ></Icon>
-                <ErrorMessage :name="elname" />
             </div>
+            <ErrorMessage :name="elname" class="error-message" />
         </div>
     </div>
     <div>
@@ -71,10 +72,11 @@ const togglePassword = () => {
                     :name="elname"
                     :placeholder="placeholder"
                     class="form__input"
-                    :class="disabled"
+                    :disabled="disabled"
+                    :class="showPassword ? 'border-red' : ''"
                 />
-                <ErrorMessage :name="elname" />
             </div>
+            <ErrorMessage :name="elname" class="error-message" />
         </div>
         <div v-if="variant === 'form-story'">
             <label for="" class="form__title">{{ label }}</label>
@@ -85,7 +87,7 @@ const togglePassword = () => {
                     id=""
                     :placeholder="placeholder"
                     class="form__input-story"
-                    :class="disabled"
+                    :disabled="disabled"
                 />
             </div>
         </div>
@@ -98,7 +100,7 @@ const togglePassword = () => {
                     id=""
                     :placeholder="placeholder"
                     class="form__inputt black"
-                    :class="disabled"
+                    :disabled="disabled"
                 />
             </div>
         </div>
@@ -115,9 +117,9 @@ const togglePassword = () => {
 
 <style lang="scss" scoped>
 .password {
-    position: relative;
     display: flex;
     flex-direction: column;
+    position: relative;
 
     &__input {
         padding: 24px 30px;
@@ -132,12 +134,20 @@ const togglePassword = () => {
 
     &__icon {
         position: absolute;
-        top: 50%;
-        right: 30px;
+        top: 41%;
+        right: 20px;
         transform: translateY(-30%);
         cursor: pointer;
         font-size: 30px;
     }
+}
+
+.error-message {
+    color: red;
+}
+
+.border-red {
+    border: 2px solid red !important;
 }
 
 .disabled {
@@ -166,6 +176,10 @@ const togglePassword = () => {
         margin-top: 20px;
         height: 100%;
         margin-bottom: 30px;
+
+        &:focus {
+            border: 2px solid #222222 !important;
+        }
     }
 
     &__inputt {
@@ -178,6 +192,10 @@ const togglePassword = () => {
         margin-top: 20px;
         height: 100%;
         margin-bottom: 30px;
+
+        :focus {
+            border: 2px solid #222222 !important;
+        }
     }
 
     &__input-story {
@@ -189,6 +207,10 @@ const togglePassword = () => {
         margin-top: 20px;
         height: 100%;
         margin-bottom: 30px;
+
+        :focus {
+            border: 2px solid #222222 !important;
+        }
 
         &::placeholder {
             color: #4b4b4b;

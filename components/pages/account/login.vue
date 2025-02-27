@@ -2,11 +2,14 @@
 import { Icon, Title, UiButton, UiLogo } from "#components";
 import { Form } from "vee-validate";
 import * as yup from "yup";
+import { useAuthStore } from "@/stores/auth";
 
 const router = useRouter();
 const errorMessage = ref("");
 
 const login = async (values: any, { resetForm }: any) => {
+    const authStore = useAuthStore();
+
     try {
         const response: any = await $fetch(
             "https://timestory.tmdsite.my.id/api/login",
@@ -23,7 +26,9 @@ const login = async (values: any, { resetForm }: any) => {
         );
         if (response.token) {
             console.log("login berhasil", response);
+            console.log("authStore: ", authStore);
 
+            authStore.setUser(response.user);
             router.push("/");
         }
     } catch (error: any) {

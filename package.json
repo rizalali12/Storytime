@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@ckeditor/ckeditor5-vue": "7.3.0",
+    "@pinia-plugin-persistedstate/nuxt": "^1.2.1",
     "@pinia/nuxt": "^0.10.1",
     "add": "^2.0.6",
     "bootstrap": "^5.3.3",
@@ -20,6 +21,7 @@
     "nuxt": "^3.15.4",
     "nuxt-icon": "^1.0.0-beta.7",
     "nuxt-swiper": "^2.0.0",
+    "pinia-plugin-persistedstate": "^4.2.0",
     "sass": "^1.77.6",
     "sass-loader": "^16.0.4",
     "swiper": "^11.2.2",

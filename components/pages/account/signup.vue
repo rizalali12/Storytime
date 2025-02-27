@@ -1,10 +1,11 @@
 <script lang="ts" setup>
 import { UiLogo } from "#components";
-import { Form } from "vee-validate";
+import { ErrorMessage, Form } from "vee-validate";
 import * as yup from "yup";
 
 const route = useRouter();
 const errorMessage = ref("");
+const authStore = useAuthStore();
 
 const register = async (values: any, { resetForm }: any) => {
     try {
@@ -27,6 +28,7 @@ const register = async (values: any, { resetForm }: any) => {
         if (response.token) {
             console.log("register berhasil", response); // Process the response
             route.push("/");
+            authStore.setUser(response.user);
         }
     } catch (error: any) {
         console.error("fetch error");
@@ -74,6 +76,8 @@ const schema = yup.object({
 const user = ref({
     name: "",
 });
+
+console.log(yup);
 </script>
 
 <template>

@@ -2,6 +2,38 @@
 import { UiButton } from "#components";
 
 const login = ref(false);
+
+const userLogin = () => {
+    if (authStore.getUser().username) {
+        login.value = true;
+    }
+};
+
+const authStore = useAuthStore();
+// console.log("ini authStore data: ", authStore.getUser());
+
+const clearUser = async () => {
+    authStore.clearUser();
+    window.location.reload();
+
+    // try {
+    //     const logout: any = await $fetch(
+    //         "https://timestory.tmdsite.my.id/api/logout",
+    //         {
+    //             method: "POST",
+    //             headers: {
+    //                 Authorization: `Bearer 123`,
+    //             },
+    //             body: {},
+    //         }
+    //     );
+    //     authStore.clearUser();
+    // } catch (error) {
+    //     throw new Error("error saat logout");
+    // }
+};
+
+userLogin();
 </script>
 
 <template>
@@ -61,7 +93,7 @@ const login = ref(false);
                                         aria-expanded="false"
                                     >
                                         <h1 class="navbar__login-name">
-                                            Iswara
+                                            {{ authStore.getUser().username }}
                                         </h1>
                                         <icon
                                             name="ri:arrow-down-s-line"
@@ -79,7 +111,9 @@ const login = ref(false);
                                             >
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="#"
+                                            <a
+                                                class="dropdown-item"
+                                                @click="clearUser"
                                                 >Logout</a
                                             >
                                         </li>

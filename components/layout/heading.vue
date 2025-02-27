@@ -1,7 +1,15 @@
 <script lang="ts" setup>
 const login = ref(false);
+const userLogin = () => {
+    if (authStore.getUser().name) {
+        login.value = true;
+    }
+};
 
+const authStore = useAuthStore();
+console.log(authStore.getUser());
 
+userLogin();
 </script>
 
 <template>
@@ -21,7 +29,8 @@ const login = ref(false);
                     </template>
                     <template v-if="login === true">
                         <h1 class="heading__title-login fw-bold">
-                            Hi, Iswara. <br />
+                            Hi, {{ authStore.getUser().name }}
+                            <br />
                             Welcome to Storytime
                         </h1>
                         <p class="heading__paragraf-login">
@@ -76,6 +85,7 @@ const login = ref(false);
         color: #222222;
         font-size: 60px;
         line-height: 74px;
+        text-transform: capitalize;
     }
 
     &__container {
