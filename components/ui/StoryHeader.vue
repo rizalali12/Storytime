@@ -2,6 +2,7 @@
 const props = defineProps({
     title: {
         type: String,
+        default: null,
     },
     variant: {
         type: String as PropType<"category" | "no-category" | "detail-story">,

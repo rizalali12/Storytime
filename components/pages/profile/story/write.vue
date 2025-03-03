@@ -1,11 +1,16 @@
 <script lang="ts" setup>
 const inputImage = ref<HTMLInputElement | null>(null);
 const previewImage = ref<any>(null);
+const useToast = useToastStore();
 
 const uploadImage = () => {
     if (inputImage.value) {
         inputImage.value.click();
     }
+};
+
+const toast = () => {
+    useToast.addToast("Successfully post a story");
 };
 
 const handleFileChange = () => {
@@ -29,13 +34,8 @@ const handleFileChange = () => {
             variant="form-story"
             placeholder="Enter a story title"
             label="Title"
-            disabled="story"
         />
-        <!-- <UiFormInput
-            variant="form-story"
-            placeholder="Select a category"
-            label="Category"
-        /> -->
+
         <UiSelectCategory />
 
         <div class="d-flex flex-column">
@@ -69,7 +69,12 @@ const handleFileChange = () => {
 
         <div class="wrapper-button">
             <UiButton title="Cancel" variant="outlined" url="/mystory" />
-            <UiButton title="Post Story" variant="primary" />
+            <UiButton
+                title="Post Story"
+                variant="primary"
+                url="/mystory"
+                @click="toast"
+            />
         </div>
     </div>
 </template>

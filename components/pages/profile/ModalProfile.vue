@@ -1,4 +1,10 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const useToast = useToastStore();
+
+const toggleToast = () => {
+    useToast.addToast("Successfully edit your profile");
+};
+</script>
 
 <template>
     <div class="wrapperr">
@@ -81,7 +87,12 @@
                     title="Cancel"
                     data-bs-dismiss="modal"
                 />
-                <UiButton variant="primary" title="Update Profile" />
+                <UiButton
+                    variant="primary"
+                    title="Update Profile"
+                    @click="toggleToast"
+                    data-bs-dismiss="modal"
+                />
             </div>
         </UiModal>
     </div>

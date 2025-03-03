@@ -45,10 +45,19 @@ const togglePassword = () => {
             <div class="password">
                 <Field
                     :name="elname"
-                    :type="showPassword ? 'text' : 'password'"
                     class="password__input"
                     :placeholder="placeholder"
-                />
+                    v-slot="{ field, errorMessage }"
+                >
+                    <input
+                        v-bind="field"
+                        :placeholder="placeholder"
+                        :type="showPassword ? 'text' : 'password'"
+                        class="form__input"
+                        :class="{ 'border-red': errorMessage }"
+                        :disabled="disabled"
+                    />
+                </Field>
                 <Icon
                     v-if="variantIcon === 'true'"
                     :name="
@@ -70,11 +79,17 @@ const togglePassword = () => {
                 <Field
                     :type="elname"
                     :name="elname"
-                    :placeholder="placeholder"
                     class="form__input"
-                    :disabled="disabled"
-                    :class="showPassword ? 'border-red' : ''"
-                />
+                    v-slot="{ field, errorMessage }"
+                >
+                    <input
+                        v-bind="field"
+                        :placeholder="placeholder"
+                        class="form__input"
+                        :class="{ 'border-red': errorMessage }"
+                        :disabled="disabled"
+                    />
+                </Field>
             </div>
             <ErrorMessage :name="elname" class="error-message" />
         </div>

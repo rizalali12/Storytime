@@ -8,10 +8,13 @@ import { UiButton } from "#components";
 // };
 
 // toggleButton();
+
+const useToast = useToastStore();
 </script>
 
 <template v-if="myStory === true">
     <UiProfileHeader />
+    <!-- <UiToast title="Successfully post a story" /> -->
     <div class="container">
         <UiButton title="My Story" variant="no-border" active />
         <UiButton title="Bookmark" variant="no-border" url="/bookmark" />

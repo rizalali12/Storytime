@@ -7,7 +7,6 @@ const userLogin = () => {
 };
 
 const authStore = useAuthStore();
-console.log(authStore.getUser());
 
 userLogin();
 </script>
@@ -120,5 +119,10 @@ userLogin();
         max-width: 600px;
         width: 100%;
     }
+}
+
+.wrapper-toast {
+    display: flex;
+    justify-content: center;
 }
 </style>

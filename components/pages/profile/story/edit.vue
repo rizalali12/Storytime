@@ -1,4 +1,10 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+const useToast = useToastStore();
+
+const toast = () => {
+    useToast.addToast("Successfully edit a story");
+};
+</script>
 
 <template>
     <div class="container">
@@ -54,7 +60,12 @@
 
         <div class="wrapper-button">
             <UiButton title="Cancel" variant="outlined" />
-            <UiButton title="Update Story" variant="primary" />
+            <UiButton
+                title="Update Story"
+                variant="primary"
+                url="/mystory"
+                @click="toast"
+            />
         </div>
     </div>
 </template>

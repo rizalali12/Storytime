@@ -7,13 +7,17 @@ const props = defineProps({
         type: String,
         default: null,
     },
+    id: {
+        type: Number,
+        default: null,
+    },
 });
 </script>
 
 <template>
     <div class="wrapper">
         <NuxtLink :to="url">
-            <button class="button">{{ title }}</button>
+            <button class="button" :id="id">{{ title }}</button>
         </NuxtLink>
     </div>
 </template>

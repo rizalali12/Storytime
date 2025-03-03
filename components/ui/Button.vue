@@ -17,12 +17,19 @@ const props = defineProps({
         type: Boolean,
         default: false,
     },
+    isLoading: {
+        type: Boolean,
+        default: false,
+    },
 });
 </script>
 
 <template>
     <NuxtLink :to="url">
-        <button :class="variant + ' ' + (active ? 'active' : '')">
+        <button
+            :class="variant + ' ' + (active ? 'active' : '')"
+            :disabled="isLoading"
+        >
             {{ title }}
         </button>
     </NuxtLink>

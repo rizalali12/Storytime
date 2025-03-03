@@ -6,11 +6,14 @@ import { useAuthStore } from "@/stores/auth";
 
 const router = useRouter();
 const errorMessage = ref("");
+const loading = ref(false);
+const useToast = useToastStore();
 
 const login = async (values: any, { resetForm }: any) => {
     const authStore = useAuthStore();
 
     try {
+        loading.value = true;
         const response: any = await $fetch(
             "https://timestory.tmdsite.my.id/api/login",
             {
@@ -25,15 +28,17 @@ const login = async (values: any, { resetForm }: any) => {
             }
         );
         if (response.token) {
-            console.log("login berhasil", response);
-            console.log("authStore: ", authStore);
+            // console.log("login berhasil", response);
+            // console.log("authStore: ", authStore);
 
             authStore.setUser(response.user);
             router.push("/");
+            useToast.addToast("You have successfully logged in");
         }
     } catch (error: any) {
         console.error("Error during register request:", error);
         errorMessage.value = "Invalid username or password";
+        loading.value = false;
     }
     console.log(values);
 };
@@ -56,6 +61,7 @@ const schema = yup.object({
             <div class="heading__form">
                 <h1 class="heading__title fw-bold">Login</h1>
             </div>
+
             <Form @submit="login" :validationSchema="schema">
                 <div class="form">
                     <div class="form__container">
@@ -78,7 +84,10 @@ const schema = yup.object({
                     </div>
                     <p v-if="errorMessage">{{ errorMessage }}</p>
                     <div class="button__login">
-                        <UiButton title="Login" />
+                        <UiButton title="Login" :isLoading="loading" />
+                        <div v-if="loading" class="wrapper-loader">
+                            <div class="loader"></div>
+                        </div>
                     </div>
                 </div>
             </Form>
@@ -128,6 +137,37 @@ const schema = yup.object({
 
     @media (max-width: 1000px) {
         padding-left: 30px;
+    }
+}
+
+.wrapper-loader {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    top: 0;
+    left: 0;
+    position: fixed;
+}
+
+.loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 4px solid rgb(211, 208, 208);
+    border-top: 4px solid blue;
+    animation: 1s spin linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
     }
 }
 
@@ -184,6 +224,9 @@ const schema = yup.object({
 .button__login {
     margin-top: 23px;
     margin-bottom: 42px;
+    display: flex;
+    gap: 40px;
+    align-items: center;
 }
 
 .register {

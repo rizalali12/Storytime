@@ -1,5 +1,8 @@
 <script lang="ts" setup>
 const selectedValue = ref("");
+const data: any = await $fetch(
+    "https://timestory.tmdsite.my.id/api/categories"
+);
 </script>
 
 <template>
@@ -15,10 +18,17 @@ const selectedValue = ref("");
                 <option value="" disabled selected hidden>
                     Select your category
                 </option>
-                <option value="Comedy">Comedy</option>
-                <option value="Horror">Horror</option>
+                <option
+                    v-for="(data, index) in data.data"
+                    :key="index"
+                    :value="data.name"
+                    :id="data.id"
+                >
+                    {{ data.name }}
+                </option>
+                <!-- <option value="Horror">Horror</option>
                 <option value="Action">Action</option>
-                <option value="Adventure">Adventure</option>
+                <option value="Adventure">Adventure</option> -->
             </select>
         </div>
     </div>

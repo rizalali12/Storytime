@@ -8,7 +8,7 @@
     <PagesHomepageHighlight
         title="Comedy"
         variant="image_large"
-        url="/story?category=comedy"
+        url="/story?category=Comedy"
         variantExplore="explore"
         header_title="true"
         variant_title="primary"
@@ -16,7 +16,7 @@
     <PagesHomepageHighlight
         title="Romance"
         variant="image"
-        url="/story?category=romance"
+        url="/story?category=Romance"
         variantExplore="explore"
         header_title="true"
         variant_title="primary"
@@ -24,7 +24,7 @@
     <PagesHomepageHighlight
         title="Horror"
         variant="image_large"
-        url="story?category=horror"
+        url="story?category=Horror"
         variantExplore="explore"
         header_title="true"
         variant_title="primary"

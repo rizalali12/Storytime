@@ -1,4 +1,6 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+const authStore = useAuthStore();
+</script>
 
 <template>
     <div class="wrapper">
@@ -12,8 +14,8 @@
                 />
             </div>
             <div class="heading">
-                <h1 class="heading__title">Iswara</h1>
-                <p class="heading__email">dewiratnaiswara99@gmail.com</p>
+                <h1 class="heading__title">{{ authStore.getUser().name }}</h1>
+                <p class="heading__email">{{ authStore.getUser().email }}</p>
                 <p class="heading__about">
                     Avid reader and aspiring writer. Lover of mysteries,
                     thrillers, and sci-fi. Coffee enthusiast and nature

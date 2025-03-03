@@ -15,6 +15,7 @@ import { FreeMode, Navigation, Thumbs } from "swiper/modules";
 const stories = ref<any>([]);
 const saveBookmark = ref(false);
 const route = useRoute();
+const useAuth = useAuthStore();
 
 // State untuk Swiper Thumbs
 const thumbsSwiper = ref<any>(null);
@@ -36,7 +37,16 @@ const setThumbsSwiperModal = (swiperInstance: any) => {
 const modules = [FreeMode, Navigation, Thumbs];
 
 const toggleBookmark = () => {
-    saveBookmark.value = !saveBookmark.value;
+    if (useAuth.getUser().username) {
+        saveBookmark.value = !saveBookmark.value;
+        if (saveBookmark.value) {
+            useToast.addToast("Successfully added story to bookmarks");
+        } else {
+            useToast.addToast("Successfully remove story from bookmarks");
+        }
+    } else {
+        return navigateTo("/login");
+    }
 };
 
 // onMounted(() => {

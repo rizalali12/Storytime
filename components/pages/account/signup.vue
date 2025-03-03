@@ -6,9 +6,12 @@ import * as yup from "yup";
 const route = useRouter();
 const errorMessage = ref("");
 const authStore = useAuthStore();
+const loading = ref(false);
+const useToast = useToastStore();
 
 const register = async (values: any, { resetForm }: any) => {
     try {
+        loading.value = true;
         const response: any = await $fetch(
             "https://timestory.tmdsite.my.id/api/register",
             {
@@ -29,9 +32,12 @@ const register = async (values: any, { resetForm }: any) => {
             console.log("register berhasil", response); // Process the response
             route.push("/");
             authStore.setUser(response.user);
+            useToast.addToast("You have successfully registered");
         }
     } catch (error: any) {
         console.error("fetch error");
+        loading.value = false;
+        console.log(error);
 
         if (error.response) {
             console.log(error.response);
@@ -159,6 +165,9 @@ console.log(yup);
                 <div class="createaccount">
                     <UiButton title="Create Account" />
                 </div>
+                <div v-if="loading" class="wrapper-loader">
+                    <div class="loader"></div>
+                </div>
             </Form>
 
             <p class="">
@@ -263,6 +272,37 @@ console.log(yup);
         font-size: 44px;
         line-height: 58px;
         margin-top: 77px;
+    }
+}
+
+.wrapper-loader {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    top: 0;
+    left: 0;
+    position: fixed;
+}
+
+.loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 4px solid rgb(211, 208, 208);
+    border-top: 4px solid blue;
+    animation: 1s spin linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
     }
 }
 

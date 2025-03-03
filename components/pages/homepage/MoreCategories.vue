@@ -1,4 +1,12 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+const data: any = await $fetch(
+    "https://timestory.tmdsite.my.id/api/categories"
+);
+
+const category = data.data.map((item: any) => item);
+const categories = category.splice(3);
+console.log(categories);
+</script>
 
 <template>
     <div class="container">
@@ -6,13 +14,18 @@
             <UiSectionHeader title="More Categories" />
         </div>
         <div class="row">
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 pb-3">
+            <div
+                v-for="(item, index) in categories"
+                :key="index"
+                class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 pb-3"
+            >
                 <UiCardCategories
-                    title="Adventure"
-                    url="/story?category=adventure"
+                    :title="item.name"
+                    :url="`/story?category=${item.slug}`"
+                    :id="item.id"
                 />
             </div>
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 pb-3">
+            <!-- <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 pb-3">
                 <UiCardCategories
                     title="Fiction"
                     url="/story?category=fiction"
@@ -38,7 +51,7 @@
                     title="Mystery"
                     url="/story?category=mystery"
                 />
-            </div>
+            </div> -->
         </div>
     </div>
 </template>

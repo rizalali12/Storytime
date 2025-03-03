@@ -2,6 +2,7 @@
 import type { PropType } from "vue";
 
 const stories = ref<any>([]);
+const route = useRoute();
 
 const props = defineProps({
     title: {
@@ -111,7 +112,7 @@ fetchData();
             <UiStoryGenreHeader :title="title" />
         </div>
     </div>
-    <UiStoryHeader variant="category" :title="title" />
+    <UiStoryHeader variant="category" :title="route.query.category" />
     <div class="container container-content">
         <div class="heading">
             <UiDropdownMenu :title="title" />

@@ -2,11 +2,26 @@
 import type { PropType } from "vue";
 
 const saveBookmark = ref(false);
+const useToast = useToastStore();
+const deleteModal = ref(false);
+const useAuth = useAuthStore();
 
-const toggleBookmark = () => {
-    saveBookmark.value = !saveBookmark.value;
+const toggleDelete = () => {
+    deleteModal.value = !deleteModal.value;
 };
 
+const toggleBookmark = () => {
+    if (useAuth.getUser().username) {
+        saveBookmark.value = !saveBookmark.value;
+        if (saveBookmark.value) {
+            useToast.addToast("Successfully added story to bookmarks");
+        } else {
+            useToast.addToast("Successfully remove story from bookmarks");
+        }
+    } else {
+        return navigateTo("/login");
+    }
+};
 const props = defineProps({
     story: {
         type: Object,
@@ -71,9 +86,34 @@ const props = defineProps({
                     class="story__icon-logo"
                 ></icon>
             </button>
-            <button class="bookmark-mystory story__icon-delete">
+            <button
+                class="bookmark-mystory story__icon-delete"
+                @click="toggleDelete"
+            >
                 <icon name="ri:delete-bin-line" class="story__icon-logo"></icon>
             </button>
+            <div class="wrapper-modal" v-if="deleteModal">
+                <div
+                    class="modal d-flex align-items-center justify-content-center flex-column"
+                >
+                    <div
+                        class="d-flex gap-3 justify-content-center flex-column align-itemx-center text-center"
+                    >
+                        <h1 class="modal__title m-0 p-0">Delete Story</h1>
+                        <p class="modal__text m-0 p-0">
+                            Are you sure want to delete this story?
+                        </p>
+                    </div>
+                    <div class="d-flex gap-4 pt-4">
+                        <UiButton
+                            title="Cancel"
+                            variant="outlined"
+                            @click="toggleDelete"
+                        />
+                        <UiButton title="Delete" variant="primary" />
+                    </div>
+                </div>
+            </div>
             <NuxtLink to="/mystory/1/edit">
                 <button class="bookmark-mystory story__icon-edit">
                     <icon
@@ -151,6 +191,47 @@ const props = defineProps({
 
     &kotak__title:hover {
         color: #466543;
+    }
+}
+
+.wrapper-modal {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 12;
+    top: 0;
+    left: 0;
+    position: fixed;
+    cursor: auto;
+}
+
+.modal {
+    max-width: 401px;
+    width: 100%;
+    height: 283px;
+    position: absolute;
+    background-color: white;
+    top: 380px;
+    left: 39%;
+    border-radius: 8px;
+
+    &__title {
+        font-family: "DM Sans";
+        font-weight: 700;
+        font-size: 36px;
+        line-height: 46px;
+        letter-spacing: 0%;
+        color: #222222;
+    }
+
+    &__text {
+        font-family: "DM Sans";
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 27px;
+        letter-spacing: 0%;
+        text-align: center;
+        color: #222222;
     }
 }
 
