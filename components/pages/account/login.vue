@@ -8,39 +8,42 @@ const router = useRouter();
 const errorMessage = ref("");
 const loading = ref(false);
 const useToast = useToastStore();
+const { $api } = useNuxtApp();
+const useAuth = useAuthStore();
+const formElem = document.getElementById("formElem");
+
+console.log(formElem);
 
 const login = async (values: any, { resetForm }: any) => {
-    const authStore = useAuthStore();
-
     try {
         loading.value = true;
-        const response: any = await $fetch(
-            "https://timestory.tmdsite.my.id/api/login",
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: {
-                    username_or_email: values.username_or_email,
-                    password: values.password,
-                },
-            }
-        );
+        const response = await $api.auth.login({
+            body: {
+                username_or_email: values.username_or_email,
+                password: values.password,
+            },
+        });
         if (response.token) {
             // console.log("login berhasil", response);
             // console.log("authStore: ", authStore);
 
-            authStore.setUser(response.user);
+            useAuth.setUser(response.user);
+            useAuth.setToken(response.token);
             router.push("/");
             useToast.addToast("You have successfully logged in");
         }
     } catch (error: any) {
-        console.error("Error during register request:", error);
-        errorMessage.value = "Invalid username or password";
+        console.error(error.response);
+        if (error.response) {
+            const messageError = error.response._data.message
+                ? "Wrong username/email or password"
+                : "";
+            errorMessage.value = messageError;
+        }
         loading.value = false;
+
+        //todo map error message
     }
-    console.log(values);
 };
 
 const schema = yup.object({
@@ -62,7 +65,7 @@ const schema = yup.object({
                 <h1 class="heading__title fw-bold">Login</h1>
             </div>
 
-            <Form @submit="login" :validationSchema="schema">
+            <Form @submit="login" :validationSchema="schema" id="formElem">
                 <div class="form">
                     <div class="form__container">
                         <UiFormInput
@@ -82,7 +85,9 @@ const schema = yup.object({
                             elname="password"
                         />
                     </div>
-                    <p v-if="errorMessage">{{ errorMessage }}</p>
+                    <p class="text-danger" v-if="errorMessage">
+                        {{ errorMessage }}
+                    </p>
                     <div class="button__login">
                         <UiButton title="Login" :isLoading="loading" />
                         <div v-if="loading" class="wrapper-loader">

@@ -1,30 +1,33 @@
-<script></script>
+<script lang="ts" setup>
+const useAuth = useAuthStore();
+</script>
 
 <template>
     <Appheader />
 
     <LayoutHeading />
+    {{ useAuth.getToken() }}
     <PagesHomepageLatestStory />
-    <PagesHomepageHighlight
+    <PagesHighlight
         title="Comedy"
         variant="image_large"
-        url="/story?category=Comedy"
+        url="/story?category=comedy"
         variantExplore="explore"
         header_title="true"
         variant_title="primary"
     />
-    <PagesHomepageHighlight
+    <PagesHighlight
         title="Romance"
         variant="image"
-        url="/story?category=Romance"
+        url="/story?category=romance"
         variantExplore="explore"
         header_title="true"
         variant_title="primary"
     />
-    <PagesHomepageHighlight
+    <PagesHighlight
         title="Horror"
         variant="image_large"
-        url="story?category=Horror"
+        url="story?category=horror"
         variantExplore="explore"
         header_title="true"
         variant_title="primary"

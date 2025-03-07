@@ -6,7 +6,7 @@ import AppFooter from "~/components/AppFooter.vue";
     <Appheader />
 
     <PagesAllstorySearchResult />
-    <!-- <PagesHomepageHighlight variant="image_large" /> -->
+    <!-- <PagesHighlight variant="image_large" /> -->
 
     <AppFooter />
 </template>

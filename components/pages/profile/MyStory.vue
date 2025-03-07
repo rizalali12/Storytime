@@ -20,7 +20,7 @@ const useToast = useToastStore();
         <UiButton title="Bookmark" variant="no-border" url="/bookmark" />
         <div class="content">
             <UiWriteStory />
-            <PagesHomepageHighlight
+            <PagesHighlight
                 variant="image-myStory"
                 genre="story.genre"
                 class="homepage"

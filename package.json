@@ -1,33 +1,42 @@
 {
-  "name": "nuxt-app",
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "build": "nuxt build",
-    "dev": "nuxt dev",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
-  },
-  "dependencies": {
-    "@ckeditor/ckeditor5-vue": "7.3.0",
-    "@pinia-plugin-persistedstate/nuxt": "^1.2.1",
-    "@pinia/nuxt": "^0.10.1",
-    "add": "^2.0.6",
-    "bootstrap": "^5.3.3",
-    "ckeditor5": "44.2.0",
-    "module": "^1.2.5",
-    "nuxi": "^3.22.2",
-    "nuxt": "^3.15.4",
-    "nuxt-icon": "^1.0.0-beta.7",
-    "nuxt-swiper": "^2.0.0",
-    "pinia-plugin-persistedstate": "^4.2.0",
-    "sass": "^1.77.6",
-    "sass-loader": "^16.0.4",
-    "swiper": "^11.2.2",
-    "vee-validate": "^4.15.0",
-    "vue": "latest",
-    "vue-router": "latest",
-    "yup": "^1.6.1"
-  }
+    "name": "nuxt-app",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "build": "nuxt build",
+        "dev": "nuxt dev --dotenv .env",
+        "generate": "nuxt generate",
+        "preview": "nuxt preview",
+        "postinstall": "nuxt prepare"
+    },
+    "dependencies": {
+        "@ckeditor/ckeditor5-vue": "7.3.0",
+        "@pinia-plugin-persistedstate/nuxt": "^1.2.1",
+        "@pinia/nuxt": "^0.10.1",
+        "@vueuse/core": "^12.8.2",
+        "add": "^2.0.6",
+        "bootstrap": "^5.3.3",
+        "ckeditor5": "44.2.0",
+        "filepond": "^4.32.7",
+        "install": "^0.13.0",
+        "module": "^1.2.5",
+        "nuxi": "^3.22.2",
+        "nuxt": "^3.15.4",
+        "nuxt-icon": "^1.0.0-beta.7",
+        "nuxt-swiper": "^2.0.0",
+        "pinia-plugin-persistedstate": "^4.2.0",
+        "sass": "^1.77.6",
+        "sass-loader": "^16.0.4",
+        "swiper": "^11.2.2",
+        "ufo": "^1.5.4",
+        "vee-validate": "^4.15.0",
+        "vue": "latest",
+        "vue-advanced-cropper": "^2.8.9",
+        "vue-filepond": "^7.0.4",
+        "vue-router": "latest",
+        "yup": "^1.6.1"
+    },
+    "devDependencies": {
+        "ofetch": "^1.4.1"
+    }
 }

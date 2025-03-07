@@ -32,12 +32,6 @@ watch(toasts.value, () => {
         console.log(toasts.value);
     }
 });
-
-const props = defineProps({
-    title: {
-        type: String,
-    },
-});
 </script>
 
 <template>

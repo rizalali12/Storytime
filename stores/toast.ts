@@ -24,15 +24,15 @@ export const useToastStore = defineStore("toast", () => {
     const toasts: any = ref<{ message: string }[]>([]);
 
     const closeToast = () => {
-        toasts.value.splice([]);
+        toasts.value.splice(0, 1);
     };
 
     const addToast = (message: string) => {
         setTimeout(() => {
             toasts.value.push(message);
             setTimeout(() => {
-                toasts.value.shift();
-            }, 6000);
+                toasts.value.splice(0, 1);
+            }, 5000);
         }, 300);
     };
 

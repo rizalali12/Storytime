@@ -1,7 +1,11 @@
 <script lang="ts" setup>
 import type { PropType } from "vue";
+import { useDebounceFn } from "@vueuse/core";
 
 const stories = ref<any>([]);
+const route = useRoute();
+const search = ref("");
+const router = useRouter();
 
 const props = defineProps({
     title: {
@@ -31,24 +35,57 @@ const props = defineProps({
 // };
 
 // fetchData();
+
+const searchStory = () => {
+    // const query =
+    //     typeof event === "object" && event.constructor.name === "KeyboardEvent"
+    //         ? search.value
+    //         : event;
+
+    const currentQuery = { ...router.currentRoute.value.query }; // Get current query params
+    currentQuery.search = search.value; // Add or update search param
+
+    if (route.query.category) {
+        router.push({
+            path: router.currentRoute.value.path,
+            query: currentQuery,
+        });
+    } else {
+        router.push({ query: { search: search.value } });
+    }
+};
+
+const debounceSearchFn = useDebounceFn(() => {
+    searchStory();
+}, 1000);
+
+watch(
+    () => search.value,
+    () => {
+        debounceSearchFn();
+    }
+);
 </script>
 
 <template>
     <div class="container">
         <div class="wrapper">
-            <UiStoryGenreHeader title="9 result for ‘star’" />
+            <UiStoryGenreHeader :title="`9 result for ${route.query.search}`" />
         </div>
     </div>
     <UiStoryHeader variant="no-category" title="Search Result" />
     <div class="container container-content">
         <div class="heading">
-            <UiDropdownMenu />
-            <UiSearchBar variant="searchbar-mini" />
+            <div class="heading__dropdown">
+                <UiDropdownMenu />
+            </div>
+            <div @keydown.enter="searchStory" class="heading__searchbar">
+                <UiSearchBar variant="searchbar-mini" v-model="search" />
+            </div>
         </div>
-        <!-- <pre>{{ story }}</pre> -->
         <div class="story">
-            <PagesHomepageHighlight variant="image_large" genre="true" />
-            <PagesHomepageHighlight variant="image" genre="true" />
+            <PagesHighlight variant="image_large" genre="true" />
+            <PagesHighlight variant="image" genre="true" />
         </div>
         <UiNumberPage />
     </div>
@@ -76,6 +113,17 @@ const props = defineProps({
     display: flex;
     justify-content: space-between;
     align-items: center;
+    &__dropdown {
+        margin: 0px;
+        padding: 0px;
+    }
+    &__searchbar {
+        display: flex;
+        justify-content: flex-end;
+        margin: 0px;
+        padding: 0px;
+        width: 50%;
+    }
 }
 
 .story {

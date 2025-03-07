@@ -20,7 +20,7 @@ const props = defineProps({
         default: "no_explore",
     },
     variant_title: {
-        type: String,
+        type: String as PropType<"primary" | "title">,
         default: null,
     },
     genre: {
@@ -44,7 +44,7 @@ const props = defineProps({
 const fetchData = () => {
     stories.value = [
         {
-            image: "@/assets/icons/undraw_on_the_office_re_cxds 1.png",
+            image: "poster.png",
             preview:
                 "1. GOLDEN Gemma was only five minutes away from her parents’ hut, but the jungle had already taken on a different personality. It was thicker. The trees had grown taller. The ti plants shaded the green forest a sinister red. There was no doubt about it- the jungle",
             author: "Khrisvana (updated) 1",

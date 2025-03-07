@@ -41,12 +41,7 @@ const toast = () => {
                 id="image"
                 accept="image/png, image/jpg"
             />
-            <button
-                type="button"
-                class="close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-            >
+            <button type="button" class="close">
                 <icon name="ri:close-large-fill" class="close__icon"></icon>
             </button>
             <img

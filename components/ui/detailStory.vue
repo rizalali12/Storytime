@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, nextTick } from "vue";
 import { useRoute } from "vue-router";
 
 // Import Swiper styles
@@ -11,11 +11,43 @@ import "swiper/css/thumbs";
 // Import required modules
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { FreeMode, Navigation, Thumbs } from "swiper/modules";
+import type { AnySchema } from "yup";
 
 const stories = ref<any>([]);
 const saveBookmark = ref(false);
 const route = useRoute();
 const useAuth = useAuthStore();
+const useToast = useToastStore();
+const modal = ref(false);
+
+const toggleModal = () => {
+    modal.value = !modal.value;
+
+    if (!modal.value) {
+        thumbsSwiperModal.value = null;
+    }
+};
+
+const closeModal = () => {
+    modal.value = false;
+    thumbsSwiperModal.value = null;
+};
+
+const handleKeyDown = (event: KeyboardEvent) => {
+    if (event.key === "Escape") {
+        closeModal();
+    }
+};
+
+// Add event listener when the component is mounted
+onMounted(() => {
+    window.addEventListener("keydown", handleKeyDown);
+});
+
+// Remove event listener when the component is unmounted
+onUnmounted(() => {
+    window.removeEventListener("keydown", handleKeyDown);
+});
 
 // State untuk Swiper Thumbs
 const thumbsSwiper = ref<any>(null);
@@ -32,9 +64,6 @@ const thumbsSwiperModal = ref<any>(null);
 const setThumbsSwiperModal = (swiperInstance: any) => {
     thumbsSwiperModal.value = swiperInstance;
 };
-
-// Modules yang digunakan oleh Swiper
-const modules = [FreeMode, Navigation, Thumbs];
 
 const toggleBookmark = () => {
     if (useAuth.getUser().username) {
@@ -61,10 +90,11 @@ const setActiveIndex = (index: number) => {
     }
 };
 
-const initialSlide = ref(-1);
+const initialSlide = ref(0);
 
 const setinitialSlide = (index: number) => {
     initialSlide.value = index;
+    toggleModal();
 };
 </script>
 
@@ -101,7 +131,6 @@ const setinitialSlide = (index: number) => {
 
         <div class="wrapper">
             <div class="story">
-                <!-- <UiImageHighlight /> -->
                 <div class="story__image">
                     <swiper
                         :navigation="true"
@@ -114,8 +143,6 @@ const setinitialSlide = (index: number) => {
                                 src="@/assets/icons/poster.png"
                                 alt="Gambar 1"
                                 class="main-image"
-                                data-bs-toggle="modal"
-                                data-bs-target="#detailStory"
                             />
                         </swiper-slide>
                         <swiper-slide @click="setinitialSlide(1)">
@@ -123,8 +150,6 @@ const setinitialSlide = (index: number) => {
                                 src="@/assets/icons/profile_picture.png"
                                 alt="Thumbnail 2"
                                 class="main-image"
-                                data-bs-toggle="modal"
-                                data-bs-target="#detailStory"
                             />
                         </swiper-slide>
                         <swiper-slide @click="setinitialSlide(2)">
@@ -132,8 +157,6 @@ const setinitialSlide = (index: number) => {
                                 src="@/assets/icons/profile_picture.png"
                                 alt="Thumbnail 3"
                                 class="main-image"
-                                data-bs-toggle="modal"
-                                data-bs-target="#detailStory"
                             />
                         </swiper-slide>
                     </swiper>
@@ -169,100 +192,100 @@ const setinitialSlide = (index: number) => {
                         </swiper-slide>
                     </swiper>
                 </div>
-                <UiModal elWidth="1100" title="detailStory">
-                    <div class="wrapper-close">
-                        <button
-                            type="button"
-                            class="close"
-                            data-bs-dismiss="modal"
-                            aria-label="Close"
-                        >
-                            <icon
-                                name="ri:close-large-fill"
-                                class="close__icon"
-                            ></icon>
-                        </button>
-                    </div>
-                    <!-- <pre>{{ initialSlide }}</pre> -->
-                    <swiper
-                        v-if="initialSlide > -1"
-                        :navigation="true"
-                        :thumbs="{ swiper: thumbsSwiperModal }"
-                        :modules="[FreeMode, Navigation, Thumbs]"
-                        :initialSlide="initialSlide"
-                        class="mySwiper2"
-                    >
-                        <swiper-slide>
-                            <img
-                                src="@/assets/icons/poster.png"
-                                alt="Gambar 1"
-                                class="modal-image__highlight"
-                            />
-                        </swiper-slide>
-                        <swiper-slide>
-                            <img
-                                src="@/assets/icons/profile_picture.png"
-                                alt="Thumbnail 2"
-                                class="modal-image__highlight"
-                            />
-                        </swiper-slide>
-                        <swiper-slide>
-                            <img
-                                src="@/assets/icons/profile_picture.png"
-                                alt="Gambar 2"
-                                class="modal-image__highlight"
-                            />
-                        </swiper-slide>
-                        <swiper-slide>
-                            <img
-                                src="@/assets/icons/poster.png"
-                                alt="Gambar 3"
-                                class="modal-image__highlight"
-                            />
-                        </swiper-slide>
-                    </swiper>
+                <!-- <UiModal elWidth="1100" title="detailStory"> -->
+                <teleport to="body">
+                    <div class="wrapper-modal" v-if="modal">
+                        <div class="modal-content">
+                            <div class="wrapper-close">
+                                <button class="close" @click="toggleModal">
+                                    <icon
+                                        name="ri:close-large-fill"
+                                        class="close__icon"
+                                    ></icon>
+                                </button>
+                            </div>
+                            <!-- <pre>{{ initialSlide }}</pre> -->
+                            <swiper
+                                :navigation="true"
+                                :thumbs="{ swiper: thumbsSwiperModal }"
+                                :modules="[FreeMode, Navigation, Thumbs]"
+                                :initialSlide="initialSlide"
+                                class="mySwiper2"
+                            >
+                                <swiper-slide>
+                                    <img
+                                        src="@/assets/icons/poster.png"
+                                        alt="Gambar 1"
+                                        class="modal-image__highlight"
+                                    />
+                                </swiper-slide>
+                                <swiper-slide>
+                                    <img
+                                        src="@/assets/icons/profile_picture.png"
+                                        alt="Thumbnail 2"
+                                        class="modal-image__highlight"
+                                    />
+                                </swiper-slide>
+                                <swiper-slide>
+                                    <img
+                                        src="@/assets/icons/profile_picture.png"
+                                        alt="Gambar 2"
+                                        class="modal-image__highlight"
+                                    />
+                                </swiper-slide>
+                                <swiper-slide>
+                                    <img
+                                        src="@/assets/icons/poster.png"
+                                        alt="Gambar 3"
+                                        class="modal-image__highlight"
+                                    />
+                                </swiper-slide>
+                            </swiper>
 
-                    <!-- Swiper Thumbnail -->
-                    <swiper
-                        @swiper="setThumbsSwiperModal"
-                        :spaceBetween="20"
-                        :slidesPerView="4"
-                        :freeMode="true"
-                        :centerInsufficientSlides="true"
-                        :watchSlidesProgress="true"
-                        :modules="[FreeMode, Navigation, Thumbs]"
-                        class="mySwiper"
-                    >
-                        <swiper-slide>
-                            <img
-                                src="@/assets/icons/poster.png"
-                                alt="Thumbnail 1"
-                                class="modal-image"
-                            />
-                        </swiper-slide>
-                        <swiper-slide>
-                            <img
-                                src="@/assets/icons/profile_picture.png"
-                                alt="Thumbnail 2"
-                                class="modal-image"
-                            />
-                        </swiper-slide>
-                        <swiper-slide>
-                            <img
-                                src="@/assets/icons/profile_picture.png"
-                                alt="Thumbnail 2"
-                                class="modal-image"
-                            />
-                        </swiper-slide>
-                        <swiper-slide>
-                            <img
-                                src="@/assets/icons/poster.png"
-                                alt="Thumbnail 3"
-                                class="modal-image"
-                            />
-                        </swiper-slide>
-                    </swiper>
-                </UiModal>
+                            <!-- Swiper Thumbnail -->
+                            <swiper
+                                @swiper="setThumbsSwiperModal"
+                                :spaceBetween="20"
+                                :slidesPerView="4"
+                                :freeMode="true"
+                                :centerInsufficientSlides="true"
+                                :watchSlidesProgress="true"
+                                :modules="[FreeMode, Navigation, Thumbs]"
+                                class="mySwiper"
+                            >
+                                <swiper-slide>
+                                    <img
+                                        src="@/assets/icons/poster.png"
+                                        alt="Thumbnail 1"
+                                        class="modal-image"
+                                    />
+                                </swiper-slide>
+                                <swiper-slide>
+                                    <img
+                                        src="@/assets/icons/profile_picture.png"
+                                        alt="Thumbnail 2"
+                                        class="modal-image"
+                                    />
+                                </swiper-slide>
+                                <swiper-slide>
+                                    <img
+                                        src="@/assets/icons/profile_picture.png"
+                                        alt="Thumbnail 2"
+                                        class="modal-image"
+                                    />
+                                </swiper-slide>
+                                <swiper-slide>
+                                    <img
+                                        src="@/assets/icons/poster.png"
+                                        alt="Thumbnail 3"
+                                        class="modal-image"
+                                    />
+                                </swiper-slide>
+                            </swiper>
+                            <!-- </UiModal> -->
+                        </div>
+                    </div>
+                </teleport>
 
                 <div class="story__text">
                     <p>
@@ -288,6 +311,27 @@ const setinitialSlide = (index: number) => {
     padding-top: 60px;
 }
 
+.wrapper-modal {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 12;
+    top: 0;
+    left: 0;
+    position: fixed;
+}
+
+.modal-content {
+    max-width: 1020px;
+    width: 100%;
+    height: fit-content;
+    position: absolute;
+    top: 100px;
+    border-radius: 8px;
+    right: 20%;
+    background-color: white;
+}
+
 .mySwiper2 {
     width: 100%;
     max-width: 900px;
@@ -298,8 +342,8 @@ const setinitialSlide = (index: number) => {
 .mySwiper {
     width: 100%;
     padding-bottom: 60px;
-    padding-left: 100px;
-    padding-right: 100px;
+    padding-left: 60px;
+    padding-right: 60px;
 
     @media (max-width: 900px) {
         padding-left: 50px;

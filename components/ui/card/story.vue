@@ -1,5 +1,8 @@
 <script lang="ts" setup>
 import type { PropType } from "vue";
+import Story from "~/components/pages/detail/Story.vue";
+
+const { $api } = useNuxtApp();
 
 const saveBookmark = ref(false);
 const useToast = useToastStore();
@@ -32,11 +35,11 @@ const props = defineProps({
         default: null,
     },
     variant: {
-        type: String as PropType<"image" | "image_large">,
+        type: String as PropType<"image">,
         default: "image",
     },
     genre: {
-        type: String,
+        type: Boolean,
         default: null,
     },
     hasAuthor: {
@@ -44,10 +47,18 @@ const props = defineProps({
         default: "author",
     },
     variantIcon: {
-        type: String as PropType<"primary" | "secondary" | "my-story">,
+        type: String as PropType<
+            "primary" | "secondary" | "my-story" | "latest-story"
+        >,
         default: "primary",
     },
 });
+
+// const getImageUrl = () => {
+//     return `/${props.story.image}`;
+//     // return "test";
+//     // console.log(props.story.image);
+// };
 </script>
 
 <template>
@@ -71,6 +82,7 @@ const props = defineProps({
                 <img src="@/assets/icons/poster.png" class="gambar" alt="" />
             </NuxtLink>
         </div>
+
         <div class="story" v-if="variantIcon === 'my-story'">
             <button
                 :class="saveBookmark ? 'story__icon-black' : 'story__icon'"
@@ -126,6 +138,7 @@ const props = defineProps({
                 <img src="@/assets/icons/poster.png" class="gambar" alt="" />
             </NuxtLink>
         </div>
+
         <div class="kotak" v-if="variantIcon === 'primary'">
             <button
                 :class="saveBookmark ? 'kotak__icon-black' : 'kotak__icon'"
@@ -143,8 +156,33 @@ const props = defineProps({
             </button>
             <NuxtLink :to="story.url" class="kotak">
                 <img src="@/assets/icons/poster.png" class="gambar" alt="" />
+                <!-- <img :src="getImageUrl()" class="gambar" alt="" /> -->
+                <!-- <img :src="story.url" class="gambar" alt="" /> -->
             </NuxtLink>
         </div>
+
+        <div class="kotak" v-if="variantIcon === 'latest-story'">
+            <button
+                :class="saveBookmark ? 'kotak__icon-black' : 'kotak__icon'"
+                @click="toggleBookmark"
+                class="bookmark"
+            >
+                <icon
+                    :name="
+                        saveBookmark
+                            ? 'material-symbols:bookmark-check-sharp'
+                            : 'material-symbols:bookmark-add-outline-rounded'
+                    "
+                    class="kotak__icon-logo"
+                ></icon>
+            </button>
+            <NuxtLink :to="story.url" class="kotak">
+                <img src="@/assets/icons/poster.png" class="gambar" alt="" />
+                <!-- <img :src="getImageUrl()" class="gambar" alt="" /> -->
+                <!-- <img :src="story.url" class="gambar__story" alt="" /> -->
+            </NuxtLink>
+        </div>
+
         <NuxtLink :to="url" class="link">
             <div class="kotak__info">
                 <h1 class="kotak__title">{{ story.title }}</h1>
@@ -153,6 +191,11 @@ const props = defineProps({
                 </div>
                 <div class="kotak__profile" v-if="hasAuthor === 'author'">
                     <div class="author">
+                        <!-- <img
+                            :src="story.url"
+                            alt=""
+                            class="author__profile-image"
+                        /> -->
                         <img
                             src="@/assets/icons/undraw_on_the_office_re_cxds 1.png"
                             alt=""
@@ -164,11 +207,13 @@ const props = defineProps({
                         <div>
                             <label class="author__date">{{ story.date }}</label>
                         </div>
-                        <div v-elseif="genre" class="author__genre">
+
+                        <div v-if="genre" class="author__genre">
                             {{ story.genre }}
                         </div>
                     </div>
                 </div>
+
                 <div class="kotak__profile" v-if="hasAuthor === 'no-author'">
                     <div class="wrapper-author">
                         <div class="author__genre">
@@ -282,6 +327,7 @@ const props = defineProps({
     display: flex;
     flex-direction: column;
     width: 100%;
+    // max-width: 547px;
     position: relative;
 
     &__info {
@@ -647,6 +693,14 @@ const props = defineProps({
     border-radius: 8px;
     transition: 0.5s;
     width: 100%;
+
+    &__story {
+        border-radius: 8px;
+        transition: 0.5s;
+        width: 100%;
+        height: 547px;
+        object-fit: fill;
+    }
 }
 
 .bookmark {

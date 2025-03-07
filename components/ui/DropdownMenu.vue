@@ -2,61 +2,69 @@
 import { Title } from "#components";
 
 const categories = ref("");
-console.log(categories);
+const { $api } = useNuxtApp();
+const route = useRoute();
+// const slug = ref([]);
+const dataSlug = ref([]);
 
-const data: any = await $fetch(
-    "https://timestory.tmdsite.my.id/api/categories"
-);
+const data = async () => {
+    try {
+        const response: any = await $api.categories.categories();
+        // const categoriesSlug = response.data.map((item: any) => item.slug);
+        // slug.value = dataSlug;
+        dataSlug.value = response.data;
+        // categories.value = categoriesSlug;
+    } catch (error) {
+        console.error("error when fetching", error);
+    }
+};
 
-const slug = data.data.map((item: any) => item.slug);
-console.log(slug);
-
-const comedy = slug.find((item: any) => {
-    return item === "comedy";
-});
-const romance = slug.find((item: any) => {
-    return item === "romance";
-});
-const horror = slug.find((item: any) => {
-    return item === "horror";
-});
-const adventure = slug.find((item: any) => {
-    return item === "adventure";
-});
-const fiction = slug.find((item: any) => {
-    return item === "fiction";
-});
-const fantasy = slug.find((item: any) => {
-    return item === "fantasy";
-});
-const drama = slug.find((item: any) => {
-    return item === "drama";
-});
-const heartfelt = slug.find((item: any) => {
-    return item === "heartfelt";
-});
-const mystery = slug.find((item: any) => {
-    return item === "mystery";
-});
+// const comedy = slug.find((item: any) => {
+//     return item === "comedy";
+// });
+// const romance = slug.find((item: any) => {
+//     return item === "romance";
+// });
+// const horror = slug.find((item: any) => {
+//     return item === "horror";
+// });
+// const adventure = slug.find((item: any) => {
+//     return item === "adventure";
+// });
+// const fiction = slug.find((item: any) => {
+//     return item === "fiction";
+// });
+// const fantasy = slug.find((item: any) => {
+//     return item === "fantasy";
+// });
+// const drama = slug.find((item: any) => {
+//     return item === "drama";
+// });
+// const heartfelt = slug.find((item: any) => {
+//     return item === "heartfelt";
+// });
+// const mystery = slug.find((item: any) => {
+//     return item === "mystery";
+// });
 
 const categoriesSlug = () => {
-    if (route.query.category === comedy) {
+    if (route.query.category === "comedy") {
         categories.value = "Comedy";
-    } else if (route.query.category === romance) {
+    } else if (route.query.category === "romance") {
         categories.value = "Romance";
-    } else if (route.query.category === horror) {
+    } else if (route.query.category === "horror") {
         categories.value = "Horror";
-    } else if (route.query.category === adventure) {
+    } else if (route.query.category === "adventure") {
         categories.value = "Adventure";
-    } else if (route.query.category === fiction) {
+    } else if (route.query.category === "fiction") {
         categories.value = "Fiction";
-    } else if (route.query.category === fantasy) {
+    } else if (route.query.category === "fantasy") {
         categories.value = "Fantasy";
-    } else if (route.query.category === drama) {
+    } else if (route.query.category === "drama") {
         categories.value = "Drama";
-    } else if (route.query.category === heartfelt) {
+    } else if (route.query.category === "heartfelt") {
         categories.value = "Heartfelt";
-    } else if (route.query.category === mystery) {
+    } else if (route.query.category === "mystery") {
         categories.value = "Mystery";
     }
 };
@@ -71,7 +79,7 @@ const props = defineProps({
     },
 });
 
-const route = useRoute();
+data();
 categoriesSlug();
 </script>
 
@@ -242,7 +250,7 @@ categoriesSlug();
                             </ul> -->
                             <ul class="dropdown-menu dropdown-menu-white">
                                 <li
-                                    v-for="(data, index) in data.data"
+                                    v-for="(data, index) in dataSlug"
                                     :key="index"
                                 >
                                     <!-- <pre>{{ data }}</pre> -->
@@ -301,6 +309,7 @@ p {
     font-weight: 500;
     font-size: 24px;
     line-height: 32px;
+    // text-transform: capitalize;
 }
 
 .dropdown-menu {

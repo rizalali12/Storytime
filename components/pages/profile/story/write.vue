@@ -1,7 +1,10 @@
 <script lang="ts" setup>
-const inputImage = ref<HTMLInputElement | null>(null);
-const previewImage = ref<any>(null);
+import FilePondUploader from "~/components/FilePondUploader.vue";
+
+const inputImage = ref<any>(null);
+// const previewImage = ref<any>(null);
 const useToast = useToastStore();
+const previewImages = ref<string[]>([]);
 
 const uploadImage = () => {
     if (inputImage.value) {
@@ -13,10 +16,20 @@ const toast = () => {
     useToast.addToast("Successfully post a story");
 };
 
-const handleFileChange = () => {
-    const file = (event.target as HTMLInputElement).files?.[0];
-    if (file) {
-        previewImage.value = URL.createObjectURL(file);
+const handleFileChange = (event: Event) => {
+    const target = event.target as HTMLInputElement;
+    const files = target.files;
+    console.log("ini addalah target :", target.files);
+
+    if (files) {
+        if (files.length) {
+            previewImages.value = [];
+            console.log("ini jalan", FileList);
+        }
+        Array.from(files).forEach((file: File) => {
+            // Explicitly define file as 'File'
+            previewImages.value.push(URL.createObjectURL(file));
+        });
     }
 };
 </script>
@@ -54,13 +67,17 @@ const handleFileChange = () => {
                 ref="inputImage"
                 accept="image/png, image/jpg"
                 @change="handleFileChange"
+                multiple
             />
-            <img
-                v-if="previewImage"
-                :src="previewImage"
-                alt="Preview Image"
-                class="preview"
-            />
+            <div v-if="previewImages.length" class="preview-image">
+                <img
+                    v-for="(image, index) in previewImages"
+                    :key="index"
+                    :src="image"
+                    alt="Preview Image"
+                    class="preview"
+                />
+            </div>
             <template v-else>
                 <img src="@/assets/icons/Vector (1).png" alt="" />
                 <p class="wrapper-image__text">Choose Image</p>
@@ -152,6 +169,7 @@ const handleFileChange = () => {
     justify-content: center;
     flex-direction: column;
     gap: 25px;
+    cursor: pointer;
 
     &__text {
         font-family: "DM Sans";
@@ -168,5 +186,11 @@ const handleFileChange = () => {
         gap: 25px;
         background-color: red;
     }
+}
+
+.preview-image {
+    display: flex;
+    gap: 30px;
+    width: 100%;
 }
 </style>

@@ -1,8 +1,6 @@
 <script lang="ts" setup>
 import { Form, Field, ErrorMessage, useForm } from "vee-validate";
 import type { PropType } from "vue";
-import { errorMessages } from "vue/compiler-sfc";
-import * as yup from "yup";
 
 const showPassword = ref(false);
 const props = defineProps({

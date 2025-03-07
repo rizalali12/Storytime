@@ -1,10 +1,30 @@
 <script setup lang="ts">
+import { useDebounceFn } from "@vueuse/core";
+
 const props = defineProps({
     variant: {
         type: String as PropType<"searchbar" | "searchbar-mini">,
         default: "searchbar",
     },
+    modelValue: {
+        type: String,
+        default: "",
+    },
 });
+
+const router = useRouter();
+const search = defineModel("modelValue", { required: true });
+const debounceSearch: any = ref("");
+const debounceSearchFn = useDebounceFn(() => {
+    debounceSearch.value = search.value;
+}, 1000);
+
+watch(
+    () => search.value,
+    () => {
+        debounceSearchFn();
+    }
+);
 </script>
 
 <template>
@@ -14,6 +34,7 @@ const props = defineProps({
         id=""
         placeholder="Search story"
         :class="variant"
+        v-model="search"
     />
 </template>
 

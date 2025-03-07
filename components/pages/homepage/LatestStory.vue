@@ -5,10 +5,11 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/free-mode";
 import { FreeMode } from "swiper/modules";
+import { Body, NuxtLoadingIndicator } from "#components";
 
 const stories = ref([
     {
-        image: "@/assets/icons/undraw_on_the_office_re_cxds 1.png",
+        image: "undraw_on_the_office_re_cxds 1.png",
         title: "Gemma",
         preview:
             "1. GOLDEN Gemma was only five minutes away from her parents’ hut, but the jungle had already taken on a different personality.",
@@ -18,7 +19,7 @@ const stories = ref([
         url: "/story/testing",
     },
     {
-        image: "@/assets/icons/undraw_work_from_anywhere_re_s2i6 1.png",
+        image: "undraw_on_the_office_re_cxds 1.png",
         title: "Harry Potter and The Goblet of Fire Harry Potter and The Goblet of Fire Harry Potter and The Goblet of Fire",
         preview:
             "1. GOLDEN Gemma was only five minutes away from her parents’ hut, but the jungle had already taken on a different personality.",
@@ -28,7 +29,7 @@ const stories = ref([
         url: "/story/testing",
     },
     {
-        image: "@/assets/icons/undraw_on_the_office_re_cxds 1.png",
+        image: "undraw_on_the_office_re_cxds 1.png",
         title: "Gemma",
         preview:
             "1. GOLDEN Gemma was only five minutes away from her parents’ hut, but the jungle had already taken on a different personality.",
@@ -38,7 +39,7 @@ const stories = ref([
         url: "/story/testing",
     },
     {
-        image: "@/assets/icons/undraw_on_the_office_re_cxds 1.png",
+        image: "undraw_on_the_office_re_cxds 1.png",
         title: "Gemma",
         preview:
             "1. GOLDEN Gemma was only five minutes away from her parents’ hut, but the jungle had already taken on a different personality.",
@@ -48,6 +49,38 @@ const stories = ref([
         url: "/story/testing",
     },
 ]);
+
+// const cat: any = ref([]);
+// const { $api } = useNuxtApp();
+
+// const image = async () => {
+//     try {
+//         await $api.auth.kucing();
+//     } catch (error) {
+//         console.error(error);
+//     }
+// };
+
+// console.log("ini adalah image :", image());
+
+// onMounted(async () => {
+//     try {
+//         NuxtLoadingIndicator;
+//         const response = await $fetch(
+//             "https://api.thecatapi.com/v1/images/search?limit=30",
+//             {
+//                 method: "GET",
+//             }
+//         );
+//         cat.value = response;
+//         // const map = cat.value.map((item: any) => item.image);
+//         // cat.value = map;
+//         // console.log(cat.value);
+//         // cat.value.push({ title: "hai" });
+//     } catch (error) {
+//         console.log("Error fetching data:", error);
+//     }
+// });
 </script>
 
 <template>
@@ -75,7 +108,11 @@ const stories = ref([
                 >
                     <swiper-slide v-for="(story, i) in stories" :key="i">
                         <div class="story__items">
-                            <UiCardStory :story="story" genre="story.genre" />
+                            <UiCardStory
+                                :story="story"
+                                :genre="true"
+                                variantIcon="latest-story"
+                            />
                         </div>
                     </swiper-slide>
                 </swiper>

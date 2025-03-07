@@ -1,5 +1,27 @@
 <script lang="ts" setup>
 const login = ref(false);
+const search = ref("");
+const router = useRouter();
+const route = useRoute();
+
+const searchStory = (event: any) => {
+    if (search.value === "") {
+        navigateTo("/");
+    } else {
+        // This line determines what to use as the search query
+        const query =
+            typeof event === "object" &&
+            event.constructor.name === "KeyboardEvent"
+                ? search.value // Use the reactive search value when event is passed
+                : event; // Use the value passed directly otherwise
+
+        router.push({
+            path: "/story",
+            query: { search: query },
+        });
+    }
+};
+
 const userLogin = () => {
     if (authStore.getUser().name) {
         login.value = true;
@@ -38,8 +60,8 @@ userLogin();
                             readers and writers through the power of story
                         </p>
                     </template>
-                    <div class="searchBar">
-                        <UiSearchBar />
+                    <div @keydown.enter="searchStory" class="searchBar">
+                        <UiSearchBar v-model="search" />
                     </div>
                     <div>
                         <img

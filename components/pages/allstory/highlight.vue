@@ -1,7 +1,10 @@
 <script lang="ts" setup>
 import type { PropType } from "vue";
+import { useDebounceFn } from "@vueuse/core";
 
 const stories = ref<any>([]);
+const router = useRouter();
+const search = ref("");
 
 const props = defineProps({
     title: {
@@ -102,6 +105,27 @@ const fetchData = () => {
     ];
 };
 
+const searchStory = () => {
+    // This line determines what to use as the search query
+    // const query =
+    //     typeof event === "object" && event.constructor.name === "KeyboardEvent"
+    //         ? search.value // Use the reactive search value when event is passed
+    //         : event; // Use the value passed directly otherwise
+
+    router.push({ query: { search: search.value } });
+};
+
+const debounceSearchFn = useDebounceFn(() => {
+    searchStory();
+}, 1000);
+
+watch(
+    () => search.value,
+    () => {
+        debounceSearchFn();
+    }
+);
+
 fetchData();
 </script>
 
@@ -114,8 +138,12 @@ fetchData();
     <UiStoryHeader variant="no-category" title="All Story" />
     <div class="container container-content">
         <div class="heading">
-            <UiDropdownMenu />
-            <UiSearchBar variant="searchbar-mini" />
+            <div class="heading__dropdown">
+                <UiDropdownMenu />
+            </div>
+            <div @keydown.enter="searchStory" class="heading__searchbar">
+                <UiSearchBar variant="searchbar-mini" v-model="search" />
+            </div>
         </div>
         <div class="story" v-if="variant === 'image'">
             <div class="row">
@@ -125,7 +153,7 @@ fetchData();
                     :key="i"
                 >
                     <div class="story__normal">
-                        <UiCardStory :story="story" />
+                        <UiCardStory :story="story" genre="true" />
                     </div>
                 </div>
             </div>
@@ -155,6 +183,18 @@ fetchData();
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    &__dropdown {
+        margin: 0px;
+        padding: 0px;
+    }
+    &__searchbar {
+        display: flex;
+        justify-content: flex-end;
+        margin: 0px;
+        padding: 0px;
+        width: 50%;
+    }
 }
 
 .story {

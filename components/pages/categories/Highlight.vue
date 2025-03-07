@@ -1,8 +1,13 @@
 <script lang="ts" setup>
 import type { PropType } from "vue";
+import { useDebounceFn } from "@vueuse/core";
 
 const stories = ref<any>([]);
 const route = useRoute();
+const router = useRouter();
+const search = ref("");
+
+console.log("ini adalah route :", route);
 
 const props = defineProps({
     title: {
@@ -103,6 +108,33 @@ const fetchData = () => {
     ];
 };
 
+const searchStory = () => {
+    // This line determines what to use as the search query
+    // const query =
+    //     typeof event === "object" && event.constructor.name === "KeyboardEvent"
+    //         ? search.value // Use the reactive search value when event is passed
+    //         : event; // Use the value passed directly otherwise
+
+    const currentQuery = { ...router.currentRoute.value.query }; // Get current query params
+    currentQuery.search = search.value; // Add or update search param
+
+    router.push({
+        path: router.currentRoute.value.path,
+        query: currentQuery,
+    });
+};
+
+const debounceSearchFn = useDebounceFn(() => {
+    searchStory();
+}, 1000);
+
+watch(
+    () => search.value,
+    () => {
+        debounceSearchFn();
+    }
+);
+
 fetchData();
 </script>
 
@@ -113,10 +145,15 @@ fetchData();
         </div>
     </div>
     <UiStoryHeader variant="category" :title="route.query.category" />
+
     <div class="container container-content">
         <div class="heading">
-            <UiDropdownMenu :title="title" />
-            <UiSearchBar variant="searchbar-mini" />
+            <div class="heading__dropdown">
+                <UiDropdownMenu :title="title" />
+            </div>
+            <div @keydown.enter="searchStory" class="heading__searchbar">
+                <UiSearchBar variant="searchbar-mini" v-model="search" />
+            </div>
         </div>
         <div class="story" v-if="variant === 'image'">
             <div class="row">
@@ -126,7 +163,7 @@ fetchData();
                     :key="i"
                 >
                     <div class="story__normal">
-                        <UiCardStory :story="story" />
+                        <UiCardStory :story="story" hasAuthor="author" />
                     </div>
                 </div>
             </div>
@@ -152,6 +189,18 @@ fetchData();
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    &__dropdown {
+        margin: 0px;
+        padding: 0px;
+    }
+    &__searchbar {
+        display: flex;
+        justify-content: flex-end;
+        margin: 0px;
+        padding: 0px;
+        width: 50%;
+    }
 }
 
 .story {

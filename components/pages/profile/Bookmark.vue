@@ -17,7 +17,7 @@ import { UiButton } from "#components";
         <UiButton title="Bookmark" variant="no-border" active />
         <div class="content">
             <UiWriteStory />
-            <PagesHomepageHighlight
+            <PagesHighlight
                 variant="image-myStory"
                 genre="story.genre"
                 class="homepage"

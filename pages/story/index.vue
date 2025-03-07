@@ -39,7 +39,10 @@ const getText = () => {
 <template>
     <div>
         <Appheader />
-        <template v-if="route.query.category">
+        <template v-if="route.query.search">
+            <PagesAllstorySearchResult />
+        </template>
+        <template v-else-if="route.query.category">
             <PagesCategoriesHighlight />
         </template>
         <template v-else>

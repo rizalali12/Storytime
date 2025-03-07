@@ -6,6 +6,7 @@ export const useAuthStore = defineStore("auth", {
             email: null as string | null,
             about: null as string | null,
         },
+        token: null as string | null,
     }),
     actions: {
         setUser(user: {
@@ -13,8 +14,12 @@ export const useAuthStore = defineStore("auth", {
             name: string | null;
             email: string | null;
             about: string | null;
+            token: string | null;
         }) {
             this.user = { ...user };
+        },
+        setToken(token: string) {
+            this.token = token;
         },
         clearUser() {
             this.user = {
@@ -23,9 +28,13 @@ export const useAuthStore = defineStore("auth", {
                 email: null,
                 about: null,
             };
+            this.token = null;
         },
         getUser() {
             return this.user;
+        },
+        getToken() {
+            return this.token;
         },
         // getters: {
         //     getUser: (state: any) => state.user,

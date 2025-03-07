@@ -6,7 +6,7 @@ const route = useRoute();
     <div class="header">
         <UiStoryHeader :title="route.params.idStory" variant="no-category" />
         <UiDetailStory />
-        <PagesHomepageHighlight
+        <PagesHighlight
             variant="image"
             title="Simillar Story"
             variant_title="primary"

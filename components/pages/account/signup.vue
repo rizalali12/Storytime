@@ -8,30 +8,26 @@ const errorMessage = ref("");
 const authStore = useAuthStore();
 const loading = ref(false);
 const useToast = useToastStore();
+const { $api } = useNuxtApp();
 
 const register = async (values: any, { resetForm }: any) => {
     try {
         loading.value = true;
-        const response: any = await $fetch(
-            "https://timestory.tmdsite.my.id/api/register",
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: {
-                    name: values.name,
-                    username: values.username,
-                    email: values.email,
-                    password: values.password,
-                    password_confirmation: values.password_confirmation,
-                },
-            }
-        );
+        const response = await $api.auth.register({
+            body: {
+                name: values.name,
+                username: values.username,
+                email: values.email,
+                password: values.password,
+                password_confirmation: values.password_confirmation,
+            },
+        });
         if (response.token) {
+            resetForm();
             console.log("register berhasil", response); // Process the response
             route.push("/");
             authStore.setUser(response.user);
+            authStore.setToken(response.token);
             useToast.addToast("You have successfully registered");
         }
     } catch (error: any) {
